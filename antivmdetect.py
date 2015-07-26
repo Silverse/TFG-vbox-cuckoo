@@ -30,7 +30,7 @@ import os
 
 
 # Welcome
-print '--- AntiVMdetect by Mikael, @nsmfoo (modified by Jose Carlos R.) ---'
+print '\n--- AntiVMdetect by Mikael, @nsmfoo (modified by Jose Carlos R.) ---'
 print '[*] Creating VirtualBox modifications ..'
 
 ##################### Functions ################
@@ -191,7 +191,7 @@ except:
 # Write all data collected so far to file
 file_name="vboxmods.sh"
 
-logfile = file(file_name, 'w+')
+logfile = file('/tmp/'+file_name, 'w+')
 logfile.write('# Generated on: ' + time.strftime("%H:%M:%S") + '\n')
 
 for k, v in sorted(dmi_info.iteritems()):

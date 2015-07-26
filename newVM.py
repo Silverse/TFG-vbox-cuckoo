@@ -77,7 +77,7 @@ os.system("vboxmanage modifyvm "+vm_name+" --nic1 hostonly --hostonlyadapter1 vb
 
 # Attach storage, add an IDE controller with a CD/DVD drive attached
 os.system("VBoxManage storagectl "+vm_name+" --name 'IDE Controller' --add ide > "+file_outPut)
-os.system("VBoxManage createhd --filename ./"+vm_name+".vdi --size "+HDD+" --format vdi > "+file_outPut)
+os.system("VBoxManage createhd --filename ./"+vm_name+".vdi --size "+HDD+" --format vdi > "+file_outPut)#should be created in another directory
 os.system("VBoxManage storageattach "+vm_name+" --storagectl 'IDE Controller' --port 0 --device 0 --type hdd --medium ./"+vm_name+".vdi > "+file_outPut)
 os.system("VBoxManage storageattach "+vm_name+" --storagectl 'IDE Controller' --port 1 --device 0 --type dvddrive --medium "+absolute_path+" > "+file_outPut)
 
@@ -89,7 +89,7 @@ raw_input("	-If you have not copied the chosen files to the ftp folder, please d
 #### AntiVM Detect execution
 os.system("sudo ./antivmdetect.py "+vm_name+" "+guest_ip+" "+host_ip+" "+guest_primary_dns)
 # Executes the bash file
-sh_file=open('vboxmods.sh', 'r')
+sh_file=open('/tmp/vboxmods.sh', 'r')
 line=sh_file.readline()
 while line!="":
 	os.system(line)
@@ -119,5 +119,12 @@ os.system("vboxmanage controlvm "+vm_name+" poweroff 2> "+file_outPut)
 while not checkOutP(target='100%'):
 	pass
 
+# Install cuckoo and dependencies
+if raw_input(" Do you have Cuckoo and it's dependancies already installed?: (Y/N)").upper()!="Y":
+	os.system('sudo python requirements.py')
+
+# Cuckoo modifications for the new VM
+tag_list=raw_input('Write down a list of tags for cuckoo to add to this VM profile. Separated with commas (a,b,c,d): ')
+os.system('sudo ./cuckooMods.py '+host_ip+' '+guest_ip+' '+vm_name+' '+snap_name+' '+tag_list)
 
 exit()

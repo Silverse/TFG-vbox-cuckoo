@@ -34,7 +34,7 @@ ip_written=False
 port_written=False
 
 #Opening the file for reading and writting
-conf_file=open('cuckoo-original/conf/cuckoo.conf', 'r+')
+conf_file=open('cuckoo/conf/cuckoo.conf', 'r+')
 tmp_file=open('/tmp/cuckoo-tmp.conf', 'w+')
 
 line=conf_file.readline()

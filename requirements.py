@@ -10,13 +10,18 @@ import os
 
 ### Guest
 ## Python
-os.system('wget http://python.org/ftp/python/2.7.10/python-2.7.10.msi')
-os.system('sudo cp python-2.7.10.msi /srv/ftp')
+os.system('wget -P /srv/ftp http://python.org/ftp/python/2.7.10/python-2.7.10.msi')
+#os.system('sudo cp python-2.7.10.msi /srv/ftp')
 ## Python Imaging Library
-os.system('wget http://effbot.org/downloads/PIL-1.1.7.win32-py2.7.exe')
-os.system('sudo cp PIL-1.1.7.win32-py2.7.exe /srv/ftp')
+os.system('wget -P /srv/ftp http://effbot.org/downloads/PIL-1.1.7.win32-py2.7.exe')
+#os.system('sudo cp PIL-1.1.7.win32-py2.7.exe /srv/ftp')
 
 ### Host
+os.system('''sudo mkdir requirements
+sudo chmod 755 requirements
+cd requirements
+''')
+
 package_list="python-bson python-sqlalchemy python-dpkt python-jinja2 python-magic python-pymongo python-gridfs python-bottle python-pefile python-chardet volatility"
 os.system('sudo apt-get install '+package_list)
 
@@ -31,7 +36,7 @@ os.system('''
 	./configure 
 	make 
 	sudo make install
-	cd /home/tom
+	cd ..
 	''') #Executing'ssdeep -V' for checking '2.12'
 # Pydeep via pip
 os.system('sudo apt-get install python-pip -y')
@@ -53,7 +58,7 @@ os.system('''
 	cd yara-python
 	python setup.py build
 	sudo python setup.py install
-	cd /home/tom
+	cd ..
 	''')
 
 ## Configure TCPdump
@@ -98,10 +103,11 @@ startup_file.close()
 tmp_file.close()
 
 #Install cuckoo
-os.system('sudo wget http://downloads.cuckoosandbox.org/cuckoo-current.tar.gz')
-os.system('sudo tar -xf cuckoo-current.tar.gz')
-os.system('cd cuckoo')
-os.system('sudo cp cuckoo/agent/agent.py /srv/ftp')
+os.system('''sudo wget http://downloads.cuckoosandbox.org/cuckoo-current.tar.gz
+sudo tar -xf cuckoo-current.tar.gz
+sudo cp cuckoo/agent/agent.py /srv/ftp
+''')
+
 
 
 exit()
