@@ -88,11 +88,11 @@ os.system("VBoxManage storageattach "+vm_name+" --storagectl 'IDE Controller' --
 
 # FTP
 print "[*] Preparing the FTP server"
-os.system("sudo ./prepareFTPserver.py "+host_ip+" "+ftp_port)
+os.system("sudo python prepareFTPserver.py "+host_ip+" "+ftp_port)
 raw_input("	-If you have not copied the chosen files to the ftp folder, please do it now (/srv/ftp). Press ENTER when ready:")
 
 #### AntiVM Detect execution
-os.system("sudo ./antivmdetect.py "+vm_name+" "+guest_ip+" "+host_ip+" "+guest_primary_dns)
+os.system("sudo python antivmdetect.py "+vm_name+" "+guest_ip+" "+host_ip+" "+guest_primary_dns)
 # Executes the bash file
 sh_file=open('/tmp/vboxmods.sh', 'r')
 line=sh_file.readline()
@@ -131,6 +131,6 @@ if raw_input(" Do you have Cuckoo and it's dependancies already installed?: (Y/N
 
 # Cuckoo modifications for the new VM
 tag_list=raw_input('Write down a list of tags for cuckoo to add to this VM profile. Separated with commas (a,b,c,d): ')
-os.system('sudo ./cuckooMods.py '+host_ip+' '+guest_ip+' '+vm_name+' '+snap_name+' '+tag_list)
+os.system('sudo python cuckooMods.py '+host_ip+' '+guest_ip+' '+vm_name+' '+snap_name+' '+tag_list)
 
 exit()
