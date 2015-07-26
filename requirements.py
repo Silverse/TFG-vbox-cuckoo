@@ -8,6 +8,7 @@
 
 import os
 
+os.system('sudo apt-get update')
 ### Guest
 ## Python
 os.system('wget -P /srv/ftp http://python.org/ftp/python/2.7.10/python-2.7.10.msi')
@@ -62,7 +63,10 @@ os.system('''
 	''')
 
 ## Configure TCPdump
-os.system('sudo setcap cap_net_raw,cap_net_admin=eip /usr/sbin/tcpdump')
+os.system('''sudo apt-get install tcpdump
+sudo setcap cap_net_raw,cap_net_admin=eip /usr/sbin/tcpdump
+sudo apt-get install libcap2-bin
+''')
 
 ## IPtables stuff
 header_comment="#Cuckoo IPtables rules, written by requirements.py. Jose Carlos's TFG"

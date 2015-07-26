@@ -8,7 +8,8 @@
 
 # Prerequisites: python-dmidecode, cd-drive, acpidump, vsftpd: apt-get install python-dmidecode libcdio-utils acpidump vsftpd
 
-# Calls to antivmdetect.py, prepareFTPserver.py
+# Calls to antivmdetect.py, prepareFTPserver.py, requirements.py and cuckooMods.py
+# DO NOT RUN THIS AS SUPERUSER it will create the VM file inside /root
 
 import os
 import textwrap
@@ -37,7 +38,11 @@ def checkOutP (file_name='/tmp/newVM_output.txt', target='vboxnet0'):
 	except:
 		return False
 ##################################################
-
+'''#Add user
+  sudo adduser  -gecos "" ${CUCKOO_USER}
+  sudo usermod -G vboxusers ${CUCKOO_USER}
+sudo usermod -g sudo cuckoo
+'''
  
 
 # Wellcome
@@ -107,9 +112,10 @@ print """
 	-Drag all your files to the Guest's file system"""
 raw_input("Press ENTER to continue:")
 
-if raw_input("Do you want to take a Snapshot? (Y/N): ").upper()=="Y":
-	snap_name=raw_input("	Please enter snapshot's name: ")
-	os.system('vboxmanage snapshot '+vm_name+' take '+snap_name+' --pause')
+
+snap_name=raw_input("	Please enter snapshot's name: ")
+os.system('vboxmanage snapshot '+vm_name+' take '+snap_name+' --pause')
+
 
 print "Now the VM will close, press ENTER when ready:"
 raw_input()
