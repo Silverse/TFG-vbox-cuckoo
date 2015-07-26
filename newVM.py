@@ -10,12 +10,14 @@
 
 # Calls to antivmdetect.py, prepareFTPserver.py, requirements.py and cuckooMods.py
 # DO NOT RUN THIS AS SUPERUSER it will create the VM file inside /root
+# If another user have a file with the same name as this ones in tmp, it could not create it
 
 import os
 import textwrap
 import sys
 import time
 import re
+import subprocess
 
 # Values
 RAM="2000"
@@ -64,6 +66,11 @@ print "Wellcome! "
 vm_name="'"+raw_input("	-Write the name of you VM: ")+"'"
 absolute_path=raw_input("	-Please, write down the absolute path of the ISO file of the OS: ")
 
+proc=subprocess.Popen(["whoami"], stdout=subprocess.PIPE)#, shell=True) if we wanted to use pipes between process and things like that
+(_stdout, _stderr)=proc.communicate()
+personal_folder="/home/"+_stdout[0:len(_stdout)-1]+"/VirtualBox\ VMs" #taking the \n out
+print personal_folder
+
 print "[*] Creating the VM named "+vm_name
 os.system("VBoxManage createvm --name "+vm_name+" --register > "+file_outPut)
 os.system("VBoxManage modifyvm "+vm_name+" --memory "+RAM+" --acpi on --ioapic on --boot1 dvd --cpus "+nCores+" --ostype  WindowsXP > "+file_outPut)
@@ -82,8 +89,9 @@ os.system("vboxmanage modifyvm "+vm_name+" --nic1 hostonly --hostonlyadapter1 vb
 
 # Attach storage, add an IDE controller with a CD/DVD drive attached
 os.system("VBoxManage storagectl "+vm_name+" --name 'IDE Controller' --add ide > "+file_outPut)
-os.system("VBoxManage createhd --filename ./"+vm_name+".vdi --size "+HDD+" --format vdi > "+file_outPut)#should be created in another directory
-os.system("VBoxManage storageattach "+vm_name+" --storagectl 'IDE Controller' --port 0 --device 0 --type hdd --medium ./"+vm_name+".vdi > "+file_outPut)
+print "VBoxManage createhd --filename "+personal_folder+"/"+vm_name+".vdi --size "+HDD+" --format vdi > "+file_outPut
+os.system("VBoxManage createhd --filename "+personal_folder+"/"+vm_name+".vdi --size "+HDD+" --format vdi > "+file_outPut)
+os.system("VBoxManage storageattach "+vm_name+" --storagectl 'IDE Controller' --port 0 --device 0 --type hdd --medium  "+personal_folder+"/"+vm_name+".vdi > "+file_outPut)
 os.system("VBoxManage storageattach "+vm_name+" --storagectl 'IDE Controller' --port 1 --device 0 --type dvddrive --medium "+absolute_path+" > "+file_outPut)
 
 # FTP
@@ -127,7 +135,7 @@ while not checkOutP(target='100%'):
 
 # Install cuckoo and dependencies
 if raw_input(" Do you have Cuckoo and it's dependancies already installed?: (Y/N)").upper()!="Y":
-	os.system('sudo python requirements.py')
+	os.system('sudo python requirements.py | tee req_output.txt')
 
 # Cuckoo modifications for the new VM
 tag_list=raw_input('Write down a list of tags for cuckoo to add to this VM profile. Separated with commas (a,b,c,d): ')
