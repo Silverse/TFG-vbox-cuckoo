@@ -43,7 +43,7 @@ def checkOutP (file_name='/tmp/newVM_output.txt', target='vboxnet0'):
 '''#Add user
   sudo adduser  -gecos "" ${CUCKOO_USER}
   sudo usermod -G vboxusers ${CUCKOO_USER}
-sudo usermod -g sudo cuckoo
+sudo usermod -a -G sudo cuckoo
 '''
  
 

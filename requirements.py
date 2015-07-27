@@ -11,11 +11,9 @@ import os
 os.system('sudo apt-get update')
 ### Guest
 ## Python
-os.system('wget -P /srv/ftp http://python.org/ftp/python/2.7.10/python-2.7.10.msi')
-#os.system('sudo cp python-2.7.10.msi /srv/ftp')
+os.system('sudo wget -P /srv/ftp http://python.org/ftp/python/2.7.10/python-2.7.10.msi')
 ## Python Imaging Library
-os.system('wget -P /srv/ftp http://effbot.org/downloads/PIL-1.1.7.win32-py2.7.exe')
-#os.system('sudo cp PIL-1.1.7.win32-py2.7.exe /srv/ftp')
+os.system('sudo wget -P /srv/ftp http://effbot.org/downloads/PIL-1.1.7.win32-py2.7.exe')
 
 ### Host
 os.system('''sudo mkdir requirements
@@ -31,7 +29,7 @@ os.system('sudo apt-get install '+package_list)
 os.system('''
 	sudo apt-get install python-pip -y
 	sudo apt-get install build-essential git python-dev -y
-	wget http://sourceforge.net/projects/ssdeep/files/ssdeep-2.12/ssdeep-2.12.tar.gz/download -O ssdeep.tar.gz
+	wget -P '''+os.getcwd()+'''/requirements http://sourceforge.net/projects/ssdeep/files/ssdeep-2.12/ssdeep-2.12.tar.gz/download -O ssdeep.tar.gz
 	tar -xf ssdeep.tar.gz
 	cd ssdeep-2.12
 	./configure 
@@ -46,7 +44,7 @@ os.system('sudo pip install pydeep') #Executing 'pip show pydeep' for checking '
 ## Yara
 os.system('sudo apt-get install build-essential git python-dev libjansson-dev libmagic-dev libtool eclipse-cdt-autotools -y')
 os.system('''
-	wget https://github.com/plusvic/yara/archive/v3.4.0.tar.gz
+	wget '''+os.getcwd()+'''/requirements https://github.com/plusvic/yara/archive/v3.4.0.tar.gz
 	tar -zxf v3.4.0.tar.gz
 	cd yara-3.4.0/
 	./bootstrap.sh
@@ -72,16 +70,17 @@ sudo apt-get install libcap2-bin
 header_comment="#Cuckoo IPtables rules, written by requirements.py. Jose Carlos's TFG"
 iptables_rules=["sudo iptables -A FORWARD -o eth0 -i vboxnet0 -s 192.168.56.0/24 -m conntrack --ctstate NEW -j ACCEPT","sudo iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT","sudo iptables -A POSTROUTING -t nat -j MASQUERADE","sudo sysctl -w net.ipv4.ip_forward=1" ]
 
-os.system('chmod 755 /etc/rc.local') #Make sure that it's executable
+os.system('sudo chmod 755 /etc/rc.local') #Make sure that it's executable
 #Opening the file for reading and writting
 startup_file=open('/etc/rc.local', 'r+')
 tmp_file=open('/tmp/rc.local_tmp', 'w+')
+rules_written=False
 
 line=startup_file.readline()
-rules_written=False
-while line!="exit 0\n":
+while line!="":
+	print line
 	try:
-		re.search(header_string, line).group(0)
+		re.search(header_comment, line).group(0)
 		for rule in iptables_rules: #If the comment is found
 			line=startup_file.readline()
 			tmp_file.write(rule+'\n')
@@ -106,13 +105,15 @@ startup_file.write(new_content)
 startup_file.close()
 tmp_file.close()
 
+current_dir=os.getcwd()
+os.system('''cd /etc
+./rc.local
+cd '''+current_dir)
+
 #Install cuckoo
-os.system('''sudo wget http://downloads.cuckoosandbox.org/cuckoo-current.tar.gz
-sudo tar -xf cuckoo-current.tar.gz
+os.system('''sudo wget -P '''+os.getcwd()+'''/requirements  http://downloads.cuckoosandbox.org/cuckoo-current.tar.gz
+sudo tar -xf requirements/cuckoo-current.tar.gz
 sudo cp cuckoo/agent/agent.py /srv/ftp
 ''')
 
-
-
 exit()
-
