@@ -4,8 +4,8 @@
 # Edited: 23/07/2015
 # Jose Carlos Ramirez
 # TFG Unizar
-# Modify the necesary cuckoo files to make it work with our VM
 
+# Modify the necesary cuckoo files to make it work with our VM
 # Argument 1: Host's @IP
 # Argument 2: Guest's @IP
 # Argument 3: VM's name
@@ -15,6 +15,7 @@
 import sys
 import subprocess
 import re
+import os
 
 host_ip=sys.argv[1]
 guest_ip=sys.argv[2]
@@ -27,6 +28,8 @@ for arg in sys.argv[5::]:
 	else:
 		tag_list=tag_list+','+arg
 
+cuckoo_path=os.getcwd()+'/requirements/cuckoo'
+
 ##### cuckoo.conf #####
 options_list=[["machinery = ","virtualbox"],["memory_dump = ","on"],["ip = ",host_ip],["port = ","2042"]]
 line_written=False
@@ -34,7 +37,7 @@ ip_written=False
 port_written=False
 
 #Opening the file for reading and writting
-conf_file=open('cuckoo-original/conf/cuckoo.conf', 'r+')
+conf_file=open(cuckoo_path+'/conf/cuckoo.conf', 'r+')
 tmp_file=open('/tmp/cuckoo-tmp.conf', 'w+')
 
 line=conf_file.readline()
@@ -58,7 +61,7 @@ conf_file.close()
 tmp_file.close()
 
 # Open truncate file, we are going to fill it with the tmp one
-conf_file=open('cuckoo/conf/cuckoo2.conf', 'w') 
+conf_file=open(cuckoo_path+'/conf/cuckoo.conf', 'w') 
 tmp_file=open('/tmp/cuckoo-tmp.conf', 'r')
 
 new_content=tmp_file.read()
@@ -93,7 +96,7 @@ for option in otherModule_options:
 '''
 tmp_file.close()
 # Open truncate file, we are going to fill it with the tmp one
-conf_file=open('cuckoo/conf/auxiliary2.conf', 'w') 
+conf_file=open(cuckoo_path+'/conf/auxiliary.conf', 'w') 
 tmp_file=open('/tmp/auxiliary-tmp.conf', 'r')
 
 new_content=tmp_file.read()
@@ -108,22 +111,19 @@ proc=subprocess.Popen(["whereis", "vboxmanage"], stdout=subprocess.PIPE)#, shell
 (_stdout, _stderr)=proc.communicate()
 vbmn_path=_stdout.split()[1] #0 is tcpdumo, and 2...
 
-#Opening the file for reading and writting
 block_found=False
 line_written=False
-conf_file=open('cuckoo/conf/virtualbox.conf', 'r+') #cuckoo/conf/vbox2.conf cuckoo/conf/virtualbox.conf
+#Opening the file for reading and writting
+conf_file=open(cuckoo_path+'/conf/virtualbox.conf', 'r+') 
 tmp_file=open('/tmp/vbox-tmp.conf', 'w+')
 options_list=[["mode = ","gui"], ["path = ",vbmn_path],["machines = ",vm_name]]
 optionsVM_list=[["label = ",vm_name],["platform = ","windows"],["ip = ", guest_ip],["snapshot = ", snapshot_name],["tags = ", tag_list]]
 
 line=conf_file.readline()
 while line!="":
-	print line
 	for option in options_list:
 		try:
-			print option[0]
 			re.search(option[0], line).group(0)
-			print "found"
 			if option[0]=="machines = ":
 				try:										
 					re.search(option[1], line).group(0) #if the VM is named 'machines' or '=' or something like that, this will fail
@@ -131,7 +131,6 @@ while line!="":
 				except: #if the vm name is not found on the current list
 					option[0]=line[0:len(line)-1] #taking \n out
 					tmp_file.write(option[0]+','+option[1]+'\n')
-					print option[0]+','+option[1]+'\n'
 			else:
 				tmp_file.write(option[0]+option[1]+'\n')
 			line_written=True
@@ -171,7 +170,7 @@ conf_file.close()
 tmp_file.close()
 
 # Open truncate file, we are going to fill it with the tmp one
-conf_file=open('cuckoo/conf/vbox2.conf', 'w') 
+conf_file=open(cuckoo_path+'/conf/virtualbox.conf', 'w') 
 tmp_file=open('/tmp/vbox-tmp.conf', 'r')
 
 new_content=tmp_file.read()
@@ -181,4 +180,3 @@ conf_file.close()
 tmp_file.close()
 
 exit()
-

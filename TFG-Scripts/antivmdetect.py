@@ -6,11 +6,11 @@
 # TFG Unizar
 
 # Author of the original script: Mikael,@nsmfoo - blog.prowling.nu
-# Small modifications by Jose Carlos Ramirez for BcS Thesis. Needs to be run as SuperUser.
-
 # Tested on Ubuntu 14.04 LTS, using several brands of computers and types..but there is not guarantee that it will work anyway
 # Prerequisites: python-dmidecode, cd-drive and acpidump: apt-get install python-dmidecode libcdio-utils acpidump
 
+# Small modifications by Jose Carlos Ramirez for BcS Thesis. 
+# Needs to be run as SuperUser.
 # Argument 1: VM's name
 # Argument 2: Guest's @IP
 # Argument 3: Host's @IP
@@ -30,7 +30,7 @@ import os
 
 
 # Welcome
-print '--- AntiVMdetect by Mikael, @nsmfoo (modified by Jose Carlos R.) ---'
+print '\n--- AntiVMdetect by Mikael, @nsmfoo (modified by Jose Carlos R.) ---'
 print '[*] Creating VirtualBox modifications ..'
 
 ##################### Functions ################
@@ -191,7 +191,7 @@ except:
 # Write all data collected so far to file
 file_name="vboxmods.sh"
 
-logfile = file(file_name, 'w+')
+logfile = file('/tmp/'+file_name, 'w+')
 logfile.write('# Generated on: ' + time.strftime("%H:%M:%S") + '\n')
 
 for k, v in sorted(dmi_info.iteritems()):
@@ -398,5 +398,3 @@ logfile.close()
 print '	Finished: A Windows batch file has been created named:', file_name2
 
 exit()
-
-

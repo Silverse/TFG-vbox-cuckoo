@@ -4,7 +4,9 @@
 # Edited: 19/07/2015
 # Jose Carlos Ramirez
 # TFG Unizar
-# Creates a fixed vsftpd server, allowing anonymous download. Needs to be run as SuperUser.
+
+# Creates a fixed vsftpd server, allowing anonymous download.
+# Needs to be run as SuperUser.
 # Argument 1: server's listening IP address 
 # Argument 2: server's listening port
 
