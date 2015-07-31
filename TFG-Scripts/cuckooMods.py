@@ -112,32 +112,65 @@ proc=subprocess.Popen(["whereis", "vboxmanage"], stdout=subprocess.PIPE)#, shell
 vbmn_path=_stdout.split()[1] #0 is tcpdumo, and 2...
 
 block_found=False
+inside_cuckoo1=False
 line_written=False
 #Opening the file for reading and writting
-conf_file=open(cuckoo_path+'/conf/virtualbox.conf', 'r+') 
+conf_file=open('/home/cuckoo/virtualbox.conf', 'r+') 
 tmp_file=open('/tmp/vbox-tmp.conf', 'w+')
 options_list=[["mode = ","gui"], ["path = ",vbmn_path],["machines = ",vm_name]]
 optionsVM_list=[["label = ",vm_name],["platform = ","windows"],["ip = ", guest_ip],["snapshot = ", snapshot_name],["tags = ", tag_list]]
 
+
+#Adding the desired options
 line=conf_file.readline()
 while line!="":
-	for option in options_list:
+	# General options
+	for option in options_list:		
 		try:
 			re.search(option[0], line).group(0)
 			if option[0]=="machines = ":
 				try:										
-					re.search(option[1], line).group(0) #if the VM is named 'machines' or '=' or something like that, this will fail
-					tmp_file.write(line)	
+					re.search(option[1], line).group(0) #if the VM is named 'machines' or '=' or something like that, this will fail	
 				except: #if the vm name is not found on the current list
 					option[0]=line[0:len(line)-1] #taking \n out
 					tmp_file.write(option[0]+','+option[1]+'\n')
+					line_written=True
 			else:
 				tmp_file.write(option[0]+option[1]+'\n')
-			line_written=True
+				line_written=True
 			break
 		except: #if the search fails, it's because there's not such a string
-			pass	
-	try: #Search for the current machine's block
+			pass
+	# Commenting the example conf, "cuckoo1"
+	try:
+		re.search('cuckoo1]', line).group(0)	
+		inside_cuckoo1=True	
+		try: #In case it's already commented
+			re.search('#', line).group(0) 	
+		except: #If it's not, it have to be commented
+			tmp_file.write('#'+line)
+			line_written=True			
+	except:
+		pass
+	
+	if inside_cuckoo1:
+		for option in optionsVM_list[0:3]: # The other options are commented by default
+			try:
+				print line
+				re.search(option[0], line).group(0)
+				try: #In case it's already commented
+					re.search('#', line).group(0) 	
+				except: #If it's not, it have to be commented
+					tmp_file.write('#'+line)	
+					line_written=True
+				# When the last option is found, nothing more have to be commented	
+				if option[0] == "ip = ": #BROKEN
+					inside_cuckoo1=False		
+			except:
+				pass	
+	
+	# Search for the current machine's block
+	try: 
 		re.search(vm_name+']', line).group(0) #If you add an opening [, it will think of it as a regular expresion
 		block_found=True
 		tmp_file.write(line) #block's name
@@ -152,7 +185,8 @@ while line!="":
 				break
 			except:
 				pass
-			line=conf_file.readline()			
+			line=conf_file.readline()
+		# line_written is not changed to True because we have read until the next block (or end) that should be written			
 	except:
 		pass
 	
@@ -170,8 +204,53 @@ conf_file.close()
 tmp_file.close()
 
 # Open truncate file, we are going to fill it with the tmp one
-conf_file=open(cuckoo_path+'/conf/virtualbox.conf', 'w') 
+conf_file=open('/home/cuckoo/virtualbox2.conf', 'w') 
 tmp_file=open('/tmp/vbox-tmp.conf', 'r')
+
+new_content=tmp_file.read()
+conf_file.write(new_content)
+
+conf_file.close()
+tmp_file.close()
+
+
+##### reporting.conf #####
+
+block_found=False
+line_written=False
+#Opening the file for reading and writting
+conf_file=open(cuckoo_path+'/conf/reporting.conf', 'r+') 
+tmp_file=open('/tmp/reporting-tmp.conf', 'w+')
+options_list=[["enabled = ","yes\n"]]
+
+
+line=conf_file.readline()
+while line!="":
+	try:
+		re.search('reporthtml]', line).group(0)
+		block_found=True
+	except: 
+		pass
+	for option in options_list:	
+		if block_found:
+			try:
+				re.search(option[0], line).group(0)
+				tmp_file.write(option[0]+option[1])
+				line_written=True
+				block_found=False
+			except:
+				pass
+	if not line_written:
+		tmp_file.write(line)
+	line_written=False
+	line=conf_file.readline()
+	
+conf_file.close()
+tmp_file.close()
+
+# Open truncate file, we are going to fill it with the tmp one
+conf_file=open(cuckoo_path+'/conf/reporting.conf', 'w') 
+tmp_file=open('/tmp/reporting-tmp.conf', 'r')
 
 new_content=tmp_file.read()
 conf_file.write(new_content)
