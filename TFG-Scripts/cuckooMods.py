@@ -96,7 +96,7 @@ for option in otherModule_options:
 '''
 tmp_file.close()
 # Open truncate file, we are going to fill it with the tmp one
-conf_file=open(cuckoo_path+'/conf/auxiliary.conf', 'w') 
+conf_file=open(cuckoo_path+'/conf/auxiliary.conf, 'w') 
 tmp_file=open('/tmp/auxiliary-tmp.conf', 'r')
 
 new_content=tmp_file.read()
@@ -112,10 +112,10 @@ proc=subprocess.Popen(["whereis", "vboxmanage"], stdout=subprocess.PIPE)#, shell
 vbmn_path=_stdout.split()[1] #0 is tcpdumo, and 2...
 
 block_found=False
-inside_cuckoo1=False
 line_written=False
+inside_cuckoo1=False
 #Opening the file for reading and writting
-conf_file=open('/home/cuckoo/virtualbox.conf', 'r+') 
+conf_file=open(cuckoo_path+'/conf/virtualbox.conf', 'r+') 
 tmp_file=open('/tmp/vbox-tmp.conf', 'w+')
 options_list=[["mode = ","gui"], ["path = ",vbmn_path],["machines = ",vm_name]]
 optionsVM_list=[["label = ",vm_name],["platform = ","windows"],["ip = ", guest_ip],["snapshot = ", snapshot_name],["tags = ", tag_list]]
@@ -132,9 +132,19 @@ while line!="":
 				try:										
 					re.search(option[1], line).group(0) #if the VM is named 'machines' or '=' or something like that, this will fail	
 				except: #if the vm name is not found on the current list
-					option[0]=line[0:len(line)-1] #taking \n out
-					tmp_file.write(option[0]+','+option[1]+'\n')
-					line_written=True
+					try: #it cuckoo1 is on the list, first we have to take it out and then add the new one
+						re.search('cuckoo1', line).group(0)
+						splitted=line[0:len(line)-1].split(',') #taking \n out
+						option[0]=option[0]+option[1]
+						for machine in splitted[1:len(splitted)]:#taking "machines = cuckoo1" out
+							option[0]=option[0]+','+machine
+						tmp_file.write(option[0]+'\n')
+						line_written=True
+					except: #if there are other machines already in the list but not cuckoo1, just add the new one
+						option[0]=line[0:len(line)-1]
+						tmp_file.write(option[0]+','+option[1]+'\n')
+						line_written=True						
+					
 			else:
 				tmp_file.write(option[0]+option[1]+'\n')
 				line_written=True
@@ -200,11 +210,12 @@ if not block_found:
 	for option in optionsVM_list:
 		tmp_file.write(option[0]+option[1]+'\n')
 
+
 conf_file.close()
 tmp_file.close()
 
 # Open truncate file, we are going to fill it with the tmp one
-conf_file=open('/home/cuckoo/virtualbox2.conf', 'w') 
+conf_file=open(cuckoo_path+'/conf/virtualbox.conf', 'w') 
 tmp_file=open('/tmp/vbox-tmp.conf', 'r')
 
 new_content=tmp_file.read()
@@ -212,6 +223,7 @@ conf_file.write(new_content)
 
 conf_file.close()
 tmp_file.close()
+
 
 
 ##### reporting.conf #####
@@ -222,7 +234,6 @@ line_written=False
 conf_file=open(cuckoo_path+'/conf/reporting.conf', 'r+') 
 tmp_file=open('/tmp/reporting-tmp.conf', 'w+')
 options_list=[["enabled = ","yes\n"]]
-
 
 line=conf_file.readline()
 while line!="":
