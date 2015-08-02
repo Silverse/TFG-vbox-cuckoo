@@ -88,4 +88,7 @@ os.system('''
 # Install python date-util (In some momment Cuckoo needed it, but maybe it was not necesary
 os.system('sudo pip install python-dateutil')
 
+## AntiVMdetect dependancies
+os.system('apt-get install python-dmidecode libcdio-utils acpidump\n')
+
 exit()
