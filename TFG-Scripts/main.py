@@ -22,12 +22,6 @@ guest_ip="192.168.56.101"
 guest_primary_dns="208.67.222.222"
 ftp_port="21"
 
-'''
-#Add user
-  sudo adduser  -gecos "" ${CUCKOO_USER}
-  sudo usermod -G vboxusers ${CUCKOO_USER}
-sudo usermod -g sudo cuckoo
-'''
 
 os.system('sudo rm '+file_output) #If the file exists and it was created by a different user, the script won't be able to interact with it
 
@@ -43,7 +37,18 @@ print u'''
 	####### de sandboxing.				      #######
 	#############################################################
 '''
-vm_name="'"+raw_input("	-Write the name of your VM: ")+"'"
+
+if raw_input(' -Do you have a user ready for cuckoo usage? (Y/N)').uppercase()=='Y':
+	
+else:
+	use_name=raw_input('	-Please write the user name: ')
+	os.system('''
+		sudo adduser  -gecos "" '''+user_name+'''
+		sudo usermod -G vboxusers '''+user_name+'''
+		sudo usermod -g sudo '''+user_name+
+		 '''\n''')
+
+vm_name="'"+raw_input("\n	-Write the name of your VM: ")+"'"
 absolute_path=raw_input("	-Please, write down the absolute path of the ISO file of the OS: ")
 snap_name=raw_input("	-Please enter snapshot's name: ")
 
@@ -56,12 +61,12 @@ if raw_input("	-Do you have Cuckoo and it's dependancies already installed?: (Y/
 os.system("sudo python antivmdetect.py "+vm_name+" "+guest_ip+" "+host_ip+" "+guest_primary_dns)
 
 # FTP
-print "[*] Preparing the FTP server"
+print "\n[*] Preparing the FTP server"
 os.system("sudo python prepareFTPserver.py "+host_ip+" "+ftp_port)
 os.system('sudo cp '+os.getcwd()+'/requirements/cuckoo/agent/agent.py /srv/ftp')
 
 # VM creation
-print "[*] Creating a VirtualBox's VM named "+vm_name
+print "\n[*] Creating a VirtualBox's VM named "+vm_name
 os.system('python newVM-simple.py '+RAM+' '+HDD+' '+nCores+' '+file_output+' '+host_ip+' '+guest_ip+' '+guest_primary_dns+' '+ftp_port+' '+vm_name+' '+absolute_path+' '+snap_name)
 
 # Cuckoo modifications for the new VM

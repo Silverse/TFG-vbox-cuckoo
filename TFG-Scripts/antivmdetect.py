@@ -330,7 +330,7 @@ logfile.write('VBoxManage modifyvm '+vm_name+' --macaddress2\t' + le_big_mac2+'\
 logfile.close()
 
 print '	Finished: A template shell script has been created named:', file_name
-print '[*] Creating guest based modification file (to be run inside the guest)'
+print '\n[*] Creating guest based modification file (to be run inside the guest)'
 
 # Write all data to file
 file_name2="vboxmods.bat"
