@@ -23,7 +23,7 @@ _sock=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 _sock.connect( tcp_connection )
 for string in data:
 	f.write("TCP"+ string)
-	_sock.sent("TCP"+string)
+	_sock.send("TCP"+string)
 
 
 _sock.close()
@@ -47,5 +47,6 @@ os.system('''
 	type agent.py
 	''')
 
+raw_input()
 	
 exit()

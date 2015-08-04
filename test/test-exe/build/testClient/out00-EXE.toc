@@ -1,0 +1,9 @@
+('/home/cuckoo/git-TFG/test/test-exe/dist/testClient',
+ True,
+ False,
+ None,
+ None,
+ [],
+ None,
+ False,
+ 1438697228)
