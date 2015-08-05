@@ -38,10 +38,10 @@ print u'''
 	#############################################################
 '''
 
-if raw_input(' -Do you have a user ready for cuckoo usage? (Y/N)').uppercase()=='Y':
-	
+if raw_input(' -Do you have a user ready for cuckoo usage? (Y/N)').upper()=='Y':
+	user_name=raw_input('	-Please write the user name: ')
 else:
-	use_name=raw_input('	-Please write the user name: ')
+	user_name=raw_input('	-Please write the user name: ')
 	os.system('''
 		sudo adduser  -gecos "" '''+user_name+'''
 		sudo usermod -G vboxusers '''+user_name+'''

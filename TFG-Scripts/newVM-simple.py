@@ -102,7 +102,8 @@ print """
 [*] Your guest OS is ON:
 	-Open Internet explorer or the Windows file explorer
 	-Type: ftp://anonymous:@"""+host_ip+""":"""+ftp_port+"""
-	-Drag all your files to the Guest's file system"""
+	-Drag all your files to the Guest's file system
+	-Install Python and PIL, then run vboxmods.bat and finally agent.py"""
 raw_input("Press ENTER to continue:")
 
 # Taking the snapshot

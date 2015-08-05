@@ -3,6 +3,7 @@
 
 import socket
 import threading
+import os
 
 
 def UDPserver():
@@ -43,3 +44,5 @@ def main():
 	return
 
 main()
+os.system('python testServer.py')
+exit()

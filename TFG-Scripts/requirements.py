@@ -82,13 +82,17 @@ os.system('''
 ## Install cuckoo
 os.system('''
 	cd '''+os.getcwd()+'''/requirements
-	sudo git clone https://github.com/cuckoobox/cuckoo.git
-	sudo chown -R cuckoo:vboxusers cuckoo
+	wget http://downloads.cuckoosandbox.org/cuckoo-current.tar.gz
+	tar -xf cuckoo-current.tar.gz
 	''')
+# It's also possible to dowload for the repositorie, but it's not the stable version
+# sudo git clone https://github.com/cuckoobox/cuckoo.git
+# sudo chown -R cuckoo:vboxusers cuckoo
+
 # Install python date-util (In some momment Cuckoo needed it, but maybe it was not necesary
 os.system('sudo pip install python-dateutil')
 
 ## AntiVMdetect dependancies
-os.system('apt-get install python-dmidecode libcdio-utils acpidump\n')
+os.system('sudo apt-get install python-dmidecode libcdio-utils acpidump\n')
 
 exit()

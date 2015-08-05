@@ -96,7 +96,7 @@ for option in otherModule_options:
 '''
 tmp_file.close()
 # Open truncate file, we are going to fill it with the tmp one
-conf_file=open(cuckoo_path+'/conf/auxiliary.conf, 'w') 
+conf_file=open(cuckoo_path+'/conf/auxiliary.conf', 'w') 
 tmp_file=open('/tmp/auxiliary-tmp.conf', 'r')
 
 new_content=tmp_file.read()
@@ -166,7 +166,6 @@ while line!="":
 	if inside_cuckoo1:
 		for option in optionsVM_list[0:3]: # The other options are commented by default
 			try:
-				print line
 				re.search(option[0], line).group(0)
 				try: #In case it's already commented
 					re.search('#', line).group(0) 	
