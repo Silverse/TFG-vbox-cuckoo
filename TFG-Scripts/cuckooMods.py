@@ -29,9 +29,10 @@ for arg in sys.argv[5::]:
 		tag_list=tag_list+','+arg
 
 cuckoo_path=os.getcwd()+'/requirements/cuckoo'
+results_port="2042"
 
 ##### cuckoo.conf #####
-options_list=[["machinery = ","virtualbox"],["memory_dump = ","on"],["ip = ",host_ip],["port = ","2042"]]
+options_list=[["machinery = ","virtualbox"],["memory_dump = ","on"],["ip = ",host_ip],["port = ",results_port]]
 line_written=False
 ip_written=False
 port_written=False
@@ -96,7 +97,7 @@ for option in otherModule_options:
 '''
 tmp_file.close()
 # Open truncate file, we are going to fill it with the tmp one
-conf_file=open(cuckoo_path+'/conf/auxiliary.conf, 'w') 
+conf_file=open(cuckoo_path+'/conf/auxiliary.conf', 'w') 
 tmp_file=open('/tmp/auxiliary-tmp.conf', 'r')
 
 new_content=tmp_file.read()
@@ -134,14 +135,14 @@ while line!="":
 				except: #if the vm name is not found on the current list
 					try: #it cuckoo1 is on the list, first we have to take it out and then add the new one
 						re.search('cuckoo1', line).group(0)
-						splitted=line[0:len(line)-1].split(',') #taking \n out
+						splitted=line[:-1].split(',') #taking \n out
 						option[0]=option[0]+option[1]
-						for machine in splitted[1:len(splitted)]:#taking "machines = cuckoo1" out
+						for machine in splitted[1:]:#taking "machines = cuckoo1" out
 							option[0]=option[0]+','+machine
 						tmp_file.write(option[0]+'\n')
 						line_written=True
 					except: #if there are other machines already in the list but not cuckoo1, just add the new one
-						option[0]=line[0:len(line)-1]
+						option[0]=line[:-1]
 						tmp_file.write(option[0]+','+option[1]+'\n')
 						line_written=True						
 					
@@ -153,7 +154,7 @@ while line!="":
 			pass
 	# Commenting the example conf, "cuckoo1"
 	try:
-		re.search('cuckoo1]', line).group(0)	
+		re.search('\[cuckoo1]', line).group(0) #escaping the first [, if not it will be taken as a set
 		inside_cuckoo1=True	
 		try: #In case it's already commented
 			re.search('#', line).group(0) 	
@@ -164,9 +165,8 @@ while line!="":
 		pass
 	
 	if inside_cuckoo1:
-		for option in optionsVM_list[0:3]: # The other options are commented by default
+		for option in optionsVM_list[:3]: # The other options are commented by default
 			try:
-				print line
 				re.search(option[0], line).group(0)
 				try: #In case it's already commented
 					re.search('#', line).group(0) 	
@@ -181,7 +181,7 @@ while line!="":
 	
 	# Search for the current machine's block
 	try: 
-		re.search(vm_name+']', line).group(0) #If you add an opening [, it will think of it as a regular expresion
+		re.search('\['+vm_name+']', line).group(0) #escaping the first [, if not it will be taken as a set
 		block_found=True
 		tmp_file.write(line) #block's name
 		for option in optionsVM_list:
@@ -191,12 +191,12 @@ while line!="":
 		line=conf_file.readline()		
 		while line!="": #if it's the last one, it will end before finding the next
 			try:	
-				re.match("([0-9A-Za-z. ]*)]\n", line).group(0) # something]\n will match
+				re.match("\[([0-9A-Za-z. ]*)]\n", line).group(0) # [something]\n will match, escaping the first [, if not it will be taken as a set
 				break
 			except:
 				pass
 			line=conf_file.readline()
-		# line_written is not changed to True because we have read until the next block (or end) that should be written			
+		# line_written is not True because we have read until the next block (or end) that should be written			
 	except:
 		pass
 	
@@ -238,7 +238,7 @@ options_list=[["enabled = ","yes\n"]]
 line=conf_file.readline()
 while line!="":
 	try:
-		re.search('reporthtml]', line).group(0)
+		re.search('\[reporthtml]', line).group(0)
 		block_found=True
 	except: 
 		pass

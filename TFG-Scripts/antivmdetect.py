@@ -294,7 +294,7 @@ for k, v in cdrom_dmi.iteritems():
         logfile.write('VBoxManage setextradata '+vm_name+' VBoxInternal/Devices/piix3ide/0/Config/SecondaryMaster/' + k + '\t\'' + v + '\'\n')
 
 # Get the DSDT image
-os.system("dd if=/sys/firmware/acpi/tables/DSDT of=DSDT.bin >/dev/null 2>&1")
+#os.system("dd if=/sys/firmware/acpi/tables/DSDT of=DSDT.bin >/dev/null 2>&1")
 # Write to file
 # Da un error de que la tabla ACPI es mayor de 64KB, aunque lo comente, si luego ejecuto el batch dentro del Guest, pasa las pruebas
 #logfile.write('VBoxManage setextradata '+vm_name+' VBoxInternal/Devices/acpi/0/Config/CustomTable\t\'' + os.getcwd() + '/DSDT.bin\'\n')
@@ -330,7 +330,7 @@ logfile.write('VBoxManage modifyvm '+vm_name+' --macaddress2\t' + le_big_mac2+'\
 logfile.close()
 
 print '	Finished: A template shell script has been created named:', file_name
-print '[*] Creating guest based modification file (to be run inside the guest)'
+print '\n[*] Creating guest based modification file (to be run inside the guest)'
 
 # Write all data to file
 file_name2="vboxmods.bat"

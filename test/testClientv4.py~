@@ -1,0 +1,16 @@
+
+print 'hi'
+
+'''
+# windows API
+print 'API'
+f_handle=windll.kernel32.CreateFileA("testtest.txt", 0x10000000,0,0,4,0x80,0)
+print 1
+written_data = c_int(0)
+print 2
+windll.kernel32.WriteFile(f_handle, data[0], len(data[0]), byref(written_data),0)
+print 3
+windll.kernel32.CloseHandle(f_handle)
+print 4
+
+raw_input()'''

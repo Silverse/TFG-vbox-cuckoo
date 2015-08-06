@@ -11,10 +11,15 @@
 import os
 import re
 
-header_comment="#Cuckoo IPtables rules, written by requirements.py. Jose Carlos's TFG"
-iptables_rules=["sudo iptables -A FORWARD -o eth0 -i vboxnet0 -s 192.168.56.0/24 -m conntrack --ctstate NEW -j ACCEPT","sudo iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT","sudo iptables -A POSTROUTING -t nat -j MASQUERADE","sudo sysctl -w net.ipv4.ip_forward=1" ]
+host_ip=str(sys.argv[1])
 
-os.system('sudo chmod 755 /etc/rc.local') #Make sure that it's executable
+split_host=host_ip.split('.')
+host_net=split_host[0]+'.'+split_host[1]+'.'+split_host[2]+'.0/24'
+
+header_comment="#Cuckoo IPtables rules, written by requirements.py. Jose Carlos's TFG"
+iptables_rules=["sudo iptables -A FORWARD -o eth0 -i vboxnet0 -s "+host_net+" -m conntrack --ctstate NEW -j ACCEPT","sudo iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT","sudo iptables -A POSTROUTING -t nat -j MASQUERADE","sudo sysctl -w net.ipv4.ip_forward=1" ]
+
+os.system('sudo chmod 755 /etc/rc.local') #Makes sure that it's executable
 #Opening the file for reading and writting
 startup_file=open('/etc/rc.local', 'r+')
 tmp_file=open('/tmp/rc.local_tmp', 'w+')
