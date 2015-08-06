@@ -9,7 +9,7 @@ Tested in Ubuntu 14.04 LTS, VirtualBox 4.3.10 and Cuckoo 1.2.
 Creates a user for Cuckoo usage.
 Creates a Vbox VM with proper configuration (network, system and so on).
 Configures a vsftpd server to be used in the VM.
-Applies the @nsmfoo 's antivmdetection measures (in and out of the VM) except the DSDT table because my laptop have too many cores to fit the Vbos maximum (the lines are commented but not erased).
+Applies the @nsmfoo 's antivmdetection measures (in and out of the VM) except the DSDT table because my laptop have too many cores to fit the Vbox maximum (the lines are commented but not erased).
 Downloads and installs all the prerequisites of Cuckoo and antivmdetection (Not truly tested yet).
 Modifies cuckoo's configuration files to work with the system.
 
