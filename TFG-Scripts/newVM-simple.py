@@ -105,11 +105,17 @@ print """
 	-Open Internet explorer or the Windows file explorer
 	-Type: ftp://anonymous:@"""+default_host_ip+""":"""+ftp_port+"""
 	-Drag all your files to the Guest's file system
-	-Install Python and PIL, then run vboxmods.bat and finally run agent.py"""
+	-Install Python and PIL, then run vboxmods.bat."""
 raw_input(" Press ENTER to continue:")
 
 # Changed to the current @IP
 os.system("vboxmanage hostonlyif ipconfig vboxnet0 --ip "+host_ip+" 2> "+file_outPut)
+
+#For WMI patch to work...
+# Rebooting the VM
+os.system("vboxmanage controlvm "+vm_name+" poweroff 2> "+file_outPut)
+os.system("vboxmanage startvm "+vm_name)
+raw_input("	- Run again vboxmods.bat and finally run agent.py \n Press ENTER to continue:")
 
 # Taking the snapshot
 os.system('vboxmanage snapshot '+vm_name+' take '+snap_name+' --pause')

@@ -76,6 +76,7 @@ os.system("sudo python antivmdetect.py "+vm_name+" "+guest_ip+" "+host_ip+" "+gu
 print "\n [*] Preparing the FTP server (default @IP)"
 os.system("sudo python prepareFTPserver.py "+default_host_ip+" "+ftp_port)
 os.system('sudo cp '+os.getcwd()+'/requirements/cuckoo/agent/agent.py /srv/ftp')
+os.system('sudo service vsftpd restart')
 
 # VM creation
 print "\n [*] Creating a VirtualBox's VM named "+vm_name

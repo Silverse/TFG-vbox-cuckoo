@@ -368,7 +368,7 @@ logfile.write('@reg add HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System /v System
 
 # Prevent WMI identification
 logfile.write('@reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\PlugPlay /v Start /t REG_MULTI_SZ /d "4" /f\r\n')
- 
+#The system have to be rebooted for this to work, don't know why
 
 # FW, Updates, IP and DNS settings
 logfile.write('netsh firewall set opmode disable\n')
