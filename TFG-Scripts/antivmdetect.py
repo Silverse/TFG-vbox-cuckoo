@@ -316,16 +316,8 @@ big_mac1 = mac_seed1 + "%02x:%02x:%02x" % (
 )
 le_big_mac1 = re.sub(':', '', big_mac1)
 
-mac_seed2 = ':'.join(re.findall('..', '%012x' % uuid.getnode()))[0:9]
-big_mac2 = mac_seed2 + "%02x:%02x:%02x" % (
-    random.randint(0, 255),
-    random.randint(0, 255),
-    random.randint(0, 255),
-)
-le_big_mac2 = re.sub(':', '', big_mac2)
 # The last thing!
 logfile.write('VBoxManage modifyvm '+vm_name+' --macaddress1\t' + le_big_mac1 +'\n')
-logfile.write('VBoxManage modifyvm '+vm_name+' --macaddress2\t' + le_big_mac2+'\n')
 # Done!
 logfile.close()
 
@@ -355,8 +347,11 @@ logfile.write('@reg copy HKEY_LOCAL_MACHINE\HARDWARE\ACPI\FADT\\' + manu + '\\' 
 logfile.write('@reg delete HKEY_LOCAL_MACHINE\HARDWARE\ACPI\FADT\\' + manu + '\\' + acpi_list[2] + '___\\00000001 /f\n\n')
 
 # RSDT
-logfile.write('@reg copy HKEY_LOCAL_MACHINE\HARDWARE\ACPI\RSDT\\' + manu + '\\' + acpi_list[2] + '___\\00000001 HKEY_LOCAL_MACHINE\HARDWARE\ACPI\RSDT\\' + manu + '\\' + acpi_list[2] + '___\\' + acpi_list[3] + ' /s /f\n\n')
-logfile.write('@reg delete HKEY_LOCAL_MACHINE\HARDWARE\ACPI\RSDT\\' + manu + '\\' + acpi_list[2] + '___\\00000001 /f\n\n')
+logfile.write('@reg copy HKEY_LOCAL_MACHINE\HARDWARE\ACPI\RSDT\\' + manu + '\VBOXRSDT HKEY_LOCAL_MACHINE\HARDWARE\ACPI\RSDT\\' + manu + '\\' + acpi_list[2] + '___  /s /f\r\n')
+logfile.write('@reg delete HKEY_LOCAL_MACHINE\HARDWARE\ACPI\RSDT\\' + manu + '\VBOXRSDT /f\r\n')
+logfile.write('@reg copy HKEY_LOCAL_MACHINE\HARDWARE\ACPI\RSDT\\' + manu + '\\' + acpi_list[2] + '___\\00000001 HKEY_LOCAL_MACHINE\HARDWARE\ACPI\RSDT\\' + manu + '\\' + acpi_list[2] + '___\\' + acpi_list[3] + ' /s /f\r\n')
+logfile.write('@reg delete HKEY_LOCAL_MACHINE\HARDWARE\ACPI\RSDT\\' + manu + '\\' + acpi_list[2] + '___\\00000001 /f\r\n')
+
 
 # SystemBiosVersion - TODO: get real values
 logfile.write('@reg add HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System /v SystemBiosVersion /t REG_MULTI_SZ /d "' + acpi_list[1] + ' - ' + acpi_list[0] + '" /f\n\n')
@@ -369,6 +364,11 @@ if len(d_year) > 2:
     d_year = d_year[:2]
 
 logfile.write('@reg add HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System /v SystemBiosDate /t REG_MULTI_SZ /d "' + d_month + '/' + d_day + '/' + d_year + '" /f\n')
+
+
+# Prevent WMI identification
+logfile.write('@reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\PlugPlay /v Start /t REG_MULTI_SZ /d "4" /f\r\n')
+ 
 
 # FW, Updates, IP and DNS settings
 logfile.write('netsh firewall set opmode disable\n')

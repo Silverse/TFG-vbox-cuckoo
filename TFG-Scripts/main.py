@@ -66,9 +66,8 @@ absolute_path=raw_input(" -Please, write down the absolute path of the ISO file 
 snap_name=raw_input(" -Please chose a snapshot's name: ")
 
 # Install cuckoo and dependencies
-if raw_input(" -Do you have Cuckoo and it's dependancies already installed?: (Y/N)").upper()!="Y":
-	print "\n [*] Installing Cuckoo, dependancies, and side programs"
-	os.system('python requirements.py '+host_ip)
+print "\n [*] Installing Cuckoo, dependancies, and side programs"
+os.system('python requirements.py '+host_ip)
 
 # AntiVMdetect execution
 os.system("sudo python antivmdetect.py "+vm_name+" "+guest_ip+" "+host_ip+" "+guest_primary_dns)
