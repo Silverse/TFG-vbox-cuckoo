@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
 # File: rqrmnt-priv.py
-# Edited: 29/07/2015
 # Jose Carlos Ramirez
 # TFG Unizar
 

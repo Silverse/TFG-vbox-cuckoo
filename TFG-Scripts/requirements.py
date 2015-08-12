@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
 # File: requirements.py
-# Edited: 23/07/2015
 # Jose Carlos Ramirez
 # TFG Unizar
 

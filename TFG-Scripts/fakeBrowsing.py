@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
 # File: fakeBrowsing.py
-# Edited: 11/08/2015
 # Jose Carlos Ramirez
 # TFG Unizar
 

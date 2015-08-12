@@ -1,7 +1,6 @@
 #!/usr/bin/python
 
 # File: newVM.py
-# Edited: 19/07/2015
 # Jose Carlos Ramirez
 # TFG Unizar
 
