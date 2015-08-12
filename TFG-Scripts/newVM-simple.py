@@ -59,7 +59,7 @@ def checkOutP (file_name=file_outPut, target='vboxnet0'):
 # This piece of code sould be in main.py, but the "\ " is not passed correctly as an argument, so it doesn't work in that way
 proc=subprocess.Popen(["whoami"], stdout=subprocess.PIPE)#, shell=True) if we wanted to use pipes between process and things like that
 (_stdout, _stderr)=proc.communicate()
-personal_folder="/home/"+_stdout[0:-1]+'/VirtualBox\ VMs' #taking the \n out
+personal_folder="/home/"+_stdout[:-1]+'/VirtualBox\ VMs' #taking the \n out
 
 # VM creation
 os.system("VBoxManage createvm --name "+vm_name+" --register > "+file_outPut)
@@ -97,7 +97,7 @@ while line!="":
 
 # Installation
 os.system("vboxmanage startvm "+vm_name)
-raw_input("\n |=> Please follow the Guest OS installation until the end, then press ENTER:")
+raw_input("\n [*] Please follow the Guest OS installation until the end, then press ENTER:")
 raw_input("	-Is the installation finished?")
 print """
  [*] Your guest OS is ON:
