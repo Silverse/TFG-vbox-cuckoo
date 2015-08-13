@@ -23,7 +23,10 @@ _time=_stdout[:-2].split(':') #hours:minutes taking out \r\n
 int_time=[int(_time[0]),int(_time[1])]
 
 
-web_list=["https://www.facebook.com/", "https://www.twitter.com", "https://login.live.com", "https://www.google.es/search?q=busqueda+de+ejemplo"]
+web_list=["https://www.facebook.com/", 
+		"https://www.twitter.com", 
+		"https://login.live.com", 
+		"https://www.google.es/search?q=busqueda+de+ejemplo"]
 
 open_IE="start /d "" firefox.exe "#+URL
 close_all_IE="TASKKILL /F /IM firefox.exe /T \r\n"

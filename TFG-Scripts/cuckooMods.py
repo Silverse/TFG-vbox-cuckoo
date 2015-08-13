@@ -27,7 +27,7 @@ for arg in sys.argv[5::]:
 	else:
 		tag_list=tag_list+','+arg
 
-cuckoo_path=os.getcwd()+'/requirements/cuckoo'
+cuckoo_path=os.path.abspath('..')+'/requirements/cuckoo'
 results_port="2042"
 
 ##### cuckoo.conf #####
@@ -69,7 +69,6 @@ conf_file.write(new_content)
 
 conf_file.close()
 tmp_file.close()
-
 
 
 ##### auxiliary.conf #####

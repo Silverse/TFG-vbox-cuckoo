@@ -12,6 +12,7 @@
 import os
 import re
 import sys
+import time
 
 srv_ip=str(sys.argv[1])
 srv_port=str(sys.argv[2])
@@ -22,6 +23,8 @@ line_written=False
 ip_written=False
 port_written=False
 
+
+			
 #Opening the file for reading and writting
 conf_file=open('/etc/vsftpd.conf', 'r+')
 tmp_file=open('/tmp/vsftpd-tmp.conf', 'w+')
@@ -79,6 +82,6 @@ conf_file.write(new_content)
 conf_file.close()
 tmp_file.close()
 
-os.system('sudo service vsftpd restart\n')
+
 
 exit()

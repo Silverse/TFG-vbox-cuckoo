@@ -16,7 +16,11 @@ split_host=host_ip.split('.')
 host_net=split_host[0]+'.'+split_host[1]+'.'+split_host[2]+'.0/24'
 
 header_comment="#Cuckoo IPtables rules, written by requirements.py. Jose Carlos's TFG"
-iptables_rules=["sudo iptables -A FORWARD -o eth0 -i vboxnet0 -s "+host_net+" -m conntrack --ctstate NEW -j ACCEPT","sudo iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT","sudo iptables -A POSTROUTING -t nat -j MASQUERADE","sudo sysctl -w net.ipv4.ip_forward=1" ]
+iptables_rules=["sudo iptables -A FORWARD -o eth0 -i vboxnet0 -s "+host_net+" -m conntrack --ctstate NEW -j ACCEPT",
+		"sudo iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT",
+		"sudo iptables -A POSTROUTING -t nat -j MASQUERADE",
+		"sudo sysctl -w net.ipv4.ip_forward=1",
+		"vboxmanage list vms 2>&1>>/dev/null" ] #This one is not a rule, but it's neccesary to get vboxnet up at reboot
 
 os.system('sudo chmod 755 /etc/rc.local') #Makes sure that it's executable
 #Opening the file for reading and writting

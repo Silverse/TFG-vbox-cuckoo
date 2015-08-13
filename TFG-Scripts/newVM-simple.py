@@ -109,6 +109,8 @@ raw_input(" Press ENTER to continue:")
 
 # Changed to the current @IP
 os.system("vboxmanage hostonlyif ipconfig vboxnet0 --ip "+host_ip+" 2> "+file_outPut)
+# Removing install media
+os.system('vboxmanage modifyvm '+vm_name+' --dvd none > '+file_outPut)
 
 #For WMI patch to work...
 # Rebooting the VM
@@ -126,8 +128,6 @@ os.system("vboxmanage controlvm "+vm_name+" poweroff 2> "+file_outPut)
 # Check if the instruccion has been finished
 while not checkOutP(target='100%'):
 	pass
-# Removing install media
-os.system('vboxmanage modifyvm '+vm_name+' --dvd none > '+file_outPut)
 # Restoring the vm state
 os.system('vboxmanage snapshot '+vm_name+' restorecurrent > '+file_outPut)
 
