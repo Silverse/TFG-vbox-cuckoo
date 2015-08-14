@@ -44,12 +44,12 @@ def checkIns (folder=path_req):
 	return True
 # Returns the info about the VMs in the cuckoo conf file
 def getVMlist (system='virtualbox'):
-	output=''
+	output=""
 	inBlock=False
 	_file=open(path_req+'/cuckoo/conf/'+system+'.conf', 'r') #The first line of the doc should be [virtualbox]
-	line=_file.readline() #take first line
+	line=_file.readline() #take first line out
 	line=_file.readline()	
-	while line!="":
+	while line!="":		
 		# Check if new block
 		try:
 			re.match("\[([0-9A-Za-z. ]*)]\n", line).group(0) # [something]\n will match
@@ -57,9 +57,9 @@ def getVMlist (system='virtualbox'):
 		except:
 			pass
 		if inBlock:
-			output+='\t'+line[:-1] #take out the extra \n
+			output+='\t'+line #take out the extra \n
 		line=_file.readline()
-		return	output
+	return	output
 # Returns a non used guest IP
 def newGuestIP(default=guest_ip):
 	ip_found=False
@@ -115,6 +115,7 @@ close=False
 
 while not close:
 	# Print menu
+	print "\t###################### Menu ################"
 	for op in menu:
 		print op
 	selection=int(raw_input("Option's number: "))
@@ -229,6 +230,6 @@ while not close:
 	elif selection == 5: 
 		close=True
 		print "	Goodbye!"
-	print '\n\n'
+	print '\n'
 
 exit(0)
