@@ -27,6 +27,7 @@ ftp_port="21"
 path_req=os.path.abspath('..')+'/requirements'
 path_cuckoo=os.path.abspath('..')+'/requirements/cuckoo'
 path_bin=os.path.abspath('..')+'/bin'
+path_scripts=s.path.abspath('..')+'/scripts'
 # Current one is /TFG-scripts
 log_name="main.log"
 
@@ -170,44 +171,51 @@ print '''
 '''
 
 ## Menu
-menu=["	-1) Install the dependancies and Cuckoo", 
-		"	-2) Create a new fixed VM",
-		"	-3) List the Cuckoo's VM", 
-		"	-4) Run Cuckoo and the webserver (localhost:8080)", 
-		"	-5) Close" ]
+menu=["\t-1) Install the dependancies and Cuckoo", 
+		"\t-2) Create a new fixed VM",
+		"\t-3) List the Cuckoo's VM", 
+		"\t-4) Run Cuckoo and the webserver (localhost:8080)", 
+		"\t-5) Close" ]
 close=False
 
 while not close:
 	# Print menu
+	if checkIns():
+		marked=False
+	else:	
+		marked=True
 	print "\t###################### Menu ################"
 	for op in menu:
-		print op
+		if not marked:
+			print op+" [DONE]"
+			marked=True
+		else:
+			print op
 	selection=int(raw_input("Option's number: "))
 
 	# Installation
 	if selection == 1: 
 		# New user
-		if raw_input(' -Do you have a user ready for cuckoo usage? (Y/N)').upper()=='Y':
-			user_name=raw_input('	-Please write the user name: ')
+		if raw_input(' -Do you have a user ready for cuckoo usage? (Y/N): ').upper()=='Y':
+			user_name=raw_input('\t-Please write the user name: ')
 			proc=subprocess.Popen(["whoami"], stdout=subprocess.PIPE)
 			(_stdout, _stderr)=proc.communicate()
 			if _stdout[:-1] != user_name:
 				print "You are not logged as this user. Please change it and run the script again"
 				exit(1)
 		else:
-			user_name=raw_input('	-Please chose a user name: ')
+			user_name=raw_input('\t-Please chose a user name: ')
 			os.system('''
 				sudo adduser  -gecos "" '''+user_name+'''
 				sudo usermod -G vboxusers '''+user_name+'''
 				sudo usermod -g sudo '''+user_name+
 				 '''\n''')
-			print '\n	-Created: '+user_name+' part of vboxusers and superusers'
-			print '\n -Run the script using the new user.'
+			print '\n\t-Created: '+user_name+' part of vboxusers and superusers\n-Run the script using the new user.'
 			exit(1)	
 		
 		# Install cuckoo and dependencies
 		if checkIns():
-			if raw_input("	-The requirements folder seems to exist. Do you want to continue? (Y/N)").upper()=='Y':
+			if raw_input(" -The requirements folder seems to exist. Do you want to continue? (Y/N): ").upper()=='Y':
 				print "\n [*] Installing Cuckoo, dependancies, and side programs"
 				os.system('python requirements.py '+host_ip)
 		else:
@@ -287,7 +295,7 @@ while not close:
 			missing_vms=checkVMs()
 			if missing_vms != []:
 				print "WARNING: Some of the VMs listed in Cuckoo's conf file are not in VirtualBox anymore "+str(missing_vms)+" and the file will be sanitized"
-				if raw_input("Continue? (Y/N): ").upper()=='Y':
+				if raw_input("\tContinue? (Y/N): ").upper()=='Y':
 					for vm in missing_vms:
 						eraseVM(vm[1:-1]) #taking out the quotes
 			#Cuckoo

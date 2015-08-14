@@ -16,17 +16,28 @@ path_req=os.path.abspath('..')+'/requirements'
 
 # Just in case
 os.system('sudo apt-get update')
-
+print "\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n" #Divider
 ### Guest
 ## Python
 os.system('sudo wget -P /srv/ftp http://python.org/ftp/python/2.7.10/python-2.7.10.msi')
+print "\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n" #Divider
 ## Python Imaging Library
 os.system('sudo wget -P /srv/ftp http://effbot.org/downloads/PIL-1.1.7.win32-py2.7.exe')
+print "\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n" #Divider
 
 ### Host
 os.system('mkdir '+path_req)
 package_list="python-bson python-sqlalchemy python-dpkt python-jinja2 python-magic python-pymongo python-gridfs python-bottle python-pefile python-chardet volatility"
 os.system('sudo apt-get install '+package_list)
+print "\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n" #Divider
+
+# Install python date-util (In some momment seemed Cuckoo needed it, but maybe it was not necesary)
+os.system('sudo pip install python-dateutil')
+print "\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n" #Divider
+
+## AntiVMdetect dependancies
+os.system('sudo apt-get install python-dmidecode libcdio-utils acpidump\n')
+print "\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n" #Divider
 
 ## Pydeep
 # Ssdeep from source
@@ -41,10 +52,12 @@ os.system('''
 	make 
 	sudo make install
 	''') #Executing'ssdeep -V' for checking '2.12'
+print "\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n" #Divider
 
 # Pydeep via pip
 os.system('sudo apt-get install python-pip -y')
 os.system('sudo pip install pydeep') #Executing 'pip show pydeep' for checking 'version:0.2'
+print "\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n" #Divider
 
 ## Yara
 os.system('sudo apt-get install build-essential git python-dev libjansson-dev libmagic-dev libtool eclipse-cdt-autotools -y')
@@ -58,6 +71,7 @@ os.system('''
 	make
 	sudo make install
 	''')
+print "\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n" #Divider
 
 # Yara python
 os.system('''
@@ -65,6 +79,7 @@ os.system('''
 	python setup.py build
 	sudo python setup.py install
 	''')
+print "\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n" #Divider
 
 ## Configure TCPdump
 os.system('''
@@ -72,6 +87,7 @@ os.system('''
 	sudo setcap cap_net_raw,cap_net_admin=eip /usr/sbin/tcpdump
 	sudo apt-get install libcap2-bin
 	''')
+print "\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n" #Divider
 
 ## rc.local modifications
 os.system('sudo python rqrmnt-priv.py '+host_ip) # Execution of the elevated-pivilege part of the script
@@ -79,7 +95,9 @@ os.system('sudo python rqrmnt-priv.py '+host_ip) # Execution of the elevated-piv
 os.system('''
 	cd /etc
 	./rc.local
+	cat rc.local
 	''')
+print "\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n" #Divider
 
 ## Install cuckoo
 os.system('''
@@ -90,11 +108,5 @@ os.system('''
 # It's also possible to dowload for the repositorie, but it's not the stable version
 # sudo git clone https://github.com/cuckoobox/cuckoo.git
 # sudo chown -R cuckoo:vboxusers cuckoo
-
-# Install python date-util (In some momment Cuckoo needed it, but maybe it was not necesary
-os.system('sudo pip install python-dateutil')
-
-## AntiVMdetect dependancies
-os.system('sudo apt-get install python-dmidecode libcdio-utils acpidump\n')
 
 exit(0)

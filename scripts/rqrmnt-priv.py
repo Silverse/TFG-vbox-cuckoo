@@ -9,6 +9,7 @@
 
 import os
 import re
+import sys
 
 host_ip=str(sys.argv[1])
 
@@ -32,19 +33,25 @@ line=startup_file.readline()
 while line!="":
 	try:
 		re.search(header_comment, line).group(0)
+		tmp_file.write(header_comment+'\n')
 		for rule in iptables_rules: #If the comment is found
 			line=startup_file.readline()
 			tmp_file.write(rule+'\n')
 		rules_written=True
-	except: #If the search fails, it's because there's not such a string
-		tmp_file.write(line)		
+	except: #If the search fails, it's because there is no header comment
+		try: #To not write the default 'exit 0' before the rules			
+			re.search('exit 0',line).group(0)
+			if rules_written: #in this case is the one written with the rules
+				tmp_file.write(line)
+		except:
+			tmp_file.write(line)		
 	line=startup_file.readline()
 
 if not rules_written:
 	tmp_file.write(header_comment+'\n')
 	for rule in iptables_rules:
 		tmp_file.write(rule+'\n')
-tmp_file.write("\nexit 0") #Always add it at the end
+	tmp_file.write("\nexit 0") 
 
 startup_file.close()
 tmp_file.close()
