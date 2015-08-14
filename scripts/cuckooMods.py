@@ -27,8 +27,12 @@ for arg in sys.argv[5::]:
 	else:
 		tag_list=tag_list+','+arg
 
-cuckoo_path=os.path.abspath('..')+'/requirements/cuckoo'
+path_cuckoo=os.path.abspath('..')+'/requirements/cuckoo'
 results_port="2042"
+
+################# Functions ###################
+
+###############################################
 
 ##### cuckoo.conf #####
 options_list=[["machinery = ","virtualbox"],["memory_dump = ","on"],["ip = ",host_ip],["port = ",results_port]]
@@ -37,7 +41,7 @@ ip_written=False
 port_written=False
 
 #Opening the file for reading and writting
-conf_file=open(cuckoo_path+'/conf/cuckoo.conf', 'r+')
+conf_file=open(path_cuckoo+'/conf/cuckoo.conf', 'r+')
 tmp_file=open('/tmp/cuckoo-tmp.conf', 'w+')
 
 line=conf_file.readline()
@@ -61,7 +65,7 @@ conf_file.close()
 tmp_file.close()
 
 # Open truncate file, we are going to fill it with the tmp one
-conf_file=open(cuckoo_path+'/conf/cuckoo.conf', 'w') 
+conf_file=open(path_cuckoo+'/conf/cuckoo.conf', 'w') 
 tmp_file=open('/tmp/cuckoo-tmp.conf', 'r')
 
 new_content=tmp_file.read()
@@ -95,7 +99,7 @@ for option in otherModule_options:
 '''
 tmp_file.close()
 # Open truncate file, we are going to fill it with the tmp one
-conf_file=open(cuckoo_path+'/conf/auxiliary.conf', 'w') 
+conf_file=open(path_cuckoo+'/conf/auxiliary.conf', 'w') 
 tmp_file=open('/tmp/auxiliary-tmp.conf', 'r')
 
 new_content=tmp_file.read()
@@ -114,7 +118,7 @@ block_found=False
 line_written=False
 inside_cuckoo1=False
 #Opening the file for reading and writting
-conf_file=open(cuckoo_path+'/conf/virtualbox.conf', 'r+') 
+conf_file=open(path_cuckoo+'/conf/virtualbox.conf', 'r+') 
 tmp_file=open('/tmp/vbox-tmp.conf', 'w+')
 options_list=[["mode = ","gui"], ["path = ",vbmn_path],["machines = ",vm_name]]
 optionsVM_list=[["label = ",vm_name],["platform = ","windows"],["ip = ", guest_ip],["snapshot = ", snapshot_name],["tags = ", tag_list]]
@@ -213,7 +217,7 @@ conf_file.close()
 tmp_file.close()
 
 # Open truncate file, we are going to fill it with the tmp one
-conf_file=open(cuckoo_path+'/conf/virtualbox.conf', 'w') 
+conf_file=open(path_cuckoo+'/conf/virtualbox.conf', 'w') 
 tmp_file=open('/tmp/vbox-tmp.conf', 'r')
 
 new_content=tmp_file.read()
@@ -229,7 +233,7 @@ tmp_file.close()
 block_found=False
 line_written=False
 #Opening the file for reading and writting
-conf_file=open(cuckoo_path+'/conf/reporting.conf', 'r+') 
+conf_file=open(path_cuckoo+'/conf/reporting.conf', 'r+') 
 tmp_file=open('/tmp/reporting-tmp.conf', 'w+')
 options_list=[["enabled = ","yes\n"]]
 
@@ -258,7 +262,7 @@ conf_file.close()
 tmp_file.close()
 
 # Open truncate file, we are going to fill it with the tmp one
-conf_file=open(cuckoo_path+'/conf/reporting.conf', 'w') 
+conf_file=open(path_cuckoo+'/conf/reporting.conf', 'w') 
 tmp_file=open('/tmp/reporting-tmp.conf', 'r')
 
 new_content=tmp_file.read()

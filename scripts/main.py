@@ -17,7 +17,7 @@ import random
 RAM="2000"
 HDD="70000"
 nCores="3"
-file_output="/tmp/newVM_output.txt"
+file_output="/tmp/newVM.log"
 host_ip="192.168.58.1" 
 default_host_ip="192.168.56.1"
 guest_ip="192.168.58.25" #default 192.168.56.101
@@ -25,12 +25,14 @@ guest_primary_dns="208.67.222.222"
 ftp_port="21"
 
 path_req=os.path.abspath('..')+'/requirements'
+path_cuckoo=os.path.abspath('..')+'/requirements/cuckoo'
 path_bin=os.path.abspath('..')+'/bin'
 # Current one is /TFG-scripts
+log_name="main.log"
 
 #################### Functions ###################
 # Check if there is a folder named requirements and if its weight is over a minimum
-def checkIns (folder=path_req): 
+def checkIns(folder=path_req): 
 	folder_size = 0
 	for (path, dirs, files) in os.walk(folder):
 		for _file in files:
@@ -43,7 +45,7 @@ def checkIns (folder=path_req):
 		return False
 	return True
 # Returns the info about the VMs in the cuckoo conf file
-def getVMlist (system='virtualbox'):
+def getVMlist(system='virtualbox'):
 	output=""
 	inBlock=False
 	_file=open(path_req+'/cuckoo/conf/'+system+'.conf', 'r') #The first line of the doc should be [virtualbox]
@@ -52,7 +54,7 @@ def getVMlist (system='virtualbox'):
 	while line!="":		
 		# Check if new block
 		try:
-			re.match("\[([0-9A-Za-z. ]*)]\n", line).group(0) # [something]\n will match
+			re.match('\[([0-9A-Za-z. ]*)]\n', line).group(0) # [something]\n will match
 			inBlock=True
 		except:
 			pass
@@ -79,11 +81,73 @@ def newGuestIP(default=guest_ip):
 		return ip
 	except:
 		return default
-		
+# Check if all the vms in the conf files exists
+def checkVMs():
+	missing_vms=[]
+	cuckoo_vms=re.findall("\[([0-9A-Za-z. ]*)]\n",getVMlist())
+	proc=subprocess.Popen(['vboxmanage', 'list', 'vms'], stdout=subprocess.PIPE)
+	(_stdout, _stderr)=proc.communicate()
+	for vm in cuckoo_vms:
+		try:
+			re.search('"'+vm+'"', _stdout).group(0) #It is possible to find a match with the UUID but... not likely. The quotes are for avoiding a match of 'test' with 'test32'
+		except:
+			missing_vms.append('"'+vm+'"')	
+	return missing_vms		
+# Erase a vm profile form cuckoo's conf files
+def eraseVM(vm_name, system='virtualbox'):
+	block_found=False
+	#Opening the file for reading and writting
+	conf_file=open(path_cuckoo+'/conf/'+system+'.conf', 'r') 
+	tmp_file=open('/tmp/'+system+'-tmp.conf', 'w+')
+	#The first line of the doc should be [virtualbox]
+	line=conf_file.readline() #take first line out
+	tmp_file.write(line)
+	
+	line=conf_file.readline()
+	while line!="":
+		try:
+			re.search('machines = ',line).group(0)
+			vms=line.split()[2].split(',')
+			line="machines = "
+			for vm in vms:
+				if vm != vm_name:
+					line+=vm
+			line+='\n'
+		except:
+			pass
+		if block_found:
+			try: #Check if a new block is found				
+				re.match('\[([0-9A-Za-z. ]*)]\n', line).group(0) # [something]\n will match
+				block_found=False
+			except:
+				pass
+		try: #Check if the target block is found
+			re.search('\['+vm_name+']',line).group(0)
+			block_found=True
+		except:
+			pass			
+		if not block_found:
+			tmp_file.write(line)
+		line=conf_file.readline()
+
+	conf_file.close()
+	tmp_file.close()
+
+	# Open truncate file, we are going to fill it with the tmp one
+	conf_file=open(path_cuckoo+'/conf/'+system+'.conf', 'w') 
+	tmp_file=open('/tmp/'+system+'-tmp.conf', 'r')
+
+	new_content=tmp_file.read()
+	conf_file.write(new_content)
+
+	conf_file.close()
+	tmp_file.close()
+	return	
+
 #################################################
 
 # If the output file exists and it was created by a different user, the script won't be able to interact with it (permission denied)
-proc=subprocess.Popen(["ls", '/tmp/'], stdout=subprocess.PIPE)#, shell=True) if we wanted to use pipes between process and things like that
+proc=subprocess.Popen(["ls", '/tmp/'], stdout=subprocess.PIPE)
 (_stdout, _stderr)=proc.communicate()
 try:
 	re.search(file_output[4:], _stdout).group(0)
@@ -109,7 +173,7 @@ print '''
 menu=["	-1) Install the dependancies and Cuckoo", 
 		"	-2) Create a new fixed VM",
 		"	-3) List the Cuckoo's VM", 
-		"	-4) Run Cuckoo an the webserver (localhost:8080)", 
+		"	-4) Run Cuckoo and the webserver (localhost:8080)", 
 		"	-5) Close" ]
 close=False
 
@@ -166,9 +230,9 @@ while not close:
 			print "\n [*] Preparing the FTP server (default @IP)"			
 			os.system('sudo service vsftpd stop') # Service's down!
 			os.system("sudo python prepareFTPserver.py "+default_host_ip+" "+ftp_port)			
-			os.system('sudo service vsftpd start > outTest.txt') # Service's Up!			
+			os.system('sudo service vsftpd start > '+log_name) # Service's Up!			
 			#Sometimes it does not end in running state, not sure why so... Check!
-			_file=open('outTest.txt', 'r')
+			_file=open(log_name, 'r')
 			line=_file.readline()
 			try:
 				re.search('pre-start', line).group(0)
@@ -187,11 +251,11 @@ while not close:
 
 			# FTP, current @IP
 			print "\n [*] Preparing the FTP server (current @IP)"
-			os.system('sudo service vsftpd stop') # Service's down!
+			os.system('sudo service vsftpd stop') # Service is down!
 			os.system("sudo python prepareFTPserver.py "+host_ip+" "+ftp_port)
-			os.system('sudo service vsftpd start > outTest.txt') # Service's Up!		
+			os.system('sudo service vsftpd start > '+log_name) # Service is Up!		
 			#Sometimes it does not end in running state, not sure why so... Check!
-			_file=open('outTest.txt', 'r')
+			_file=open(log_name, 'r')
 			line=_file.readline()
 			try:
 				re.search('pre-start', line).group(0)
@@ -220,6 +284,12 @@ while not close:
 	# Run
 	elif selection == 4: 
 		if checkIns():
+			missing_vms=checkVMs()
+			if missing_vms != []:
+				print "WARNING: Some of the VMs listed in Cuckoo's conf file are not in VirtualBox anymore "+str(missing_vms)+" and the file will be sanitized"
+				if raw_input("Continue? (Y/N): ").upper()=='Y':
+					for vm in missing_vms:
+						eraseVM(vm[1:-1]) #taking out the quotes
 			#Cuckoo
 			os.system('''gnome-terminal --tab -e "/bin/bash -c 'python '''+path_req+'''/cuckoo/cuckoo.py; exec /bin/bash -i'"''')
 			#Web interface
@@ -227,7 +297,7 @@ while not close:
 		else:
 			print " The requirements does not seems to be installed, please install them"
 	# Exit
-	elif selection == 5: 
+	else: 
 		close=True
 		print "	Goodbye!"
 	print '\n'
