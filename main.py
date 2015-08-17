@@ -11,11 +11,20 @@ import os
 import subprocess
 import re
 import random
+import textwrap
+import sys
+# Importing the rest of the files
+sys.path.insert(0, 'scripts')
+import requirements
+import prepareFTPserver
+import cuckooMods
+import newVM
 
-path_req=os.path.abspath('..')+'/requirements'
-path_cuckoo=os.path.abspath('..')+'/requirements/cuckoo'
-path_bin=os.path.abspath('..')+'/bin'
-path_scripts=os.path.abspath('..')+'/scripts'
+path_req=os.path.abspath('')+'/requirements'
+path_cuckoo=os.path.abspath('')+'/requirements/cuckoo'
+path_bin=os.path.abspath('')+'/bin'
+path_scripts=os.path.abspath('')+'/scripts'
+path_logs=os.path.abspath('')+'/logs'
 log_name="main.log"
 	
 #################### Functions ###################
@@ -86,7 +95,7 @@ def eraseVM(vm_name, system='virtualbox'):
 	block_found=False
 	#Opening the file for reading and writting
 	conf_file=open(path_cuckoo+'/conf/'+system+'.conf', 'r') 
-	tmp_file=open('/tmp/'+system+'-tmp.conf', 'w+')
+	tmp_file=open(path_logs+'/'+system+'-tmp.conf', 'w+')
 	#The first line of the doc should be [virtualbox]
 	line=conf_file.readline() #take first line out
 	tmp_file.write(line)
@@ -123,7 +132,7 @@ def eraseVM(vm_name, system='virtualbox'):
 
 	# Open truncate file, we are going to fill it with the tmp one
 	conf_file=open(path_cuckoo+'/conf/'+system+'.conf', 'w') 
-	tmp_file=open('/tmp/'+system+'-tmp.conf', 'r')
+	tmp_file=open(path_logs+'/'+system+'-tmp.conf', 'r')
 
 	new_content=tmp_file.read()
 	conf_file.write(new_content)
@@ -131,7 +140,7 @@ def eraseVM(vm_name, system='virtualbox'):
 	conf_file.close()
 	tmp_file.close()
 	return	
-
+# Check if vboxnet0 is up or down
 def checkVif():
 	in_IF=False
 	proc=subprocess.Popen(["vboxmanage", 'list',  'hostonlyifs'], stdout=subprocess.PIPE)
@@ -151,7 +160,7 @@ def checkVif():
 					status=field.split()[1]
 				except:
 					pass
-	
+	#This should start it in case it is down
 	return status=="Up"
 #################################################
 def main():
@@ -159,35 +168,29 @@ def main():
 	RAM="2000"
 	HDD="70000"
 	nCores="3"
-	file_output="/tmp/newVM.log"
+	file_output=path_logs+"/newVM.log"
 	host_ip="192.168.58.1" 
 	default_host_ip="192.168.56.1"
 	guest_ip="192.168.58.25" #default 192.168.56.101
 	guest_primary_dns="208.67.222.222"
 	ftp_port="21"
-
-	# If the output file exists and it was created by a different user, the script won't be able to interact with it (permission denied)
-	proc=subprocess.Popen(["ls", '/tmp/'], stdout=subprocess.PIPE)
-	(_stdout, _stderr)=proc.communicate()
-	try: # Erase previous tmp file
-		re.search(file_output[4:], _stdout).group(0)
-		os.system('sudo rm '+file_output) 
-	except: #does not exists
-		pass
-
+	
+	##Folders
+	os.system('mkdir '+path_req)
+	os.system('mkdir '+path_logs)
 	## Wellcome
-	print '''
-		#############################################################
-		####### TFG Ingeniría de Tecnologías y Servicios de   #######
-		####### la Telecomunicación, telemática.	      #######
-		####### Alumno: José Carlos Ramírez Vega, 628545      #######
-		####### Tutor: Antonio Sanz Alcober		      #######
-		####### Ponente: José Luis Salazar Riaño	      #######
-		####### Título: Mejora de la detección de malware     #######
-		####### mediante la modificación profunda de sistemas #######
-		####### de sandboxing.				      #######
-		#############################################################
-	'''
+	print textwrap.dedent("""
+		.\t#############################################################
+		.\t####### TFG Ingeniría de Tecnologías y Servicios de   #######
+		.\t####### la Telecomunicación, telemática.	      #######
+		.\t####### Alumno: José Carlos Ramírez Vega, 628545      #######
+		.\t####### Tutor: Antonio Sanz Alcober		      #######
+		.\t####### Ponente: José Luis Salazar Riaño	      #######
+		.\t####### Título: Mejora de la detección de malware     #######
+		.\t####### mediante la modificación profunda de sistemas #######
+		.\t####### de sandboxing.				      #######
+		.\t#############################################################
+		""")
 
 	## Menu
 	_quit=False
@@ -236,27 +239,28 @@ def main():
 				if checkIns(path_req):
 					if raw_input(" -The requirements folder seems to exist. Do you want to continue? (Y/N): ").upper()=='Y':
 						print "\n [*] Installing Cuckoo, dependancies, and side programs"
-						os.system('python requirements.py '+host_ip)
+						requirements.main(host_ip, path_req, path_logs)
 				else:
 					print "\n [*] Installing Cuckoo, dependancies, and side programs"
-					os.system('python requirements.py '+host_ip)	
+					requirements.main(host_ip, path_req, path_logs)
 			# New VM
 			elif selection == 2: 
 				if checkIns(path_req): #Check if (probably) the dependancies are installed
-					vm_name="'"+raw_input("\n -Write the name of your VM: ")+"'"
+					vm_name=raw_input("\n -Write the name of your VM: ")
 					absolute_path=raw_input(" -Please, write down the absolute path of the ISO file of the OS: \n\t")
-					snap_name=raw_input(" -Please chose a snapshot's name: ")
+					snap_name=raw_input(" -Please chose a snapshot's name: ").replace(' ', '_')
 					
 					# Gets an usable guest's IP
 					host_ip=newGuestIP(guest_ip)
 					
 					# AntiVMdetect execution
-					os.system("sudo python antivmdetect.py "+vm_name+" "+guest_ip+" "+host_ip+" "+guest_primary_dns)
+					#antivmdetect.main(vm_name, guest_ip, host_ip, guest_primary_dns) it need to be run as superuser so...
+					os.system('sudo '+path_scripts+'/antivmdetect.py "'+vm_name+'" '+guest_ip+' '+host_ip+' '+guest_primary_dns+' '+path_logs)
 
 					# FTP, default @IP
 					print "\n [*] Preparing the FTP server (default @IP)"			
 					os.system('sudo service vsftpd stop') # Service's down!
-					os.system("sudo python prepareFTPserver.py "+default_host_ip+" "+ftp_port)			
+					prepareFTPserver.main(default_host_ip, ftp_port, path_logs)		
 					os.system('sudo service vsftpd start > '+log_name) # Service's Up!			
 					#Sometimes it does not end in running state, not sure why so... Check!
 					_file=open(log_name, 'r')
@@ -267,7 +271,7 @@ def main():
 					except:
 						pass
 					_file.close()
-					os.system('rm outTest.txt')
+					os.system('rm '+log_name)
 					
 					os.system('sudo cp '+path_req+'/cuckoo/agent/agent.py /srv/ftp/agent.pyw') #Hidden window
 					#os.system('sudo cp '+path_bin+'/agent.exe /srv/ftp/agent.exe') #Should be...
@@ -275,12 +279,13 @@ def main():
 
 					# VM creation
 					print "\n [*] Creating a VirtualBox's VM named "+vm_name
-					os.system('python newVM-simple.py '+RAM+' '+HDD+' '+nCores+' '+file_output+' '+host_ip+' '+guest_ip+' '+guest_primary_dns+' '+ftp_port+' '+vm_name+' '+absolute_path+' '+snap_name+' '+default_host_ip)
+					newVM.main(RAM, HDD, nCores, file_output, host_ip, guest_ip, guest_primary_dns, 
+								ftp_port, vm_name, absolute_path, snap_name, default_host_ip, path_logs)
 
 					# FTP, current @IP
 					print "\n [*] Preparing the FTP server (current @IP)"
 					os.system('sudo service vsftpd stop') # Service is down!
-					os.system("sudo python prepareFTPserver.py "+host_ip+" "+ftp_port)
+					prepareFTPserver.main(host_ip, ftp_port, path_logs)	
 					os.system('sudo service vsftpd start > '+log_name) # Service is Up!		
 					#Sometimes it does not end in running state, not sure why so... Check!
 					_file=open(log_name, 'r')
@@ -294,9 +299,9 @@ def main():
 					os.system('rm '+log_name)
 
 					# Cuckoo modifications for the new VM
-					tag_list=raw_input('\n [*] The Cuckoo configuration will be modified to suit the VM\nWrite down a list of tags for cuckoo to add to this VM profile. Separated with white spaces (e.g: windows_xp office_2003 flash_1.2): ')
-					os.system('python cuckooMods.py '+host_ip+' '+guest_ip+' '+vm_name+' '+snap_name+' '+tag_list)
-
+					tag_string=raw_input('\n [*] The Cuckoo configuration will be modified to suit the VM\nWrite down a list of tags for cuckoo to add to this VM profile. Separated with commas (e.g: windows_xp,office_2003,flash_1.2): ')
+					cuckooMods.main(host_ip, guest_ip, vm_name, snap_name, tag_string, path_cuckoo, path_logs)  
+				
 				else:
 					print " The requirements does not seems to be installed, please install them"
 			# List Cuckoo's vms
