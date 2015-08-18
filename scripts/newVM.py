@@ -30,6 +30,13 @@ import re
 import sys
 import subprocess
 
+class bcolors:
+    HEADER = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+
 ######## Functions ####################
 def checkOutP(file_name, target): 
 	file=open(file_name, 'r')
@@ -68,7 +75,7 @@ def main(RAM, HDD, nCores, file_outPut, host_ip, guest_ip,
 	# Attach storage, add an IDE controller with a CD/DVD drive attached
 	os.system("VBoxManage storagectl '"+vm_name+"' --name 'IDE Controller' --add ide > "+file_outPut)
 	os.system("VBoxManage createhd --filename "+personal_folder+"/"+vm_name.replace(' ', '_')+".vdi --size "+HDD+" --format vdi > "+file_outPut)
-	os.system("VBoxManage storageattach '"+vm_name+"' --storagectl 'IDE Controller' --port 0 --device 0 --type hdd --medium  "+personal_folder+"/"+vm_name+".vdi > "+file_outPut)
+	os.system("VBoxManage storageattach '"+vm_name+"' --storagectl 'IDE Controller' --port 0 --device 0 --type hdd --medium  "+personal_folder+"/"+vm_name.replace(' ', '_')+".vdi > "+file_outPut)
 	os.system("VBoxManage storageattach '"+vm_name+"' --storagectl 'IDE Controller' --port 1 --device 0 --type dvddrive --medium "+absolute_path+" > "+file_outPut)
 
 	# FTP warning
@@ -85,10 +92,10 @@ def main(RAM, HDD, nCores, file_outPut, host_ip, guest_ip,
 
 	# Installation
 	os.system("vboxmanage startvm '"+vm_name+"'")
-	raw_input("\n [*] Please follow the Guest OS installation until the end, then press ENTER:")
+	raw_input(bcolors.OKGREEN+"\n [*]"+bcolors.ENDC+" Please follow the Guest OS installation until the end, then press ENTER:")
 	raw_input("	-Is the installation finished?")
-	print """
-	 [*] Your guest OS is ON:
+	print bcolors.OKGREEN+"""
+	 [*]"""+bcolors.ENDC+""" Your guest OS is ON:
 		-Open Internet explorer or the Windows file explorer
 		-Type: ftp://anonymous:@"""+default_host_ip+""":"""+ftp_port+"""
 		-Drag all your files to the Guest's file system
@@ -104,10 +111,10 @@ def main(RAM, HDD, nCores, file_outPut, host_ip, guest_ip,
 	# Rebooting the VM
 	os.system("vboxmanage controlvm '"+vm_name+"' poweroff 2> "+file_outPut)
 	os.system("vboxmanage startvm '"+vm_name+"'")
-	raw_input("	- Run again vboxmods.bat and finally run agent.py \n Press ENTER to continue:")
+	raw_input("	- Run again vboxmods.bat\n -Finally run fakeBrowsing.py, agent.pyw and just before continue run humanMimic.exe\n Press ENTER to continue:")
 
 	# Taking the snapshot
-	os.system('vboxmanage snapshot "'+vm_name+'" take '+snap_name+' --pause')
+	os.system('vboxmanage snapshot "'+vm_name+'" take "'+snap_name+'" --pause')
 
 	print " -Now the VM will close, press ENTER when ready:"
 	raw_input()
@@ -119,7 +126,7 @@ def main(RAM, HDD, nCores, file_outPut, host_ip, guest_ip,
 	# Restoring the vm state
 	os.system('vboxmanage snapshot "'+vm_name+'" restorecurrent > '+file_outPut)
 
-	print textwrap.dedent("""
+	print textwrap.dedent(bcolors.OKGREEN+"""
 	 __________________________________
 	 |FIXED VM READY FOR CUKOO USAGE.
 	 |SPECIFICATIONS:   
@@ -132,6 +139,6 @@ def main(RAM, HDD, nCores, file_outPut, host_ip, guest_ip,
 	 |	OS: WINDOWS XP 	
 	 |	SNAPSHOT: """+snap_name+"""	
 	 |___________________________________
-		""")
+		"""+bcolor.ENDC)
 	return
 

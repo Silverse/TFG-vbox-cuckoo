@@ -27,6 +27,15 @@ path_scripts=os.path.abspath('')+'/scripts'
 path_logs=os.path.abspath('')+'/logs'
 log_name="main.log"
 	
+class bcolors:
+    HEADER = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+
+
+	
 #################### Functions ###################
 # Check if there is a folder named requirements and if its weight is over a minimum
 def checkIns(folder): 
@@ -179,18 +188,18 @@ def main():
 	os.system('mkdir '+path_req)
 	os.system('mkdir '+path_logs)
 	## Wellcome
-	print textwrap.dedent("""
-		.\t#############################################################
-		.\t####### TFG Ingeniría de Tecnologías y Servicios de   #######
-		.\t####### la Telecomunicación, telemática.	      #######
-		.\t####### Alumno: José Carlos Ramírez Vega, 628545      #######
-		.\t####### Tutor: Antonio Sanz Alcober		      #######
-		.\t####### Ponente: José Luis Salazar Riaño	      #######
-		.\t####### Título: Mejora de la detección de malware     #######
-		.\t####### mediante la modificación profunda de sistemas #######
-		.\t####### de sandboxing.				      #######
-		.\t#############################################################
-		""")
+	print textwrap.dedent(bcolors.HEADER+"""
+	#############################################################
+	####### TFG Ingeniría de Tecnologías y Servicios de   #######
+	####### la Telecomunicación, telemática.	      #######
+	####### Alumno: José Carlos Ramírez Vega, 628545      #######
+	####### Tutor: Antonio Sanz Alcober		      #######
+	####### Ponente: José Luis Salazar Riaño	      #######
+	####### Título: Mejora de la detección de malware     #######
+	####### mediante la modificación profunda de sistemas #######
+	####### de sandboxing.				      #######
+	#############################################################
+	"""+bcolors.ENDC)
 
 	## Menu
 	_quit=False
@@ -209,7 +218,7 @@ def main():
 			marked=True			
 		for op in menu:
 			if not marked:
-				print op+" [DONE]"
+				print op+bcolors.OKGREEN + " [DONE]"+bcolors.ENDC
 				marked=True
 			else:
 				print op
@@ -223,7 +232,7 @@ def main():
 					proc=subprocess.Popen(["whoami"], stdout=subprocess.PIPE)
 					(_stdout, _stderr)=proc.communicate()
 					if _stdout[:-1] != user_name:
-						print "You are not logged as this user. Please change it and run the script again"
+						print bcolors.FAIL + "You are not logged as this user. Please change it and run the script again"+bcolors.ENDC
 						exit(1)
 				else:
 					user_name=raw_input('\t-Please chose a user name: ')
@@ -232,16 +241,16 @@ def main():
 						sudo usermod -G vboxusers '''+user_name+'''
 						sudo usermod -g sudo '''+user_name+
 						 '''\n''')
-					print '\n\t-Created: '+user_name+' part of vboxusers and superusers\n-Run the script using the new user.'
+					print bcolors.OKGREEN + '\n\t-Created:'+bcolors.ENDC+user_name+' part of vboxusers and superusers\n-Run the script using the new user.'
 					exit(1)	
 				
 				# Install cuckoo and dependencies
 				if checkIns(path_req):
-					if raw_input(" -The requirements folder seems to exist. Do you want to continue? (Y/N): ").upper()=='Y':
-						print "\n [*] Installing Cuckoo, dependancies, and side programs"
+					if raw_input(bcolors.WARNING+" -The requirements folder seems to exist. Do you want to continue? (Y/N): "+bcolors.ENDC).upper()=='Y':
+						print bcolors.OKGREEN + "\n [*]"+bcolors.ENDC+" Installing Cuckoo, dependancies, and side programs"
 						requirements.main(host_ip, path_req, path_logs)
 				else:
-					print "\n [*] Installing Cuckoo, dependancies, and side programs"
+					print bcolors.OKGREEN + "\n [*]"+bcolors.ENDC+" Installing Cuckoo, dependancies, and side programs"
 					requirements.main(host_ip, path_req, path_logs)
 			# New VM
 			elif selection == 2: 
@@ -258,7 +267,7 @@ def main():
 					os.system('sudo '+path_scripts+'/antivmdetect.py "'+vm_name+'" '+guest_ip+' '+host_ip+' '+guest_primary_dns+' '+path_logs)
 
 					# FTP, default @IP
-					print "\n [*] Preparing the FTP server (default @IP)"			
+					print bcolors.OKGREEN + "\n [*]"+bcolors.ENDC+" Preparing the FTP server (default @IP)"			
 					os.system('sudo service vsftpd stop') # Service's down!
 					prepareFTPserver.main(default_host_ip, ftp_port, path_logs)		
 					os.system('sudo service vsftpd start > '+log_name) # Service's Up!			
@@ -267,7 +276,7 @@ def main():
 					line=_file.readline()
 					try:
 						re.search('pre-start', line).group(0)
-						print "WARNING: vsftp did not started properly, restart it manually in other terminal"
+						print bcolors.WARNING+"WARNING: vsftp did not started properly, restart it manually in other terminal"+bcolors.ENDC
 					except:
 						pass
 					_file.close()
@@ -278,12 +287,12 @@ def main():
 					os.system('sudo cp '+path_bin+'/humanMimic.exe /srv/ftp')
 
 					# VM creation
-					print "\n [*] Creating a VirtualBox's VM named "+vm_name
+					print bcolors.OKGREEN + "\n [*]"+bcolors.ENDC+" Creating a VirtualBox's VM named "+vm_name
 					newVM.main(RAM, HDD, nCores, file_output, host_ip, guest_ip, guest_primary_dns, 
 								ftp_port, vm_name, absolute_path, snap_name, default_host_ip, path_logs)
 
 					# FTP, current @IP
-					print "\n [*] Preparing the FTP server (current @IP)"
+					print bcolors.OKGREEN + "\n [*]"+bcolors.ENDC+" Preparing the FTP server (current @IP)"
 					os.system('sudo service vsftpd stop') # Service is down!
 					prepareFTPserver.main(host_ip, ftp_port, path_logs)	
 					os.system('sudo service vsftpd start > '+log_name) # Service is Up!		
@@ -292,39 +301,39 @@ def main():
 					line=_file.readline()
 					try:
 						re.search('pre-start', line).group(0)
-						print "WARNING: vsftp did not started properly, restart it manually in other terminal"
+						print bcolors.WARNING+"WARNING: vsftp did not started properly, restart it manually in other terminal"+bcolors.ENDC
 					except:
 						pass
 					_file.close()
 					os.system('rm '+log_name)
 
 					# Cuckoo modifications for the new VM
-					tag_string=raw_input('\n [*] The Cuckoo configuration will be modified to suit the VM\nWrite down a list of tags for cuckoo to add to this VM profile. Separated with commas (e.g: windows_xp,office_2003,flash_1.2): ')
+					tag_string=raw_input(bcolors.OKGREEN + "\n [*]"+bcolors.ENDC+' The Cuckoo configuration will be modified to suit the VM\nWrite down a list of tags for cuckoo to add to this VM profile. Separated with commas (e.g: windows_xp,office_2003,flash_1.2): ')
 					cuckooMods.main(host_ip, guest_ip, vm_name, snap_name, tag_string, path_cuckoo, path_logs)  
 				
 				else:
-					print " The requirements does not seems to be installed, please install them"
+					print bcolors.FAIL+" The requirements does not seems to be installed, please install them"+bcolors.ENDC
 			# List Cuckoo's vms
 			elif selection == 3: 
 				if checkIns(path_req):
 					vms=getVMlist()
 					if vms == '':
-						print 'No VMs in the conf file'
+						print bcolors.FAIL+'No VMs in the conf file'+bcolors.ENDC
 					else:
 						print getVMlist()
 				else:
-					print " The requirements does not seems to be installed, please install them"
+					print bcolors.FAIL+" The requirements does not seems to be installed, please install them"+bcolors.ENDC
 			# Run
 			elif selection == 4: 
 				if checkIns(path_req):
 					missing_vms=checkVMs()
 					if missing_vms != []:
-						print "WARNING: Some of the VMs listed in Cuckoo's conf file are not in VirtualBox anymore "+str(missing_vms)+" and the file will be sanitized"
+						print bcolors.WARNING+"WARNING: Some of the VMs listed in Cuckoo's conf file are not in VirtualBox anymore "+str(missing_vms)+" and the file will be sanitized"+bcolors.ENDC
 						if raw_input("\tContinue? (Y/N): ").upper()=='Y':
 							for vm in missing_vms:
 								eraseVM(vm[1:-1]) #taking out the quotes
 					while not checkVif():
-						print "WARNING: The virtual interface is down. Please start a VM using VboxNet0, this will start the IF (you can turn that VM off whenever you want)"
+						print bcolors.WARNING+"WARNING: The virtual interface is down. Please start a VM using VboxNet0, this will start the IF (you can turn that VM off whenever you want)"+bcolors.ENDC
 						raw_input("Press ENTER when ready. ")
 							
 					#Cuckoo
@@ -332,17 +341,17 @@ def main():
 					#Web interface
 					os.system('''gnome-terminal --tab -e "/bin/bash -c 'python '''+path_req+'''/cuckoo/utils/web.py -H localhost -p 8080; exec /bin/bash -i'"''')
 				else:
-					print " The requirements does not seems to be installed, please install them"
+					print bcolors.FAIL+" The requirements does not seems to be installed, please install them"+bcolors.ENDC
 			# Exit
 			elif selection == 5: 
 				_quit=True
-				print "	Goodbye!"
+				print bcolors.OKGREEN+"	Goodbye!"+bcolors.ENDC
 			# Input selection not in the options
 			else: 
-				print "Wrong input!"
+				print bcolors.FAIL+"Wrong input!"+bcolors.ENDC
 			print '\n'
 		except ValueError:
-			print "Wrong input!\n"
+			print bcolors.FAIL+"Wrong input!\n"+bcolors.ENDC
 	return
 
 main()

@@ -24,6 +24,10 @@ import time
 import sys
 import os
 
+class bcolors:
+    OKGREEN = '\033[92m'
+    ENDC = '\033[0m'
+    
 ##################### Functions ################
 def serial_randomize(start=0, string_length=10):
     rand = str(uuid.uuid4())
@@ -36,7 +40,7 @@ def serial_randomize(start=0, string_length=10):
 def main(vm_name, guest_ip, host_ip, guest_primary_dns, path_logs):
 	# Welcome
 	print '\n--- AntiVMdetect by Mikael, @nsmfoo (modified by Jose Carlos R.) ---'
-	print '[*] Creating VirtualBox modifications ..'
+	print bcolors.OKGREEN+' [*]'+bcolors.ENDC+' Creating VirtualBox modifications ..'
 
 	dmi_info = {}
 
@@ -206,7 +210,7 @@ def main(vm_name, guest_ip, host_ip, guest_primary_dns, path_logs):
 				disk_serial = re.search("Serial number:([0-9A-Za-z ]*)", hp_old_raid).group(1).replace(" ", "")
 				disk_dmi['SerialNumber'] = (serial_randomize(0, len(disk_serial)))
 			else:
-				print "Install smartmontools: apt-get install smartmontools"
+				print bcolors.WARNING+"Install smartmontools: apt-get install smartmontools"+bcolors.ENDC
 	except OSError:
 		print "Haz RAID?"
 		print commands.getoutput("lspci | grep -i raid")
@@ -313,7 +317,7 @@ def main(vm_name, guest_ip, host_ip, guest_primary_dns, path_logs):
 	logfile.close()
 
 	print '	Finished: A template shell script has been created named:', file_name
-	print '\n[*] Creating guest based modification file (to be run inside the guest)'
+	print bcolors.OKGREEN+'\n [*]'+bcolors.ENDC+' Creating guest based modification file (to be run inside the guest)'
 
 	# Write all data to file
 	file_name2="vboxmods-"+vm_name.replace(' ','_')+".bat"

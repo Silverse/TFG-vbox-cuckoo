@@ -11,30 +11,37 @@ import os
 import sys
 import re
 
+class bcolors:
+    HEADER = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    
 def main(host_ip, path_req, path_logs):
 	# Just in case
 	os.system('sudo apt-get update')
-	print "\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n" #Divider
+	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 	### Guest
 	## Python
 	os.system('sudo wget -P /srv/ftp http://python.org/ftp/python/2.7.10/python-2.7.10.msi')
-	print "\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n" #Divider
+	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 	## Python Imaging Library
 	os.system('sudo wget -P /srv/ftp http://effbot.org/downloads/PIL-1.1.7.win32-py2.7.exe')
-	print "\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n" #Divider
+	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 
 	### Host
 	package_list="python-bson python-sqlalchemy python-dpkt python-jinja2 python-magic python-pymongo python-gridfs python-bottle python-pefile python-chardet volatility"
 	os.system('sudo apt-get install '+package_list)
-	print "\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n" #Divider
+	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 
 	# Install python date-util (In some momment seemed Cuckoo needed it, but maybe it was not necesary)
 	os.system('sudo pip install python-dateutil')
-	print "\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n" #Divider
+	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 
 	## AntiVMdetect dependancies
 	os.system('sudo apt-get install python-dmidecode libcdio-utils acpidump\n')
-	print "\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n" #Divider
+	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 
 	## Pydeep
 	# Ssdeep from source
@@ -49,12 +56,12 @@ def main(host_ip, path_req, path_logs):
 		make 
 		sudo make install
 		''') #Executing'ssdeep -V' for checking '2.12'
-	print "\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n" #Divider
+	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 
 	# Pydeep via pip
 	os.system('sudo apt-get install python-pip -y')
 	os.system('sudo pip install pydeep') #Executing 'pip show pydeep' for checking 'version:0.2'
-	print "\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n" #Divider
+	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 
 	## Yara
 	os.system('sudo apt-get install build-essential git python-dev libjansson-dev libmagic-dev libtool eclipse-cdt-autotools -y')
@@ -68,7 +75,7 @@ def main(host_ip, path_req, path_logs):
 		make
 		sudo make install
 		''')
-	print "\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n" #Divider
+	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 
 	# Yara python
 	os.system('''
@@ -76,7 +83,7 @@ def main(host_ip, path_req, path_logs):
 		python setup.py build
 		sudo python setup.py install
 		''')
-	print "\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n" #Divider
+	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 
 	## Configure TCPdump
 	os.system('''
@@ -84,7 +91,7 @@ def main(host_ip, path_req, path_logs):
 		sudo setcap cap_net_raw,cap_net_admin=eip /usr/sbin/tcpdump
 		sudo apt-get install libcap2-bin
 		''')
-	print "\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n" #Divider
+	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 
 	## rc.local stuff	
 	split_host=host_ip.split('.')
@@ -136,7 +143,7 @@ def main(host_ip, path_req, path_logs):
 		sudo ./rc.local
 		cat rc.local
 		''')
-	print "\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n" #Divider
+	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 
 	## Install cuckoo
 	os.system('''
