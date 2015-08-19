@@ -24,9 +24,15 @@ Everything from an easy menu of 1-5 inputs :D
 [pafish] Start
 
 [pafish] Windows version: 5.1 build 2600
+
 [pafish] CPU vendor: GenuineIntel
+
 [pafish] CPU VM traced by checking the difference between CPU timestamp counters (rdtsc)
+
 [pafish] CPU VM traced by checking the difference between CPU timestamp counters (rdtsc) forcing VM exit
+
 [pafish] Sandbox traced using mouse activity
+
 [pafish] Cuckoo hooks information structure traced in the TLS
+
 [pafish] End
