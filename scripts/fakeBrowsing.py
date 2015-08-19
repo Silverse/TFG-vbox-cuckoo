@@ -23,6 +23,7 @@ def populateFolder(folder, n_files, name_size):
 		for i in range(name_size):
 			name+=random.choice(string.ascii_letters+string.digits)  #random 
 		file_list.append(name)
+		name=''
 			
 	for file_name in file_list:
 		size=random.randint(100,1000)

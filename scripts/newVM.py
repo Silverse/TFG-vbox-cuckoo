@@ -114,16 +114,20 @@ def main(RAM, HDD, nCores, file_outPut, host_ip, guest_ip,
 	- Install Python and PIL, then run vboxmods.bat."""
 	raw_input(" Press ENTER to continue:")
 
+
+
+	# Rebooting the VM, for the WMI patch to work
+	os.system("vboxmanage controlvm '"+vm_name+"' poweroff 2> "+file_outPut)
+	
 	# Changed to the current @IP
 	os.system("vboxmanage hostonlyif ipconfig vboxnet0 --ip "+host_ip+" 2> "+file_outPut)
 	# Removing install media
 	os.system('vboxmanage modifyvm "'+vm_name+'" --dvd none > '+file_outPut)
-
-	#For WMI patch to work...
-	# Rebooting the VM
-	os.system("vboxmanage controlvm '"+vm_name+"' poweroff 2> "+file_outPut)
+	
 	os.system("vboxmanage startvm '"+vm_name+"'")
-	raw_input("\t- Run vboxmods.bat again\n\t- Finally run fakeBrowsing.py (and wait) and agent.pyw\n\t- Just before continue, run humanMimic.exe\n Press ENTER to continue:")
+	
+	print "\t- Run vboxmods.bat again\n\t- Finally install Firefox, run fakeBrowsing.py (and wait) and agent.pyw\n"
+	raw_input("\t- Just before continue, run humanMimic.exe and trigger it with 'Windows button + A' (A small windows will appear)\n Press ENTER to continue:")
 
 	# Taking the snapshot
 	os.system('vboxmanage snapshot "'+vm_name+'" take "'+snap_name+'" --pause')

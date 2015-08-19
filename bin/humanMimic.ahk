@@ -6,12 +6,12 @@
 ; SOME NAMES ARE IN SPANISH AND WILL NOT WORK IN A NON SPANISH SYSTEM
 
 
-^G::
-        loop_size=10 ;for the mouse activity
-        
+#A::
+    loop_size=1000 ;for the mouse activity       
 	;Wait until the sample is ready
+	MsgBox, Human-Mimic running (7 seconds countdown)
 	Sleep, 7000
-
+	
 	;Gmail
 	web=http://www.gmail.com
 	window_name=Gmail - Mozilla Firefox
@@ -21,14 +21,14 @@
 	
 	Run, firefox.exe %web%, ,Max
 	WinWaitActive, %window_name%
-	sleep, 1000
+	sleep, 2000
 	StatusBarWait, Done, , , %window_name%
 	Send, %Username%{Enter}
-	sleep, 500
+	sleep, 3000
 	Send, %Password%{Enter}
 	
-	window_name=Recibidos - ejemplomail55@gmail.com - Gmail - Mozilla Firefox
 	web=https://mail.google.com/mail/#inbox?compose=new
+	window_name=Recibidos - ejemplomail55@gmail.com - Gmail - Mozilla Firefox
 	WinWaitActive, %window_name%
 	sleep, 1000
 	StatusBarWait, Done, , , %window_name%
@@ -36,41 +36,28 @@
 
 
 	;Facebook
-	web=https://www.facebook.com/login.php
-	window_name=Iniciar sesión en Facebook | Facebook - Mozilla Firefox
-	sleep, 1000
-	Username=ejemplomail55@gmail.com
+	web=https://www.facebook.com/login.php?email=ejemplomail55@gmail.com
+	window_name=Log into Facebook | Facebook - Mozilla Firefox
+	sleep, 3000
 	Password=mailejemplo
 	
 	Run, firefox.exe %web%, ,Max
 	WinWaitActive, %window_name%
 	sleep, 1000
 	StatusBarWait, Done, , , %window_name%
-	Send, {Tab}%Username%{Tab}%Password%{Enter}
+	Send, {Tab}{Tab}%Password%{Enter}
 
+	;
 	;Youtube
-	web=https://www.youtube.com/
-	window_name=YouTube - Mozilla Firefox
-	
-	Run, firefox.exe %web%, ,Max
-	WinWaitActive, %window_name%
-	sleep, 1000
-	StatusBarWait, Done, , , %window_name%
-
 	web=https://www.youtube.com/watch?v=Rb0UmrCXxVA
 	Run, firefox.exe %web%, ,Max
 	WinWaitActive, %window_name%
 	sleep, 1000
 	StatusBarWait, Done, , , %window_name%
 
-	;Google search
-	window_name=Página de inicio de Mozilla Firefox - Mozilla Firefox
-	Run, firefox.exe 
-	WinWaitActive, %window_name%
-	sleep, 1000
-	Send, random search{Enter}
 
 	;Doc
+	Random, ZZ,100,500
 	window_name=Sin título - Bloc de notas
 	Run, notepad.exe 
 	WinWaitActive, %window_name%
@@ -79,17 +66,23 @@
 	Sleep, 500
 	Send, {Control down}g{Control up}
 	Sleep, 500
-	Send, something.txt
+	Send, something%ZZ%.txt
 	Sleep, 500
 	Send, {Enter}
-	WinClose, something.txt - Bloc de notas
+	WinClose, something%ZZ% - Bloc de notas
 	
 	;Navigate folders
 	Run, explorer.exe 
 	Sleep, 500
+	Send, {Tab}	
+	Sleep, 500
 	Send, {Down down}{Down up}
 	Sleep, 500
-	Send, {Tab}
+	Send, {Down down}{Down up}
+	Sleep, 500
+	Send, {Down down}{Down up}
+	Sleep, 500
+	Send, {Down down}{Down up}
 	Sleep, 500
 	Send, {Right down}{Right up}
 	Sleep, 500
@@ -103,6 +96,12 @@
 	Sleep, 500
 	Send, {Enter}
 
+	;Google search
+	window_name=Mozilla Firefox Start Page - Mozilla Firefox
+	Run, firefox.exe 
+	WinWaitActive, %window_name%
+	sleep, 1000
+	Send, random search{Enter}
 	
 	;Random mouse moves, and some keystrokes
 	SetDefaultMouseSpeed, 5
@@ -115,7 +114,7 @@
             Random, _sleep, 0,200 
             Random, _loop, 0, 10
             Random, _key, 0, 3
-            Random, _press, 0, 5
+            Random, _press, 0, 10
 
             ;Change the increment to decrement if we are out of the borders
             if x>800
@@ -139,13 +138,13 @@
             }
             sleep, %_sleep% ;Random sleep between clicks
             Click %x%, %y%, 0
-            Click right %x%, %y%
             
             ;Clicks sometimes
-            if _press=0 {
+            if _press=0 
                     Click
-                    Click right %x%, %y%
-            }
+            if _press=1
+			        Click right %x%, %y%
+            
 
             ;Randomize which key to press between this 4
             if _key=0 
