@@ -101,13 +101,15 @@ def main(host_ip, path_req, path_logs):
 	host_net=split_host[0]+'.'+split_host[1]+'.'+split_host[2]+'.0/24'
 
 	header_comment="#Cuckoo IPtables rules, written by requirements.py. Jose Carlos's TFG"
-	iptables_rules=["sudo iptables -A INPUT -p tcp -i vboxnet0 -s "+host_net+" --syn -m connlimit --connlimit-above 15 --connlimit-mask 32 -j REJECT --reject-with tcp-reset",
+	iptables_rules=["iptables -A INPUT -p tcp -i vboxnet0 -s "+host_net+" --syn -m connlimit --connlimit-above 15 --connlimit-mask 32 -j REJECT --reject-with tcp-reset",
 			# This look for TCP packets with the syn flag on. This will reject connections above 15 form one source IP. To avoid being part of DDoS
-			"sudo iptables -A INPUT -p tcp -i vboxnet0 -s "+host_net+" --dport 25 -j DROP", #This one is to avoid the spam of the samples (-I 0 instead of -A?)
-			"sudo iptables -A FORWARD -o eth0 -i vboxnet0 -s "+host_net+" -m conntrack --ctstate NEW -j ACCEPT",
-			"sudo iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT",
-			"sudo iptables -A POSTROUTING -t nat -j MASQUERADE",
-			"sudo sysctl -w net.ipv4.ip_forward=1"] 
+			"iptables -A INPUT -m state --state RELATED,ESTABLISHED -m limit --limit 30/second --limit-burst 20 -j ACCEPT  "
+			# In this 20 new connections (packets) are allowed before the limit of 30 NEW connections per second is applied.
+			"iptables -A INPUT -p tcp -i vboxnet0 -s "+host_net+" --dport 25 -j DROP", #This one is to avoid the spam of the samples (-I 0 instead of -A?)
+			"iptables -A FORWARD -o eth0 -i vboxnet0 -s "+host_net+" -m conntrack --ctstate NEW -j ACCEPT",
+			"iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT",
+			"iptables -A POSTROUTING -t nat -j MASQUERADE",
+			"sysctl -w net.ipv4.ip_forward=1"] 
 
 	#Opening the file for reading and writting
 	startup_file=open('/etc/rc.local', 'r')
