@@ -11,18 +11,23 @@ import os
 import subprocess
 import time
 import random
+import string
 
 ######################### Functions ####################
 # Creates a certain number of files (random names) in each folder
 def populateFolder(folder, n_files, name_size):
 	file_list=[]
-	for n in range(n_file):
-		name=''.join(random.choice(chars) for _ in range(name_size) #random 
+	name=''
+	content=''
+	for n in range(n_files):
+		for i in range(name_size):
+			name+=random.choice(string.ascii_letters+string.digits)  #random 
 		file_list.append(name)
 			
-	for file_name in file_ist:
+	for file_name in file_list:
 		size=random.randint(100,1000)
-		content=''.join(random.choice(chars) for _ in range(size) #random content
+		for k in range(size):
+			content+=random.choice(string.ascii_letters+string.digits) #random content
 		_file=open(folder+"\\"+file_name, 'w')
 		_file.write(content)
 		_file.close()
@@ -104,8 +109,8 @@ def main():
 		personal_folder=personal_folder[:-1]
 
 	folder_list=[personal_folder+"Cookies",
-			personal_folder+"Mis\ Documentos",
-			personal_folder+"Mis\ Documentos\\Descargas",
+			personal_folder+"Mis Documentos",#my documents
+			personal_folder+"Escritorio",#desktop
 			'C:\\WINDOWS\Temp']
 	web_list=["https://www.facebook.com/", 
 			"https://www.twitter.com", 

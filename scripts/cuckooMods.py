@@ -214,4 +214,34 @@ def main(host_ip, guest_ip, vm_name, snapshot_name, tag_string, path_cuckoo, pat
 	tmp_file.close()	
 	os.system('sudo mv '+path_logs+'/reporting-tmp.conf '+path_cuckoo+'/conf/reporting.conf')
 	
+	########## human.py #######
+	# We want to use our own mouse movements and random clicks	
+	conf_file=open(path_cuckoo+'/analyzer/windows/modules/auxiliary/human.py', 'r') 
+	tmp_file=open(path_logs+'/human-tmp.py', 'w')
+	line=conf_file.readline()
+	
+	while line != '':
+		try:
+			re.search('click_mouse()', line).group(0)
+			try:
+				re.search(':', line).group(0)
+			except:
+				line='#'+line
+		except:
+			pass
+		try:
+			re.search('move_mouse()', line).group(0)
+			try:
+				re.search(':', line).group(0)
+			except:
+				line='#'+line
+		except:
+			pass		
+		tmp_file.write(line)						
+		line=conf_file.readline()
+	
+	conf_file.close()
+	tmp_file.close()	
+	os.system('sudo mv '+path_logs+'/human-tmp.py '+path_cuckoo+'/analyzer/windows/modules/auxiliary/human.py')
+	
 	return

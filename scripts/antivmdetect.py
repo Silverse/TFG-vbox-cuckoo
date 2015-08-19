@@ -321,7 +321,7 @@ def main(vm_name, guest_ip, host_ip, guest_primary_dns, path_logs):
 
 	# Write all data to file
 	file_name2="vboxmods-"+vm_name.replace(' ','_')+".bat"
-	logfile = file('/srv/ftp/'+file_name2, 'w+')
+	logfile = file('/srv/ftp/CopyThisOne!/' +file_name2, 'w+')
 
 	manu = acpi_list[1]
 

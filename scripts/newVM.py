@@ -78,9 +78,6 @@ def main(RAM, HDD, nCores, file_outPut, host_ip, guest_ip,
 	os.system("VBoxManage storageattach '"+vm_name+"' --storagectl 'IDE Controller' --port 0 --device 0 --type hdd --medium  "+personal_folder+"/"+vm_name.replace(' ', '_')+".vdi > "+file_outPut)
 	os.system("VBoxManage storageattach '"+vm_name+"' --storagectl 'IDE Controller' --port 1 --device 0 --type dvddrive --medium "+absolute_path+" > "+file_outPut)
 
-	# FTP warning
-	raw_input("\n -If you have not copied the chosen files to the ftp folder, please do it now (/srv/ftp). Press ENTER when ready:")
-
 	#### AntiVM Detect execution
 	# Executes the bash file
 	sh_file=open(path_logs+'/vboxmods-'+vm_name.replace(' ', '_')+'.sh', 'r')
@@ -89,17 +86,32 @@ def main(RAM, HDD, nCores, file_outPut, host_ip, guest_ip,
 		os.system(line)
 		line=sh_file.readline()
 	####
-
+	# FTP warning
+	raw_input("\n -If you have not copied the chosen files to the ftp folder, please do it now (/srv/ftp). Press ENTER when ready:")
+	
+	# FTP - needs the virtualIF up...
+	os.system('sudo service vsftpd start > '+path_logs+'/ftp.log') # Service's Up!			
+	#Sometimes it does not end in running state, not sure why so... Check!
+	_file=open(path_logs+'/ftp.log', 'r')
+	line=_file.readline()
+	try:
+		re.search('pre-start', line).group(0)
+		print bcolors.WARNING+"WARNING: vsftp did not started properly"+bcolors.ENDC
+	except:
+		pass
+	_file.close()
+	os.system('rm '+path_logs+'/ftp.log')
+	
 	# Installation
 	os.system("vboxmanage startvm '"+vm_name+"'")
 	raw_input(bcolors.OKGREEN+"\n [*]"+bcolors.ENDC+" Please follow the Guest OS installation until the end, then press ENTER:")
 	raw_input("	-Is the installation finished?")
-	print bcolors.OKGREEN+"""
-	 [*]"""+bcolors.ENDC+""" Your guest OS is ON:
-		-Open Internet explorer or the Windows file explorer
-		-Type: ftp://anonymous:@"""+default_host_ip+""":"""+ftp_port+"""
-		-Drag all your files to the Guest's file system
-		-Install Python and PIL, then run vboxmods.bat."""
+	print bcolors.OKGREEN+' [*]'+bcolors.ENDC+""" Your guest OS is ON:
+	- Open Internet explorer or the Windows file explorer
+	- Type: ftp://anonymous:@"""+default_host_ip+""":"""+ftp_port+"""
+	- Copy the CopyThisOne! folder to the Guest's file system
+	- Copy and install all the extra-software you want
+	- Install Python and PIL, then run vboxmods.bat."""
 	raw_input(" Press ENTER to continue:")
 
 	# Changed to the current @IP
@@ -111,7 +123,7 @@ def main(RAM, HDD, nCores, file_outPut, host_ip, guest_ip,
 	# Rebooting the VM
 	os.system("vboxmanage controlvm '"+vm_name+"' poweroff 2> "+file_outPut)
 	os.system("vboxmanage startvm '"+vm_name+"'")
-	raw_input("	- Run again vboxmods.bat\n -Finally run fakeBrowsing.py, agent.pyw and just before continue run humanMimic.exe\n Press ENTER to continue:")
+	raw_input("\t- Run vboxmods.bat again\n\t- Finally run fakeBrowsing.py (and wait) and agent.pyw\n\t- Just before continue, run humanMimic.exe\n Press ENTER to continue:")
 
 	# Taking the snapshot
 	os.system('vboxmanage snapshot "'+vm_name+'" take "'+snap_name+'" --pause')
@@ -139,6 +151,6 @@ def main(RAM, HDD, nCores, file_outPut, host_ip, guest_ip,
 	 |	OS: WINDOWS XP 	
 	 |	SNAPSHOT: """+snap_name+"""	
 	 |___________________________________
-		"""+bcolor.ENDC)
+		"""+bcolors.ENDC)
 	return
 

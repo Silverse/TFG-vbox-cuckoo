@@ -25,7 +25,7 @@ path_cuckoo=os.path.abspath('')+'/requirements/cuckoo'
 path_bin=os.path.abspath('')+'/bin'
 path_scripts=os.path.abspath('')+'/scripts'
 path_logs=os.path.abspath('')+'/logs'
-log_name="main.log"
+log_name=path_logs+"/main.log"
 	
 class bcolors:
     HEADER = '\033[94m'
@@ -173,7 +173,7 @@ def checkVif():
 	return status=="Up"
 #################################################
 def main():
-	# Values
+	## Values
 	RAM="2000"
 	HDD="70000"
 	nCores="3"
@@ -184,9 +184,11 @@ def main():
 	guest_primary_dns="208.67.222.222"
 	ftp_port="21"
 	
-	##Folders
+	## Folders
 	os.system('mkdir '+path_req)
 	os.system('mkdir '+path_logs)
+	os.system('sudo mkdir /srv/ftp/CopyThisOne!') # To be copied inside the guest
+	
 	## Wellcome
 	print textwrap.dedent(bcolors.HEADER+"""
 	#############################################################
@@ -241,7 +243,8 @@ def main():
 						sudo usermod -G vboxusers '''+user_name+'''
 						sudo usermod -g sudo '''+user_name+
 						 '''\n''')
-					print bcolors.OKGREEN + '\n\t-Created:'+bcolors.ENDC+user_name+' part of vboxusers and superusers\n-Run the script using the new user.'
+					print bcolors.OKGREEN + '\n\t- Created: '+bcolors.ENDC+user_name+' part of vboxusers and superusers'
+					print bcolors.FAIL+'- Run the script using the new user'+bcolors.ENDC
 					exit(1)	
 				
 				# Install cuckoo and dependencies
@@ -260,7 +263,7 @@ def main():
 					snap_name=raw_input(" -Please chose a snapshot's name: ").replace(' ', '_')
 					
 					# Gets an usable guest's IP
-					host_ip=newGuestIP(guest_ip)
+					guest_ip=newGuestIP(guest_ip)
 					
 					# AntiVMdetect execution
 					#antivmdetect.main(vm_name, guest_ip, host_ip, guest_primary_dns) it need to be run as superuser so...
@@ -270,22 +273,18 @@ def main():
 					print bcolors.OKGREEN + "\n [*]"+bcolors.ENDC+" Preparing the FTP server (default @IP)"			
 					os.system('sudo service vsftpd stop') # Service's down!
 					prepareFTPserver.main(default_host_ip, ftp_port, path_logs)		
-					os.system('sudo service vsftpd start > '+log_name) # Service's Up!			
-					#Sometimes it does not end in running state, not sure why so... Check!
-					_file=open(log_name, 'r')
-					line=_file.readline()
-					try:
-						re.search('pre-start', line).group(0)
-						print bcolors.WARNING+"WARNING: vsftp did not started properly, restart it manually in other terminal"+bcolors.ENDC
-					except:
-						pass
-					_file.close()
-					os.system('rm '+log_name)
+					# Have to be started when the virtual infertface is UP, if not it will prestart '-.-
+					# So... starting it inside newVM
 					
-					os.system('sudo cp '+path_req+'/cuckoo/agent/agent.py /srv/ftp/agent.pyw') #Hidden window
+					os.system('sudo cp '+path_req+'/cuckoo/agent/agent.py /srv/ftp/CopyThisOne!/agent.pyw') #Hidden window
 					#os.system('sudo cp '+path_bin+'/agent.exe /srv/ftp/agent.exe') #Should be...
-					os.system('sudo cp '+path_bin+'/humanMimic.exe /srv/ftp')
+					os.system('sudo cp '+path_bin+'/humanMimic.exe /srv/ftp/CopyThisOne!/')
+					os.system('sudo cp '+path_scripts+'/fakeBrowsing.py /srv/ftp/CopyThisOne!/')
 
+					# Cuckoo modifications for the new VM
+					tag_string=raw_input(bcolors.OKGREEN + "\n [*]"+bcolors.ENDC+' The Cuckoo configuration will be modified to suit the VM\nWrite down a list of tags for cuckoo to add to this VM profile. Separated with commas (e.g: windows_xp,office_2003,flash_1.2): ')
+					cuckooMods.main(host_ip, guest_ip, vm_name, snap_name, tag_string, path_cuckoo, path_logs) 
+					
 					# VM creation
 					print bcolors.OKGREEN + "\n [*]"+bcolors.ENDC+" Creating a VirtualBox's VM named "+vm_name
 					newVM.main(RAM, HDD, nCores, file_output, host_ip, guest_ip, guest_primary_dns, 
@@ -301,15 +300,11 @@ def main():
 					line=_file.readline()
 					try:
 						re.search('pre-start', line).group(0)
-						print bcolors.WARNING+"WARNING: vsftp did not started properly, restart it manually in other terminal"+bcolors.ENDC
+						print bcolors.WARNING+"WARNING: vsftp did not started properly"+bcolors.ENDC
 					except:
 						pass
 					_file.close()
-					os.system('rm '+log_name)
-
-					# Cuckoo modifications for the new VM
-					tag_string=raw_input(bcolors.OKGREEN + "\n [*]"+bcolors.ENDC+' The Cuckoo configuration will be modified to suit the VM\nWrite down a list of tags for cuckoo to add to this VM profile. Separated with commas (e.g: windows_xp,office_2003,flash_1.2): ')
-					cuckooMods.main(host_ip, guest_ip, vm_name, snap_name, tag_string, path_cuckoo, path_logs)  
+					os.system('rm '+log_name) 
 				
 				else:
 					print bcolors.FAIL+" The requirements does not seems to be installed, please install them"+bcolors.ENDC
@@ -336,6 +331,8 @@ def main():
 						print bcolors.WARNING+"WARNING: The virtual interface is down. Please start a VM using VboxNet0, this will start the IF (you can turn that VM off whenever you want)"+bcolors.ENDC
 						raw_input("Press ENTER when ready. ")
 							
+					#FTP
+					os.system('sudo service vsftpd stop')
 					#Cuckoo
 					os.system('''gnome-terminal --tab -e "/bin/bash -c 'python '''+path_req+'''/cuckoo/cuckoo.py; exec /bin/bash -i'"''')
 					#Web interface

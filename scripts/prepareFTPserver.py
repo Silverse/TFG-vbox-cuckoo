@@ -15,13 +15,14 @@ import sys
 import time
 
 
+
 def main(srv_ip, srv_port, path_logs):
 	allowed_options=["listen=", "anonymous_enable=", "dirmessage_enable=", "use_localtime=", "xferlog_enable=", "connect_from_port_20=", "listen_address=", "listen_port="]
-	disallowed_options=["listen_ipv6=", "local_umask=", "anon_upload_enable=", "chown_uploads=", "chroot_local_user=", "chroot_list_enable="]
 	line_written=False
 	ip_written=False
 	port_written=False
 				
+			
 	#Opening the file for reading and writting
 	conf_file=open('/etc/vsftpd.conf', 'r')
 	tmp_file=open(path_logs+'/vsftpd-tmp.conf', 'w')
@@ -44,16 +45,6 @@ def main(srv_ip, srv_port, path_logs):
 
 			except: #if the search fails, it's because there's not such a string
 				pass
-		
-		for option in disallowed_options:
-			try:
-				re.search(option, line).group(0)
-				tmp_file.write(option+"NO\n")
-				line_written=True
-				break
-			except: #if the search fails, it's because there's not such a string
-				pass
-
 		if not line_written:
 			tmp_file.write(line)
 		line=conf_file.readline()
@@ -68,7 +59,8 @@ def main(srv_ip, srv_port, path_logs):
 	conf_file.close()
 	tmp_file.close()
 
+	
 	os.system('sudo mv '+path_logs+'/'+'vsftpd-tmp.conf /etc/vsftpd.conf')
+	os.system('sudo chown -R root:root /etc/vsftpd.conf') #If it's not owned by root, it won't run properly
 	
 	return
-	
