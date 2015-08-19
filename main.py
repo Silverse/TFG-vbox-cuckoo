@@ -215,12 +215,16 @@ def main():
 		print "\t###################### Menu ################"
 		# Show in the menu if the installation is done or not
 		if checkIns(path_req): 
-			marked=False
+			inst=True
 		else:	
-			marked=True			
+			inst=False
+		marked=False			
 		for op in menu:
 			if not marked:
-				print op+bcolors.OKGREEN + " [DONE]"+bcolors.ENDC
+				if inst:
+					print op+bcolors.OKGREEN + " [DONE]"+bcolors.ENDC
+				else:
+					print op+bcolors.FAIL + " <--SELECT this one!!"+bcolors.ENDC
 				marked=True
 			else:
 				print op
