@@ -21,7 +21,7 @@ Tested on Ubuntu 14.04 LTS, VirtualBox 4.3.10 and Cuckoo 1.2.
 Everything from an easy menu of 1-5 inputs :D
 ## How to use it?
 Clone the repo, and run main.py. 
-The menu and the program is auto-explained... but, first you should select "Install the dependancies and Cuckoo", then "Create a new fixed VM" (you can't if you don't have the dependendancies and finally "Run Cuckoo and the webserver (localhost:8080)"
+The menu and the program are auto-explained... but, first you should select "Install the dependancies and Cuckoo", then "Create a new fixed VM" (you can't if you don't have the dependendancies, so...) and finally "Run Cuckoo and the webserver (localhost:8080)"
 
 ## Last PaFish's (@a0rtega) analysis output
 [pafish] Start
