@@ -271,7 +271,7 @@ def main():
 					
 					# AntiVMdetect execution
 					#antivmdetect.main(vm_name, guest_ip, host_ip, guest_primary_dns) it need to be run as superuser so...
-					os.system('sudo '+path_scripts+'/antivmdetect.py "'+vm_name+'" '+guest_ip+' '+host_ip+' '+guest_primary_dns+' '+path_logs)
+					os.system('sudo python '+path_scripts+'/antivmdetect.py "'+vm_name+'" '+guest_ip+' '+host_ip+' '+guest_primary_dns+' '+path_logs)
 
 					# FTP, default @IP
 					print bcolors.OKGREEN + "\n [*]"+bcolors.ENDC+" Preparing the FTP server (default @IP)"			

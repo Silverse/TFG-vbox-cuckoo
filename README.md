@@ -6,7 +6,7 @@ This is my Bachelor Degree's Thesis/Project (shortened as TFG in spanish) of the
 A study of the most common techniques used by evasive malware in order to detect if the sample is being analyzed. Then a set of measures will be chosen and implemented as Python scripts (this is the point of the repository). Finally the system will be tested against different tools and real malware with evasive behavior.
 
 ## What it does for now
-Tested on Ubuntu 14.04 LTS, VirtualBox 4.3.10 and Cuckoo 1.2.
+Tested on Ubuntu 14.04 LTS host, a Windows XP SP3 guest using VirtualBox 4.3.10 and Cuckoo 1.2.
 - Creates a user in the system for Cuckoo usage.
 - Creates a Vbox VM with proper configuration to avoid detection (new IP, RAM, and so on).
 - Configures a vsftpd server to be used in the VM.

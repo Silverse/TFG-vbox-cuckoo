@@ -34,12 +34,13 @@ def main(host_ip, path_req, path_logs):
 	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 	
 	### Host
+	os.system('sudo apt-get install vsftpd')
+	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
+	os.system('sudo apt-get install virtualbox')
+	os.system('sudo apt-get install virtualbox-dkms linux-headers-generic')
+	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 	package_list="python-bson python-sqlalchemy python-dpkt python-jinja2 python-magic python-pymongo python-gridfs python-bottle python-pefile python-chardet volatility"
 	os.system('sudo apt-get install '+package_list)
-	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
-
-	# Install python date-util (In some momment seemed Cuckoo needed it, but maybe it was not necesary)
-	os.system('sudo pip install python-dateutil')
 	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 
 	## AntiVMdetect dependancies
@@ -62,10 +63,13 @@ def main(host_ip, path_req, path_logs):
 	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 
 	# Pydeep via pip
-	os.system('sudo apt-get install python-pip -y')
 	os.system('sudo pip install pydeep') #Executing 'pip show pydeep' for checking 'version:0.2'
 	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 
+	# Install python date-util (In some momment seemed Cuckoo needed it, but maybe it was not necesary)
+	os.system('sudo pip install python-dateutil')
+	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
+	
 	## Yara
 	os.system('sudo apt-get install build-essential git python-dev libjansson-dev libmagic-dev libtool eclipse-cdt-autotools -y')
 	os.system('''
