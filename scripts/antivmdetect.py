@@ -70,7 +70,10 @@ def main(vm_name, guest_ip, host_ip, guest_primary_dns, path_logs):
 		if type(v) == dict and v['dmi_type'] == 2:
 			serial_number = v['data']['Serial Number']
 			dmi_info['DmiBoardVersion'] = v['data']['Version']
-			dmi_info['DmiBoardProduct'] = v['data']['Product Name']
+			if isinstance(v['data']['Product Name'], int ):
+				dmi_info['DmiBoardProduct'] = str(v['data']['Product Name'])+ ' '
+			else:
+				dmi_info['DmiBoardProduct'] = v['data']['Product Name']
 			dmi_info['DmiBoardVendor'] = v['data']['Manufacturer']
 
 	# This is hopefully not the best solution ..
@@ -163,8 +166,8 @@ def main(vm_name, guest_ip, host_ip, guest_primary_dns, path_logs):
 	except:
 		dmi_info['DmiChassisAssetTag'] = '** No value to retrieve **'
 
-	# Create a new chassi serial number
-	dmi_info['DmiChassisSerial'] = (serial_randomize(0, len(chassi_serial)))
+	# Create a new chassi serial number, added string to make it be taken as a string even if it's a number
+	dmi_info['DmiChassisSerial'] = "string:"+str(serial_randomize(0, len(chassi_serial)))
 
 	for v in dmidecode.processor().values():
 		dmi_info['DmiProcVersion'] = v['data']['Version']
@@ -201,14 +204,22 @@ def main(vm_name, guest_ip, host_ip, guest_primary_dns, path_logs):
 			# Disk serial
 			disk_serial = commands.getoutput(
 				"hdparm -i /dev/sda | grep -o 'SerialNo=[A-Za-z0-9_\+\/ .\"-]*' | awk -F= '{print $2}'")
-			disk_dmi['SerialNumber'] = (serial_randomize(0, len(disk_serial)))
+			# To avoid exceding 20 bytes serials
+			if len(disk_serial)>20:
+				disk_dmi['SerialNumber'] = (serial_randomize(0, 20))
+			else:
+				disk_dmi['SerialNumber'] = (serial_randomize(0, len(disk_serial)))
 			# Check for HP Legacy RAID
 		elif os.path.exists("/dev/cciss/c0d0"):
 			# Needs smartctl to be able to get the correct information
 			if os.path.exists("/usr/sbin/smartctl"):
 				hp_old_raid = commands.getoutput("smartctl -d cciss,1 -i /dev/cciss/c0d0")
 				disk_serial = re.search("Serial number:([0-9A-Za-z ]*)", hp_old_raid).group(1).replace(" ", "")
-				disk_dmi['SerialNumber'] = (serial_randomize(0, len(disk_serial)))
+				# To avoid exceding 20 bytes serials
+				if len(disk_serial)>20:
+					disk_dmi['SerialNumber'] = (serial_randomize(0, 20))
+				else:
+					disk_dmi['SerialNumber'] = (serial_randomize(0, len(disk_serial)))
 			else:
 				print bcolors.WARNING+"Install smartmontools: apt-get install smartmontools"+bcolors.ENDC
 	except OSError:

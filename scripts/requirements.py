@@ -24,33 +24,43 @@ def main(host_ip, path_req, path_logs):
 	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 	### Guest
 	## Python
-	os.system('sudo wget -P /srv/ftp/CopyThisOne! http://python.org/ftp/python/2.7.10/python-2.7.10.msi')
+	if not os.path.exists('/srv/ftp/CopyThisOne!/python-2.7.10.msi'):
+		os.system('sudo wget -P /srv/ftp/CopyThisOne! http://python.org/ftp/python/2.7.10/python-2.7.10.msi')
 	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 	## Python Imaging Library
-	os.system('sudo wget -P /srv/ftp/CopyThisOne! http://effbot.org/downloads/PIL-1.1.7.win32-py2.7.exe')
+	if not os.path.exists('/srv/ftp/CopyThisOne!/PIL-1.1.7.win32-py2.7.exe'):
+		os.system('sudo wget -P /srv/ftp/CopyThisOne! http://effbot.org/downloads/PIL-1.1.7.win32-py2.7.exe')
 	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 	# Firefox
-	os.system('sudo wget -P /srv/ftp/CopyThisOne! https://download-installer.cdn.mozilla.net/pub/firefox/releases/40.0.2/win32/en-US/Firefox%20Setup%2040.0.2.exe')
+	if not os.path.exists('/srv/ftp/CopyThisOne!/Firefox Setup 40.0.2.exe'):
+		os.system('sudo wget -P /srv/ftp/CopyThisOne! https://download-installer.cdn.mozilla.net/pub/firefox/releases/40.0.2/win32/en-US/Firefox%20Setup%2040.0.2.exe')
 	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 	
 	### Host
-	os.system('sudo apt-get install vsftpd')
+	if not os.path.exists('/usr/sbin/vsftpd'):
+		os.system('sudo apt-get install vsftpd')
 	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
-	os.system('sudo apt-get install virtualbox')
-	os.system('sudo apt-get install virtualbox-dkms linux-headers-generic')
+	if not os.path.exists('/usr/bin/virtualbox'):
+		os.system('sudo apt-get install virtualbox')
+		os.system('sudo apt-get install virtualbox-dkms linux-headers-generic')
 	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 	package_list="python-bson python-sqlalchemy python-dpkt python-jinja2 python-magic python-pymongo python-gridfs python-bottle python-pefile python-chardet volatility"
 	os.system('sudo apt-get install '+package_list)
 	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 
 	## AntiVMdetect dependancies
-	os.system('sudo apt-get install python-dmidecode libcdio-utils acpidump\n')
+	if not os.path.exists('/usr/share/python-dmidecode'):
+		os.system('sudo apt-get install python-dmidecode')
+	if not os.path.exists('/usr/bin/acpidump'):
+		os.system('sudo apt-get install acpidump\n')
+	os.system('sudo apt-get install libcdio-utils\n')
 	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 
 	## Pydeep
+	if not os.path.exists('/usr/bin/pip'):
+		os.system('sudo apt-get install python-pip -y')
 	# Ssdeep from source
 	os.system('''
-		sudo apt-get install python-pip -y
 		sudo apt-get install build-essential git python-dev -y
 		wget  http://sourceforge.net/projects/ssdeep/files/ssdeep-2.12/ssdeep-2.12.tar.gz/download -O '''+path_req+'''/ssdeep.tar.gz
 		cd '''+path_req+'''
@@ -93,8 +103,9 @@ def main(host_ip, path_req, path_logs):
 	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 
 	## Configure TCPdump
+	if not os.path.exists('/usr/sbin/tcpdump'):
+		os.system('sudo apt-get install tcpdump')
 	os.system('''
-		sudo apt-get install tcpdump
 		sudo setcap cap_net_raw,cap_net_admin=eip /usr/sbin/tcpdump
 		sudo apt-get install libcap2-bin
 		''')

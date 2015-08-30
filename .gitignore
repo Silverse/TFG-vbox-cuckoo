@@ -1,4 +1,4 @@
 *~
-*/requirements
-*/logs
-
+*requirements/
+*logs/
+*.pyc
