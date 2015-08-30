@@ -85,6 +85,7 @@ def main(RAM, HDD, nCores, file_outPut, host_ip, guest_ip,
 	while line!="":
 		os.system(line)
 		line=sh_file.readline()
+	sh_file.close()
 	####
 	# FTP warning
 	raw_input("\n -If you have not copied the chosen files to the ftp folder, please do it now (/srv/ftp). Press ENTER when ready:")
@@ -110,11 +111,8 @@ def main(RAM, HDD, nCores, file_outPut, host_ip, guest_ip,
 	- Open Internet explorer or the Windows file explorer
 	- Type: ftp://anonymous:@"""+default_host_ip+""":"""+ftp_port+"""
 	- Copy the CopyThisOne! folder to the Guest's file system
-	- Copy and install all the extra-software you want
-	- Install Python and PIL, then run vboxmods.bat."""
+	- Run guide.bat"""
 	raw_input(" Press ENTER to continue:")
-
-
 
 	# Rebooting the VM, for the WMI patch to work
 	os.system("vboxmanage controlvm '"+vm_name+"' poweroff 2> "+file_outPut)
@@ -126,8 +124,8 @@ def main(RAM, HDD, nCores, file_outPut, host_ip, guest_ip,
 	
 	os.system("vboxmanage startvm '"+vm_name+"'")
 	
-	print "\t- Run vboxmods.bat again\n\t- Finally install Firefox, run fakeBrowsing.py (and wait) and agent.pyw\n"
-	raw_input("\t- Just before continue, run humanMimic.exe and trigger it with 'Windows button + A' (A small windows will appear)\n Press ENTER to continue:")
+	print "\t- Run guide.py selecting the second option."
+	raw_input("\tPress ENTER to continue:")
 
 	# Taking the snapshot
 	os.system('vboxmanage snapshot "'+vm_name+'" take "'+snap_name+'" --pause')

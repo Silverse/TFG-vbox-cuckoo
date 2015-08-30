@@ -284,7 +284,9 @@ def main():
 					#os.system('sudo cp '+path_bin+'/agent.exe /srv/ftp/agent.exe') #Should be...
 					os.system('sudo cp '+path_bin+'/humanMimic.exe /srv/ftp/CopyThisOne!/')
 					os.system('sudo cp '+path_scripts+'/fakeBrowsing.py /srv/ftp/CopyThisOne!/')
-
+					os.system('sudo cp '+path_scripts+'/guide.py /srv/ftp/CopyThisOne!/')
+					os.system('sudo cp '+path_scripts+'/guide.bat /srv/ftp/CopyThisOne!/')
+					
 					# Cuckoo modifications for the new VM
 					tag_string=raw_input(bcolors.OKGREEN + "\n [*]"+bcolors.ENDC+' The Cuckoo configuration will be modified to suit the VM\nWrite down a list of tags for cuckoo to add to this VM profile. Separated with commas (e.g: windows_xp,office_2003,flash_1.2): ')
 					cuckooMods.main(host_ip, guest_ip, vm_name, snap_name, tag_string, path_cuckoo, path_logs) 

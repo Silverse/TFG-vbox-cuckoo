@@ -1,10 +1,9 @@
-#!/usr/bin/python
 
 # File: fakeBrowsing.py
 # Jose Carlos Ramirez
 # TFG Unizar
 
-# To be run inside the Guest.  The pre-build IE does not open nothing
+# To be run inside the Guest.  The pre-build IE does not open most of the interesting webs, so it needs a new version of firefox
 # Some info is for spanish
 
 import os
@@ -133,5 +132,3 @@ def main():
 
 	return
 		
-main()		
-exit(0)

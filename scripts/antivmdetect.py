@@ -232,11 +232,15 @@ def main(vm_name, guest_ip, host_ip, guest_primary_dns, path_logs):
 			disk_fwrev = commands.getoutput(
 				"hdparm -i /dev/sda | grep -o 'FwRev=[A-Za-z0-9_\+\/ .\"-]*' | awk -F= '{print $2}'")
 			disk_dmi['FirmwareRevision'] = disk_fwrev
+			if len(disk_dmi['FirmwareRevision'])<8:
+				disk_dmi['FirmwareRevision']=disk_dmi['FirmwareRevision'][:8]
 		elif os.path.exists("/dev/cciss/c0d0"):
 			# Needs smartctl to be able to get the correct information
 			if os.path.exists("/usr/sbin/smartctl"):
 				hp_old_raid = commands.getoutput("smartctl -d cciss,1 -i /dev/cciss/c0d0")
 				disk_dmi['FirmwareRevision'] = re.search("Revision:([0-9A-Za-z ]*)", hp_old_raid).group(1).replace(" ", "")
+				if len(disk_dmi['FirmwareRevision'])<8:
+					disk_dmi['FirmwareRevision']=disk_dmi['FirmwareRevision'][:8]
 			else:
 				print "Install smartmontools: apt-get install smartmontools"
 	except OSError:
