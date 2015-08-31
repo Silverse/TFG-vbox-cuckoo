@@ -7,8 +7,9 @@ REM Installs python and then run the script that guides the user during the in-g
 
 REM Runs the python installation
 @echo on
+echo During the installation, you should mark the option Add python.exe to Path
 python-2.7.10.msi
-echo During the installation, you should mark the option that adds python to %PATH%
+
 
 python guide.py
 

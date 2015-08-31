@@ -110,7 +110,7 @@ def main(RAM, HDD, nCores, file_outPut, host_ip, guest_ip,
 	print bcolors.OKGREEN+' [*]'+bcolors.ENDC+""" Your guest OS is ON:
 	- Open Internet explorer or the Windows file explorer
 	- Type: ftp://anonymous:@"""+default_host_ip+""":"""+ftp_port+"""
-	- Copy the CopyThisOne! folder to the Guest's file system
+	- Copy the CopyThisOne! folder to the Guest's desktop
 	- Run guide.bat"""
 	raw_input(" Press ENTER to continue:")
 
@@ -124,7 +124,7 @@ def main(RAM, HDD, nCores, file_outPut, host_ip, guest_ip,
 	
 	os.system("vboxmanage startvm '"+vm_name+"'")
 	
-	print "\t- Run guide.py selecting the second option."
+	print "\n\t- Run guide.py selecting the second option."
 	raw_input("\tPress ENTER to continue:")
 
 	# Taking the snapshot

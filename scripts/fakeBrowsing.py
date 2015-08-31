@@ -104,13 +104,11 @@ def main():
 	n_files=10
 	name_size=8
 	
-	personal_folder=os.getcwd()
-	while personal_folder[len(personal_folder)-1] != '\\':
-		personal_folder=personal_folder[:-1]
+	personal_folder=os.path.abspath('../..') 
 
-	folder_list=[personal_folder+"Cookies",
-			personal_folder+"Mis Documentos",#my documents
-			personal_folder+"Escritorio",#desktop
+	folder_list=[personal_folder+"\\Cookies",
+			personal_folder+"\\Mis Documentos",#my documents
+			personal_folder+"\\Escritorio",#desktop
 			'C:\\WINDOWS\Temp']
 	web_list=["https://www.facebook.com/", 
 			"https://www.twitter.com", 
