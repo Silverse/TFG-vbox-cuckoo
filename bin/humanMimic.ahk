@@ -108,7 +108,8 @@
         x=0
         y=0
         increment=True
-        Loop %loop_size% {	
+        Loop %loop_size%
+	{	
             Random, _x, 10, 30
             Random, _y, 10, 30 
             Random, _sleep, 0,200 
@@ -171,6 +172,6 @@
                         Send {LShift up} ;release up row
                     }
              
-
+	}
 Return 
  

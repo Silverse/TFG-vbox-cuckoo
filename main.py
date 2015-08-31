@@ -20,21 +20,31 @@ import prepareFTPserver
 import cuckooMods
 import newVM
 
+# Paths to the different directories
 path_req=os.path.abspath('')+'/requirements'
 path_cuckoo=os.path.abspath('')+'/requirements/cuckoo'
 path_bin=os.path.abspath('')+'/bin'
 path_scripts=os.path.abspath('')+'/scripts'
 path_logs=os.path.abspath('')+'/logs'
 log_name=path_logs+"/main.log"
-	
+# Collection of colors for printing different alerts
 class bcolors:
     HEADER = '\033[94m'
     OKGREEN = '\033[92m'
     WARNING = '\033[93m'
     FAIL = '\033[91m'
     ENDC = '\033[0m'
-
-
+# Set of default values of every VM that will be created
+class vmValue:
+	RAM="2000"
+	HDD="70000"
+	nCores="3"
+	file_output=path_logs+"/newVM.log"
+	host_ip="192.168.58.1" 
+	default_host_ip="192.168.56.1"
+	guest_ip="192.168.58.25" #default 192.168.56.101
+	guest_primary_dns="208.67.222.222"
+	ftp_port="21"
 	
 #################### Functions ###################
 # Check if there is a folder named requirements and if its weight is over a minimum
@@ -171,24 +181,43 @@ def checkVif():
 					pass
 	#This should start it in case it is down
 	return status=="Up"
+# Prints the meny and takes the input
+def mngMenu(options_list):
+	marked=False
+	# Print menu
+	print "\t###################### Menu ################"
+	# Show in the menu if the installation is done or not
+	if checkIns(path_req): 
+		inst=True
+	else:	
+		inst=False	
+				
+	if not marked:
+		if inst:
+			options_list[0]+=bcolors.OKGREEN + " [DONE]"+bcolors.ENDC
+		else:
+			options_list[0]+=bcolors.FAIL + " <--SELECT this one!!"+bcolors.ENDC
+	
+	for op in options_list:
+		print op
+	selection=int(raw_input("Option's number: "))
+		
+	return selection
+
 #################################################
 def main():
-	## Values
-	RAM="2000"
-	HDD="70000"
-	nCores="3"
-	file_output=path_logs+"/newVM.log"
-	host_ip="192.168.58.1" 
-	default_host_ip="192.168.56.1"
-	guest_ip="192.168.58.25" #default 192.168.56.101
-	guest_primary_dns="208.67.222.222"
-	ftp_port="21"
-	
+	# Menu
+	correct_in=False
+	_quit=False
+	menu=["\t-1) Install the dependancies and Cuckoo", 
+			"\t-2) Create a new fixed VM",
+			"\t-3) List the Cuckoo's VM", 
+			"\t-4) Run Cuckoo and the webserver (localhost:8080)", 
+			"\t-5) Close" ]		
 	## Folders
 	os.system('mkdir '+path_req)
 	os.system('mkdir '+path_logs)
 	os.system('sudo mkdir /srv/ftp/CopyThisOne!') # To be copied inside the guest
-	
 	## Wellcome
 	print textwrap.dedent(bcolors.HEADER+"""
 	#############################################################
@@ -203,33 +232,10 @@ def main():
 	#############################################################
 	"""+bcolors.ENDC)
 
-	## Menu
-	_quit=False
-	menu=["\t-1) Install the dependancies and Cuckoo", 
-			"\t-2) Create a new fixed VM",
-			"\t-3) List the Cuckoo's VM", 
-			"\t-4) Run Cuckoo and the webserver (localhost:8080)", 
-			"\t-5) Close" ]	
-	while not _quit:
-		# Print menu
-		print "\t###################### Menu ################"
-		# Show in the menu if the installation is done or not
-		if checkIns(path_req): 
-			inst=True
-		else:	
-			inst=False
-		marked=False			
-		for op in menu:
-			if not marked:
-				if inst:
-					print op+bcolors.OKGREEN + " [DONE]"+bcolors.ENDC
-				else:
-					print op+bcolors.FAIL + " <--SELECT this one!!"+bcolors.ENDC
-				marked=True
-			else:
-				print op
+	
+	while not _quit:		
 		try:
-			selection=int(raw_input("Option's number: "))
+			selection=mngMenu(menu)
 			# Installation
 			if selection == 1: 
 				# New user
@@ -255,28 +261,43 @@ def main():
 				if checkIns(path_req):
 					if raw_input(bcolors.WARNING+" -The requirements folder seems to exist. Do you want to continue? (Y/N): "+bcolors.ENDC).upper()=='Y':
 						print bcolors.OKGREEN + "\n [*]"+bcolors.ENDC+" Installing Cuckoo, dependancies, and side programs"
-						requirements.main(host_ip, path_req, path_logs)
+						requirements.main(vmValue.host_ip, path_req, path_logs)
 				else:
 					print bcolors.OKGREEN + "\n [*]"+bcolors.ENDC+" Installing Cuckoo, dependancies, and side programs"
-					requirements.main(host_ip, path_req, path_logs)
+					requirements.main(vmValue.host_ip, path_req, path_logs)
 			# New VM
 			elif selection == 2: 
 				if checkIns(path_req): #Check if (probably) the dependancies are installed
-					vm_name=raw_input("\n -Write the name of your VM: ")
+					while not correct_in:
+						vm_name=raw_input("\n -Write the name of your VM (no blank spaces): ")
+						try: 
+							re.search('[ \t]+', vm_name).group(0)
+							correct_in=False
+							print bcolors.FAIL+" Choose a name without blank spaces."+bcolors.ENDC
+						except:
+							correct_in=True						
 					absolute_path=raw_input(" -Please, write down the absolute path of the ISO file of the OS: \n\t")
-					snap_name=raw_input(" -Please chose a snapshot's name: ").replace(' ', '_')
+					correct_in=False
+					while not correct_in:
+						snap_name=raw_input(" -Please chose a snapshot's name: ")
+						try: 
+							re.search('[ \t]+', snap_name).group(0)
+							correct_in=False
+							print bcolors.FAIL+" Choose a name without blank spaces."+bcolors.ENDC
+						except:
+							correct_in=True
 					
 					# Gets an usable guest's IP
-					guest_ip=newGuestIP(guest_ip)
+					vmValue.guest_ip=newGuestIP(vmValue.guest_ip)
 					
 					# AntiVMdetect execution
 					#antivmdetect.main(vm_name, guest_ip, host_ip, guest_primary_dns) it need to be run as superuser so...
-					os.system('sudo python '+path_scripts+'/antivmdetect.py "'+vm_name+'" '+guest_ip+' '+host_ip+' '+guest_primary_dns+' '+path_logs)
+					os.system('sudo python '+path_scripts+'/antivmdetect.py "'+vm_name+'" '+vmValue.guest_ip+' '+vmValue.host_ip+' '+vmValue.guest_primary_dns+' '+path_logs)
 
 					# FTP, default @IP
 					print bcolors.OKGREEN + "\n [*]"+bcolors.ENDC+" Preparing the FTP server (default @IP)"			
 					os.system('sudo service vsftpd stop') # Service's down!
-					prepareFTPserver.main(default_host_ip, ftp_port, path_logs)		
+					prepareFTPserver.main(vmValue.default_host_ip, vmValue.ftp_port, path_logs)		
 					# Have to be started when the virtual infertface is UP, if not it will prestart '-.-
 					# So... starting it inside newVM
 					
@@ -289,17 +310,18 @@ def main():
 					
 					# Cuckoo modifications for the new VM
 					tag_string=raw_input(bcolors.OKGREEN + "\n [*]"+bcolors.ENDC+' The Cuckoo configuration will be modified to suit the VM\nWrite down a list of tags for cuckoo to add to this VM profile. Separated with commas (e.g: windows_xp,office_2003,flash_1.2): ')
-					cuckooMods.main(host_ip, guest_ip, vm_name, snap_name, tag_string, path_cuckoo, path_logs) 
+					cuckooMods.main(vmValue.host_ip, vmValue.guest_ip, vm_name, snap_name, tag_string, path_cuckoo, path_logs) 
 					
 					# VM creation
 					print bcolors.OKGREEN + "\n [*]"+bcolors.ENDC+" Creating a VirtualBox's VM named "+vm_name
-					newVM.main(RAM, HDD, nCores, file_output, host_ip, guest_ip, guest_primary_dns, 
-								ftp_port, vm_name, absolute_path, snap_name, default_host_ip, path_logs)
+					newVM.main(vmValue.RAM, vmValue.HDD, vmValue.nCores, vmValue.file_output, vmValue.host_ip, vmValue.guest_ip, 
+							vmValue.guest_primary_dns, vmValue.ftp_port, vm_name, absolute_path, snap_name, vmValue.default_host_ip,
+							path_logs)
 
 					# FTP, current @IP
 					print bcolors.OKGREEN + "\n [*]"+bcolors.ENDC+" Preparing the FTP server (current @IP)"
 					os.system('sudo service vsftpd stop') # Service is down!
-					prepareFTPserver.main(host_ip, ftp_port, path_logs)	
+					prepareFTPserver.main(vmValue.host_ip, vmValue.ftp_port, path_logs)	
 					os.system('sudo service vsftpd start > '+log_name) # Service is Up!		
 					#Sometimes it does not end in running state, not sure why so... Check!
 					_file=open(log_name, 'r')
