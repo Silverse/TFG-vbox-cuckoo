@@ -183,20 +183,13 @@ def checkVif():
 	return status=="Up"
 # Prints the meny and takes the input
 def mngMenu(options_list):
-	marked=False
 	# Print menu
 	print "\t###################### Menu ################"
 	# Show in the menu if the installation is done or not
-	if checkIns(path_req): 
-		inst=True
-	else:	
-		inst=False	
-				
-	if not marked:
-		if inst:
-			options_list[0]+=bcolors.OKGREEN + " [DONE]"+bcolors.ENDC
-		else:
-			options_list[0]+=bcolors.FAIL + " <--SELECT this one!!"+bcolors.ENDC
+	if checkIns(path_req):
+		options_list[0]+=bcolors.OKGREEN + " [DONE]"+bcolors.ENDC
+	else:
+		options_list[0]+=bcolors.FAIL + " <--SELECT this one!!"+bcolors.ENDC
 	
 	for op in options_list:
 		print op
@@ -211,7 +204,7 @@ def main():
 	_quit=False
 	menu=["\t-1) Install the dependancies and Cuckoo", 
 			"\t-2) Create a new fixed VM",
-			"\t-3) List the Cuckoo's VM", 
+			"\t-3) List of Cuckoo's VM", 
 			"\t-4) Run Cuckoo and the webserver (localhost:8080)", 
 			"\t-5) Close" ]		
 	## Folders
@@ -231,11 +224,10 @@ def main():
 	####### de sandboxing.				      #######
 	#############################################################
 	"""+bcolors.ENDC)
-
 	
 	while not _quit:		
 		try:
-			selection=mngMenu(menu)
+			selection=mngMenu(menu[:]) # To pass the list by value
 			# Installation
 			if selection == 1: 
 				# New user
