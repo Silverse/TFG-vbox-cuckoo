@@ -97,7 +97,7 @@ def main(vm_name, guest_ip, host_ip, guest_primary_dns, path_logs):
 	except:
 		new_serial = "** No value to retrieve **"
 
-	dmi_info['DmiBoardSerial'] = new_serial
+	dmi_info['DmiBoardSerial'] = "string:"+new_serial
 
 	# python-dmidecode does not reveal all values .. this is plan B
 	dmi_board = commands.getoutput("dmidecode -t2")
@@ -145,7 +145,7 @@ def main(vm_name, guest_ip, host_ip, guest_primary_dns, path_logs):
 	newuuid = str(uuid.uuid4())
 	dmi_info['DmiSystemUuid'] = newuuid.upper()
 	# Create a new system serial number
-	dmi_info['DmiSystemSerial'] = (serial_randomize(0, len(system_serial)))
+	dmi_info['DmiSystemSerial'] = "string:"+(serial_randomize(0, len(system_serial)))
 
 	for v in dmidecode.chassis().values():
 		dmi_info['DmiChassisVendor'] = v['data']['Manufacturer']

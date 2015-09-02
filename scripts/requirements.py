@@ -118,13 +118,13 @@ def main(host_ip, path_req, path_logs):
 	header_comment="#Cuckoo IPtables rules, written by requirements.py. Jose Carlos's TFG"
 	iptables_rules=["iptables -A INPUT -p tcp -i vboxnet0 -s "+host_net+" --syn -m connlimit --connlimit-above 15 --connlimit-mask 32 -j REJECT --reject-with tcp-reset",
 			# This look for TCP packets with the syn flag on. This will reject connections above 15 form one source IP. To avoid being part of DDoS
-			"iptables -A INPUT -m state --state RELATED,ESTABLISHED -m limit --limit 30/second --limit-burst 20 -j ACCEPT  "
+			"\niptables -A INPUT -m state --state RELATED,ESTABLISHED -m limit --limit 30/second --limit-burst 20 -j ACCEPT  "
 			# In this 20 new connections (packets) are allowed before the limit of 30 NEW connections per second is applied.
-			"iptables -A INPUT -p tcp -i vboxnet0 -s "+host_net+" --dport 25 -j DROP", #This one is to avoid the spam of the samples (-I 0 instead of -A?)
-			"iptables -A FORWARD -o eth0 -i vboxnet0 -s "+host_net+" -m conntrack --ctstate NEW -j ACCEPT",
-			"iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT",
-			"iptables -A POSTROUTING -t nat -j MASQUERADE",
-			"sysctl -w net.ipv4.ip_forward=1"] 
+			"\niptables -A INPUT -p tcp -i vboxnet0 -s "+host_net+" --dport 25 -j DROP", #This one is to avoid the spam of the samples (-I 0 instead of -A?)
+			"\niptables -A FORWARD -o eth0 -i vboxnet0 -s "+host_net+" -m conntrack --ctstate NEW -j ACCEPT",
+			"\niptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT",
+			"\niptables -A POSTROUTING -t nat -j MASQUERADE",
+			"\nsysctl -w net.ipv4.ip_forward=1"] 
 
 	#Opening the file for reading and writting
 	startup_file=open('/etc/rc.local', 'r')

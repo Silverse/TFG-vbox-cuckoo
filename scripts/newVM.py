@@ -125,7 +125,7 @@ def main(RAM, HDD, nCores, file_outPut, host_ip, guest_ip,
 	os.system("vboxmanage startvm '"+vm_name+"'")
 	
 	print "\n\t- Run guide.py selecting the second option."
-	raw_input("\tPress ENTER to continue:")
+	raw_input(" Press ENTER to continue:")
 
 	# Taking the snapshot
 	os.system('vboxmanage snapshot "'+vm_name+'" take "'+snap_name+'" --pause')

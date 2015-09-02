@@ -9,7 +9,7 @@ import os
 import fakeBrowsing
 
 def main():	
-	_quit=True
+	_quit=False
 	while not _quit:
 		print """\tWellcome to your in-guest guide
 		1) This is the first time that I run the guide.
@@ -18,29 +18,28 @@ def main():
 		
 		if selection=='1':
 			_quit=True
-			vm_name=raw_input("\tType the name of your VM: ")
-			print "\tFirst we will install"
+			vm_name=raw_input(" Type the name of your VM: ")
+			print " First we will install"
 			os.system('PIL-1.1.7.win32-py2.7.exe')
-			raw_input(" Press ENTER when finished")
-			print "\tThen Firefox"
+			raw_input("\tPress ENTER when finished")
+			print " Then Firefox"
 			os.system('"Firefox Setup 40.0.2.exe"')
-			raw_input(" Press ENTER when finished")
+			raw_input("\tPress ENTER when finished")
+			raw_input(" Now install all the extra software that you want.\n\tThen press ENTER.")
 			print "\tIn guest modifications of the Windows XP OS"
 			os.system('vboxmods-'+vm_name+'.bat')
-			raw_input(" Press ENTER when finished")
-			raw_input("\tNow install all the extra software that you want. Then press ENTER.")
-			
+			raw_input("\tPress ENTER when finished")			
 		
 		elif selection=='2':
 			_quit=True
-			vm_name=raw_input("\tType the name of your VM: ")
-			print "\tIn guest modifications of the Windows XP OS"
+			vm_name=raw_input(" Type the name of your VM: ")
+			print " In guest modifications of the Windows XP OS"
 			os.system('vboxmods-'+vm_name+'.bat')
-			raw_input(" Press ENTER when finished")		
-			print "\tFaking internet browsing and creating random files"
+			raw_input("\tPress ENTER when finished")		
+			print " Faking internet browsing and creating random files"
 			fakeBrowsing.main()	
 			raw_input("\tRunning agent.pyw manually. Then press ENTER")
-			print "\tRunning the humanMimic AHK module"
+			print " Running the humanMimic AHK module"
 			os.system('start cmd /c humanMimic.exe')
 			raw_input("\n\tThis is the finall step. To trigger the humanMimic module you have to press the windows key + 'a'. Be ready, after that should inmediatly continue with the instruccions out of the VM!")
 								

@@ -353,6 +353,7 @@ def main():
 							
 					#FTP
 					os.system('sudo service vsftpd stop')
+					
 					#Cuckoo
 					os.system('''gnome-terminal --tab -e "/bin/bash -c 'python '''+path_req+'''/cuckoo/cuckoo.py; exec /bin/bash -i'"''')
 					#Web interface
