@@ -75,7 +75,7 @@ def main(RAM, HDD, nCores, file_outPut, host_ip, guest_ip,
 	# Attach storage, add an IDE controller with a CD/DVD drive attached
 	os.system("VBoxManage storagectl '"+vm_name+"' --name 'IDE Controller' --add ide > "+file_outPut)
 	os.system("VBoxManage createhd --filename "+personal_folder+"/"+vm_name+"/"+vm_name+".vdi --size "+HDD+" --format vdi > "+file_outPut)
-	os.system("VBoxManage storageattach '"+vm_name+"' --storagectl 'IDE Controller' --port 0 --device 0 --type hdd --medium  "+personal_folder+"/"+vm_name.replace(' ', '_')+".vdi > "+file_outPut)
+	os.system("VBoxManage storageattach '"+vm_name+"' --storagectl 'IDE Controller' --port 0 --device 0 --type hdd --medium  "+personal_folder+"/"+vm_name+"/"+vm_name+".vdi > "+file_outPut)
 	os.system("VBoxManage storageattach '"+vm_name+"' --storagectl 'IDE Controller' --port 1 --device 0 --type dvddrive --medium "+absolute_path+" > "+file_outPut)
 
 	#### AntiVM Detect execution

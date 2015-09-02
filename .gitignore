@@ -2,3 +2,5 @@
 *requirements/
 *logs/
 *.pyc
+seriales.txt
+*test/
