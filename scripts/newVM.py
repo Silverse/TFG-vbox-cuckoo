@@ -92,7 +92,7 @@ def main(RAM, HDD, nCores, file_outPut, host_ip, guest_ip,
 	
 	# FTP - needs the virtualIF up...
 	os.system('sudo service vsftpd start > '+path_logs+'/ftp.log') # Service's Up!			
-	#Sometimes it does not end in running state, not sure why so... Check!
+	#Sometimes it does not end in running state... Check!
 	_file=open(path_logs+'/ftp.log', 'r')
 	line=_file.readline()
 	try:
@@ -109,7 +109,7 @@ def main(RAM, HDD, nCores, file_outPut, host_ip, guest_ip,
 	raw_input("	-Is the installation finished?")
 	print bcolors.OKGREEN+' [*]'+bcolors.ENDC+""" Your guest OS is ON:
 	- Open Internet explorer or the Windows file explorer
-	- Type: ftp://anonymous:@"""+default_host_ip+""":"""+ftp_port+"""
+	- Type: ftp://"""+default_host_ip+"""/
 	- Copy the CopyThisOne! folder to the Guest's desktop
 	- Run guide.bat"""
 	raw_input(" Press ENTER to continue:")

@@ -318,16 +318,16 @@ def main(vm_name, guest_ip, host_ip, guest_primary_dns, path_logs):
 	logfile.write('VBoxManage setextradata "'+vm_name+'" VBoxInternal/Devices/acpi/0/Config/AcpiCreatorRev\t\'' + acpi_list[5] + '\'\n')
 
 	# Randomize MAC address, based on onboard interface MAC
-	mac_seed1 = ':'.join(re.findall('..', '%012x' % uuid.getnode()))[0:9]
-	big_mac1 = mac_seed1 + "%02x:%02x:%02x" % (
+	mac_seed = ':'.join(re.findall('..', '%012x' % uuid.getnode()))[0:9]
+	big_mac = mac_seed + "%02x:%02x:%02x" % (
 		random.randint(0, 255),
 		random.randint(0, 255),
 		random.randint(0, 255),
 	)
-	le_big_mac1 = re.sub(':', '', big_mac1)
+	le_big_mac = re.sub(':', '', big_mac)
 
 	# The last thing!
-	logfile.write('VBoxManage modifyvm "'+vm_name+'" --macaddress1\t' + le_big_mac1 +'\n')
+	logfile.write('VBoxManage modifyvm "'+vm_name+'" --macaddress1\t' + le_big_mac +'\n')
 	# Done!
 	logfile.close()
 

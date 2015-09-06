@@ -20,8 +20,7 @@ def main(srv_ip, srv_port, path_logs):
 	allowed_options=["listen=", "anonymous_enable=", "dirmessage_enable=", "use_localtime=", "xferlog_enable=", "connect_from_port_20=", "listen_address=", "listen_port="]
 	line_written=False
 	ip_written=False
-	port_written=False
-				
+	port_written=False			
 			
 	#Opening the file for reading and writting
 	conf_file=open('/etc/vsftpd.conf', 'r')

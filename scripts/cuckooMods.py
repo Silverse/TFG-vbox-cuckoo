@@ -142,7 +142,7 @@ def main(host_ip, guest_ip, vm_name, snapshot_name, tag_string, path_cuckoo, pat
 						tmp_file.write('#'+line)	
 						line_written=True
 					# When the last option is found, nothing more have to be commented	
-					if option[0] == "ip = ": #BROKEN
+					if option[0] == "ip = ":
 						inside_cuckoo1=False		
 				except:
 					pass			

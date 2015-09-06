@@ -203,14 +203,17 @@ def main():
 	correct_in=False
 	_quit=False
 	menu=["\t-1) Install the dependancies and Cuckoo", 
-			"\t-2) Create a new fixed VM",
-			"\t-3) List of Cuckoo's VM", 
+			"\t-2) Create a new fixed-VM",
+			"\t-3) List of Cuckoo's VMs", 
 			"\t-4) Run Cuckoo and the webserver (localhost:8080)", 
 			"\t-5) Close" ]		
 	## Folders
-	os.system('mkdir '+path_req)
-	os.system('mkdir '+path_logs)
-	os.system('sudo mkdir /srv/ftp/CopyThisOne!') # To be copied inside the guest
+	if not os.path.exists(path_req):
+		os.system('mkdir '+path_req)
+	if not os.path.exists(path_logs):
+		os.system('mkdir '+path_logs)
+	if not os.path.exists('/srv/ftp/CopyThisOne!'):
+		os.system('sudo mkdir /srv/ftp/CopyThisOne!') # To be copied inside the guest
 	## Wellcome
 	print textwrap.dedent(bcolors.HEADER+"""
 	#############################################################
@@ -290,7 +293,7 @@ def main():
 					print bcolors.OKGREEN + "\n [*]"+bcolors.ENDC+" Preparing the FTP server (default @IP)"			
 					os.system('sudo service vsftpd stop') # Service's down!
 					prepareFTPserver.main(vmValue.default_host_ip, vmValue.ftp_port, path_logs)		
-					# Have to be started when the virtual infertface is UP, if not it will prestart '-.-
+					# Have to be started when the virtual infertface is UP, if not it will pre-start '-.-
 					# So... starting it inside newVM
 					
 					os.system('sudo cp '+path_req+'/cuckoo/agent/agent.py /srv/ftp/CopyThisOne!/agent.pyw') #Hidden window
@@ -315,7 +318,7 @@ def main():
 					os.system('sudo service vsftpd stop') # Service is down!
 					prepareFTPserver.main(vmValue.host_ip, vmValue.ftp_port, path_logs)	
 					os.system('sudo service vsftpd start > '+log_name) # Service is Up!		
-					#Sometimes it does not end in running state, not sure why so... Check!
+					#Sometimes it does not end in running state, so... Check!
 					_file=open(log_name, 'r')
 					line=_file.readline()
 					try:
@@ -333,7 +336,7 @@ def main():
 				if checkIns(path_req):
 					vms=getVMlist()
 					if vms == '':
-						print bcolors.FAIL+'No VMs in the conf file'+bcolors.ENDC
+						print bcolors.FAIL+" No VMs in the conf file"+bcolors.ENDC
 					else:
 						print getVMlist()
 				else:
