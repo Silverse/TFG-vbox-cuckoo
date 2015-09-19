@@ -20,7 +20,10 @@ def main(host_ip, guest_ip, vm_name, snapshot_name, tag_string, path_cuckoo, pat
 	results_port="2042"
 	
 	##### cuckoo.conf #####
-	options_list=[["machinery = ","virtualbox"],["memory_dump = ","on"],["ip = ",host_ip],["port = ",results_port]]
+	options_list=[["machinery = ","virtualbox"],
+					["memory_dump = ","on"],
+					["ip = ",host_ip],
+					["port = ",results_port]]
 	line_written=False
 	ip_written=False
 	port_written=False
@@ -57,7 +60,11 @@ def main(host_ip, guest_ip, vm_name, snapshot_name, tag_string, path_cuckoo, pat
 	(_stdout, _stderr)=proc.communicate()
 	tcpdump_path=_stdout.split()[1] #0 is tcpdumo, and 2...
 	#otherModule_options
-	sniffer_options=["sniffer",["enabled = ","yes"],["tcpdump = ",tcpdump_path],["interface = ","vboxnet0"],["#bpf = ","not arp"]]
+	sniffer_options=["sniffer",
+					["enabled = ","yes"],
+					["tcpdump = ",tcpdump_path],
+					["interface = ","vboxnet0"],
+					["#bpf = ","not arp"]]
 	#Opening the file for reading and writting
 	tmp_file=open(path_logs+'/auxiliary-tmp.conf', 'w')
 	
@@ -89,8 +96,14 @@ def main(host_ip, guest_ip, vm_name, snapshot_name, tag_string, path_cuckoo, pat
 	#Opening the file for reading and writting
 	conf_file=open(path_cuckoo+'/conf/virtualbox.conf', 'r') 
 	tmp_file=open(path_logs+'/vbox-tmp.conf', 'w')
-	options_list=[["mode = ","gui"], ["path = ",vbmn_path],["machines = ",vm_name]]
-	optionsVM_list=[["label = ",vm_name],["platform = ","windows"],["ip = ", guest_ip],["snapshot = ", snapshot_name],["tags = ", tag_string]]
+	options_list=[["mode = ","gui"], 
+				["path = ",vbmn_path],
+				["machines = ",vm_name]]
+	optionsVM_list=[["label = ",vm_name],
+					["platform = ","windows"],
+					["ip = ", guest_ip],
+					["snapshot = ", snapshot_name],
+					["tags = ", tag_string]]
 
 	#Adding the desired options
 	line=conf_file.readline()

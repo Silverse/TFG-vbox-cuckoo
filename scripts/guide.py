@@ -22,8 +22,8 @@ def main():
 			print " First we will install"
 			os.system('PIL-1.1.7.win32-py2.7.exe')
 			raw_input("\tPress ENTER when finished")
-			print " Then Firefox"
-			os.system('"Firefox Setup 40.0.2.exe"')
+			print " Then IE8 (Do not install the update or additions and do not reboot when asked)"
+			os.system('"IE8.exe"')
 			raw_input("\tPress ENTER when finished")
 			raw_input(" Now install all the extra software that you want.\n\tThen press ENTER.")
 			print "\tIn guest modifications of the Windows XP OS"
@@ -33,6 +33,7 @@ def main():
 		elif selection=='2':
 			_quit=True
 			vm_name=raw_input(" Type the name of your VM: ")
+			raw_input(" It is recommended to test if the installed software is working properly.\n\tThen press ENTER.")
 			print " In guest modifications of the Windows XP OS"
 			os.system('vboxmods-'+vm_name+'.bat')
 			raw_input("\tPress ENTER when finished")		

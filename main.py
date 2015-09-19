@@ -37,13 +37,13 @@ class bcolors:
 # Set of default values of every VM that will be created
 class vmValue:
 	RAM="2000"
-	HDD="70000"
+	HDD="250000"
 	nCores="3"
 	file_output=path_logs+"/newVM.log"
 	host_ip="192.168.58.1" 
 	default_host_ip="192.168.56.1"
 	guest_ip="192.168.58.25" #default 192.168.56.101
-	guest_primary_dns="208.67.222.222"
+	guest_primary_dns="8.8.8.8"
 	ftp_port="21"
 	
 #################### Functions ###################
@@ -217,7 +217,7 @@ def main():
 	## Wellcome
 	print textwrap.dedent(bcolors.HEADER+"""
 	#############################################################
-	####### TFG Ingeniría de Tecnologías y Servicios de   #######
+	####### TFG Ingeniería de Tecnologías y Servicios de  #######
 	####### la Telecomunicación, telemática.	      #######
 	####### Alumno: José Carlos Ramírez Vega, 628545      #######
 	####### Tutor: Antonio Sanz Alcober		      #######

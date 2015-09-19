@@ -32,8 +32,8 @@ def main(host_ip, path_req, path_logs):
 		os.system('sudo wget -P /srv/ftp/CopyThisOne! http://effbot.org/downloads/PIL-1.1.7.win32-py2.7.exe')
 	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 	# Firefox
-	if not os.path.exists('/srv/ftp/CopyThisOne!/Firefox Setup 40.0.2.exe'):
-		os.system('sudo wget -P /srv/ftp/CopyThisOne! https://download-installer.cdn.mozilla.net/pub/firefox/releases/40.0.2/win32/en-US/Firefox%20Setup%2040.0.2.exe')
+	if not os.path.exists('/srv/ftp/CopyThisOne!/internet_explorer.php?app=616c2e8b12aaa349cd3acb38bf581700'):
+		os.system('sudo wget -P /srv/ftp/CopyThisOne! --output-document=IE8.exe http://www.oldapps.com/internet_explorer.php?app=616c2e8b12aaa349cd3acb38bf581700')
 	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 	
 	### Host

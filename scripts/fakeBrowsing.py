@@ -84,8 +84,8 @@ def dateList(n):
 	return date_list
 # Opens Firefox to visit some webs and then closes it, repear it each time of each date
 def visitWeb(date_list, time_list, web_list):
-	open_IE="start /d "" firefox.exe "#+URL
-	close_all_IE="TASKKILL /F /IM firefox.exe /T \r\n"
+	open_IE="start iexplore "#+URL
+	close_all_IE="TASKKILL /F /IM iexplore.exe /T \r\n"
 	# Every time it changes the time, it opens all the websites, and closes them
 	for date in date_list[::-1]:
 		os.system("date "+date+"\r\n")
