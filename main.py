@@ -67,10 +67,10 @@ def getVMlist(system='virtualbox'):
 	_file=open(path_req+'/cuckoo/conf/'+system+'.conf', 'r') #The first line of the doc should be [virtualbox]
 	line=_file.readline() #take first line out
 	line=_file.readline()	
-	while line!="":		
+	while line!="":	
 		# Check if new block
 		try:
-			re.match('\[([0-9A-Za-z. ]*)]\n', line).group(0) # [something]\n will match
+			re.match('\[([0-9A-Za-z._ ]*)]\n', line).group(0) # [something]\n will match
 			inBlock=True
 		except:
 			pass

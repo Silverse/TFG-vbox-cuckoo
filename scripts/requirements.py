@@ -24,7 +24,7 @@ def main(host_ip, path_req, path_logs):
 	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 	### Guest
 	## Python
-	if not os.path.exists('/srv/ftp/CopyThisOne!/python-2.7.10.msi'):
+	if not os.path.exists('/srv/ftp/CopyThisOne\!/python-2.7.10.msi'):
 		os.system('sudo wget -P /srv/ftp/CopyThisOne! http://python.org/ftp/python/2.7.10/python-2.7.10.msi')
 	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 	## Python Imaging Library
@@ -32,8 +32,8 @@ def main(host_ip, path_req, path_logs):
 		os.system('sudo wget -P /srv/ftp/CopyThisOne! http://effbot.org/downloads/PIL-1.1.7.win32-py2.7.exe')
 	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 	# Firefox
-	if not os.path.exists('/srv/ftp/CopyThisOne!/internet_explorer.php?app=616c2e8b12aaa349cd3acb38bf581700'):
-		os.system('sudo wget -P /srv/ftp/CopyThisOne! --output-document=IE8.exe http://www.oldapps.com/internet_explorer.php?app=616c2e8b12aaa349cd3acb38bf581700')
+	if not os.path.exists('/srv/ftp/CopyThisOne!/IE8.exe'):
+		os.system('sudo wget --output-document=/srv/ftp/CopyThisOne!/IE8.exe http://www.oldapps.com/internet_explorer.php?app=616c2e8b12aaa349cd3acb38bf581700')
 	print bcolors.OKGREEN+"\n#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-\n"+bcolors.ENDC #Divider
 	
 	### Host
