@@ -10,7 +10,7 @@ Tested on Ubuntu 14.04 LTS host, a Windows XP SP3 guest using VirtualBox 4.3.10 
 - Creates a user in the system for Cuckoo usage.
 - Creates a Vbox VM with proper configuration to avoid detection (new IP, RAM, and so on).
 - Configures a vsftpd server to be used in the VM.
-- Applies registry keys mofications and vbox extra info copying the information of the system that it's been runing on (using @nsmfoo 's antivmdetection script except the DSDT table because my laptop have too many cores to fit the Vbox maximum (the lines are commented but not erased))
+- Applies registry keys mofications and vbox extra info copying the information of the system that it's been runing on (modifying @nsmfoo's antivmdetection script, commenting the DSDT.bin part because my laptop has too many cores to fit the Vbox maximum)
 - Other in-guest measures like changing the default IP's, disabling windows-firewall, automatic updates...
 - Downloads and installs all the prerequisites of Cuckoo and antivmdetection --> Needs to be fully tested.
 - Modifies cuckoo's configuration files to work with the system.
