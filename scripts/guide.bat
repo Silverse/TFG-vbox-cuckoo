@@ -10,5 +10,5 @@ echo \n\n\tDuring the installation, you should mark the option Add python.exe to
 python-2.7.10.msi
 
 
-start cmd /c python guide.py
+start cmd /c guide.py
 
