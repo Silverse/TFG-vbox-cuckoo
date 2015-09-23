@@ -19,6 +19,8 @@ class Statist(object):
 	
 	anomalies=0 # cases with different anomalies
 	
+	different_sample=0
+	
 	failed=0 # no reports found
 	def __init__(self):
 		return
@@ -190,6 +192,8 @@ def compareRep(rep_1, rep_2, out_file, sta):
 	# statist bools
 	has_drop=False
 
+	diff_sample=False
+	
 	shown=False
 	file_found=False
 	
@@ -200,6 +204,8 @@ def compareRep(rep_1, rep_2, out_file, sta):
 	_f.write("NAME\n########")
 	if rep_1.file_name!=rep_2.file_name:
 		_f.write("\n- Difference!: File name\n\t"+ rep_1.file_name+" - "+ rep_2.file_name)
+		diff_sample=True
+		
 	#MD5
 	_f.write("\nMD5\n########")
 	if rep_1.file_md5!=rep_2.file_md5:
@@ -322,6 +328,8 @@ def compareRep(rep_1, rep_2, out_file, sta):
 		_f.close()	
 	
 	# Estadisticas generales
+	if diff_sample:
+		sta.different_sample+=1
 	if timed_out_bool:
 		sta.timedout+=1
 	if no_drop:
@@ -399,6 +407,7 @@ def main():
 		
 	_f=open(results_folder+'/Statistics.txt', 'w')
 	_f.write('Reports not found: '+str(_st.failed))
+	_f.write('\n\nComparing different samples: '+str(_st.different_sample))
 	_f.write('\n\nNumber of analysis: '+str(_st.total_comps))
 	
 	_f.write('\n\nCases timed-out: '+str(_st.timedout))	
