@@ -1,0 +1,49 @@
+NAME
+########
+MD5
+########
+Time-out
+########
+IMPORTS
+########
+DROPPED
+########
+- Same file!:
+	 CliEgAliases.mof
+- Same file!:
+	 ouizexv
+- Same file!:
+	 88744D2A29102FC88ECF505DD2E984FC.mof
+- Same file!:
+	 C8463ECBE33BC240263A0B094E46D510.mof
+- Difference!:
+	Size of mofcomp.log hardened 12481 bytes, raw 12483 bytes
+- Same file!:
+	 CliEgAliases.mfl
+- Same file!:
+	 setupcl.exe
+- Same file!:
+	 Cli.mof
+- Same file!:
+	 7za.exe
+- Same file!:
+	 [RANDOM_STRING].7z
+- Same file!:
+	 nsExec.dll
+- Same file!:
+	 23BDE61F1F4FACE17E9B0C01F2A1FD9B.mof
+ANOMALIES
+########
+
+HOSTS
+########
+- Difference!:
+	54.230.62.173
+- Difference!:
+	92.122.212.123
+- Difference!:
+	92.122.212.160
+- Difference!:
+	84.53.132.91
+- Difference!:
+	92.122.212.112

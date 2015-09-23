@@ -1,0 +1,77 @@
+NAME
+########
+MD5
+########
+Time-out
+########
+IMPORTS
+########
+DROPPED
+########
+- Difference!:
+	New tmp13.tmp
+- Same file!:
+	 88744D2A29102FC88ECF505DD2E984FC.mof
+- Same file!:
+	 rvu.uvr
+- Difference!:
+	Size of mofcomp.log hardened 12481 bytes, raw 12483 bytes
+- Same file!:
+	 C8463ECBE33BC240263A0B094E46D510.mof
+- Same file!:
+	 topLine[1].jpg
+- Same file!:
+	 bgImg[1].jpg
+- Same file!:
+	 nextCase[1].jpg
+- Same file!:
+	 clrvu.exe
+- Same file!:
+	 button_over[1].png
+- Same file!:
+	 uuj.dll
+- Same file!:
+	 DynamicOfferScreen[1].txt
+- Same file!:
+	 Cli.mof
+- Same file!:
+	 button[1].png
+- Same file!:
+	 CliEgAliases.mof
+- Same file!:
+	 bodyImg[1].png
+- Same file!:
+	 bottomLine[1].jpg
+- Same file!:
+	 dc[1].js
+- Same file!:
+	 23BDE61F1F4FACE17E9B0C01F2A1FD9B.mof
+- Same file!:
+	 CliEgAliases.mfl
+- Same file!:
+	 topComp[1].png
+ANOMALIES
+########
+
+HOSTS
+########
+- Difference!:
+	157.55.134.113
+- Difference!:
+	23.50.104.70
+- Difference!:
+	74.125.71.155
+- Difference!:
+	23.50.101.163
+- Difference!:
+	84.53.132.131
+- Difference!:
+	131.253.61.98
+- Difference!:
+	92.122.212.96
+- Difference!:
+	23.0.163.41
+- Difference!:
+	216.58.210.163
+- Difference!:
+	54.243.79.168

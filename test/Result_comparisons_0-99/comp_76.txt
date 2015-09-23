@@ -1,0 +1,49 @@
+NAME
+########
+MD5
+########
+Time-out
+########
+IMPORTS
+########
+DROPPED
+########
+- Difference!:
+	New tmp15.tmp
+- Same file!:
+	 CliEgAliases.mfl
+- Same file!:
+	 88744D2A29102FC88ECF505DD2E984FC.mof
+- Same file!:
+	 Cli.mof
+- Same file!:
+	 23BDE61F1F4FACE17E9B0C01F2A1FD9B.mof
+- Same file!:
+	 nsExec.dll
+- Same file!:
+	 CliEgAliases.mof
+- Same file!:
+	 C8463ECBE33BC240263A0B094E46D510.mof
+- Difference!:
+	Size of mofcomp.log hardened 12481 bytes, raw 12483 bytes
+ANOMALIES
+########
+
+HOSTS
+########
+- Difference!:
+	104.82.195.200
+- Difference!:
+	23.37.40.70
+- Difference!:
+	216.58.210.174
+- Difference!:
+	23.61.69.163
+- Difference!:
+	95.101.34.19
+- Difference!:
+	131.253.61.98
+- Difference!:
+	95.101.34.33
+- Difference!:
+	23.205.168.72

@@ -1,0 +1,51 @@
+NAME
+########
+MD5
+########
+Time-out
+########
+IMPORTS
+########
+DROPPED
+########
+- Same file!:
+	 data1.cab
+- Same file!:
+	 ISSetup.dll
+- Same file!:
+	 s_56.exe
+- Same file!:
+	 _Setup.dll
+- Same file!:
+	 data1.hdr
+- Same file!:
+	 setup.ini
+- Same file!:
+	 setup.exe
+- Same file!:
+	 layout.bin
+ANOMALIES
+########
+
+HOSTS
+########
+- Difference!:
+	2.18.213.171
+- Difference!:
+	84.53.132.91
+- Difference!:
+	2.21.103.62
+- Difference!:
+	92.122.212.160
+- Difference!:
+	131.253.61.98
+- Difference!:
+	92.122.212.91
+- Difference!:
+	92.122.212.130
+- Difference!:
+	92.122.212.123
+- Difference!:
+	8.8.8.8
+- Difference!:
+	92.122.212.112

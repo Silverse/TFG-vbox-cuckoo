@@ -1,0 +1,45 @@
+NAME
+########
+MD5
+########
+Time-out
+########
+IMPORTS
+########
+DROPPED
+########
+- Same file!:
+	 eula.txt
+ANOMALIES
+########
+
+HOSTS
+########
+- Difference!:
+	23.50.104.70
+- Difference!:
+	23.50.101.163
+- Difference!:
+	131.253.61.98
+- Difference!:
+	93.184.220.29
+- Difference!:
+	31.13.83.12
+- Difference!:
+	2.18.213.169
+- Difference!:
+	216.58.211.206
+- Difference!:
+	2.18.213.107
+- Difference!:
+	31.13.83.1
+- Difference!:
+	92.122.212.122
+- Difference!:
+	31.13.74.7
+- Difference!:
+	23.15.133.129
+- Difference!:
+	216.58.211.195
+- Difference!:
+	8.8.8.8

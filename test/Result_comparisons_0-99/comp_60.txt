@@ -1,0 +1,63 @@
+NAME
+########
+MD5
+########
+Time-out
+########
+IMPORTS
+########
+DROPPED
+########
+- Difference!:
+	New Spooky.usz
+- Same file!:
+	 IRIMG1.BMP
+- Same file!:
+	 IRIMG3.BMP
+- Same file!:
+	 irsetup.exe
+- Same file!:
+	 IRIMG2.BMP
+- Same file!:
+	 irsetup.dat
+- Difference!:
+	Size of irsetup.ini hardened 76 bytes, raw 77 bytes
+- Same file!:
+	 suf6lng.9
+ANOMALIES
+########
+
+HOSTS
+########
+- Difference!:
+	157.55.134.113
+- Difference!:
+	134.170.188.140
+- Difference!:
+	2.21.106.230
+- Difference!:
+	23.50.101.163
+- Difference!:
+	131.253.61.98
+- Difference!:
+	216.58.211.195
+- Difference!:
+	2.22.136.70
+- Difference!:
+	134.170.188.139
+- Difference!:
+	216.58.211.206
+- Difference!:
+	2.18.213.226
+- Difference!:
+	216.58.210.142
+- Difference!:
+	104.66.117.176
+- Difference!:
+	31.13.74.7
+- Difference!:
+	2.22.133.163
+- Difference!:
+	8.8.8.8
+- Difference!:
+	23.102.160.172

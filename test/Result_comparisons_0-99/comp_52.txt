@@ -1,0 +1,41 @@
+NAME
+########
+MD5
+########
+Time-out
+########
+IMPORTS
+########
+DROPPED
+########
+- Same file!:
+	 88744D2A29102FC88ECF505DD2E984FC.mof
+- Same file!:
+	 nsExec.dll
+- Same file!:
+	 Cli.mof
+- Difference!:
+	Size of mofcomp.log hardened 12163 bytes, raw 12477 bytes
+- Same file!:
+	 CliEgAliases.mof
+ANOMALIES
+########
+
+HOSTS
+########
+- Difference!:
+	2.18.213.171
+- Difference!:
+	23.50.104.70
+- Difference!:
+	134.170.188.139
+- Difference!:
+	131.253.61.98
+- Difference!:
+	31.13.83.4
+- Difference!:
+	92.122.212.91
+- Difference!:
+	92.122.212.130
+- Difference!:
+	92.122.212.89

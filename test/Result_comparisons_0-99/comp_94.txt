@@ -1,0 +1,73 @@
+NAME
+########
+MD5
+########
+Time-out
+########
+IMPORTS
+########
+DROPPED
+########
+- Same file!:
+	 inetca.dll
+- Same file!:
+	 System.dll
+- Same file!:
+	 System.dll
+- Difference!:
+	Size of YTDSetup[1].exe hardened 10487195 bytes, raw 10485775 bytes
+- Same file!:
+	 NSISdl.dll
+- Same file!:
+	 getCountry
+- Same file!:
+	 NSISPluginW.dll
+- Same file!:
+	 UserInfo.dll
+- Same file!:
+	 UserInfo.dll
+- Same file!:
+	 UserInfo.dll
+- Same file!:
+	 UserInfo.dll
+- Same file!:
+	 System.dll
+- Same file!:
+	 System.dll
+- Same file!:
+	 NSISHelper.dll
+- Difference!:
+	Size of so[1].xml hardened 93347 bytes, raw 93344 bytes
+ANOMALIES
+########
+
+HOSTS
+########
+- Difference!:
+	23.54.88.70
+- Difference!:
+	84.53.132.177
+- Difference!:
+	23.212.109.58
+- Difference!:
+	213.248.113.66
+- Difference!:
+	179.60.192.3
+- Difference!:
+	31.13.64.7
+- Difference!:
+	213.248.113.17
+- Difference!:
+	134.170.185.126
+- Difference!:
+	134.170.188.139
+- Difference!:
+	131.253.61.98
+- Difference!:
+	195.10.11.82
+- Difference!:
+	23.212.109.27
+- Difference!:
+	31.13.64.1
+- Difference!:
+	31.13.91.2

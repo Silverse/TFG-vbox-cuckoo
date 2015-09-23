@@ -1,0 +1,14 @@
+Reports not found: 5
+
+Number of analysis: 94
+
+Cases timed-out: 3
+Cases with NO files: 21
+Cases with new files: 21
+Cases with exactly the same files: 28
+
+Cases with files with same name and less than 100 bytes of difference: 13
+Cases with files with same name and more than 100 bytes of difference: 8
+
+Cases with different types: 8
+Cases with anomalies: 2

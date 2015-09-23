@@ -1,0 +1,69 @@
+NAME
+########
+MD5
+########
+Time-out
+########
+IMPORTS
+########
+DROPPED
+########
+- Difference!:
+	New ns12.tmp
+- Same file!:
+	 88744D2A29102FC88ECF505DD2E984FC.mof
+- Difference!:
+	Size of mofcomp.log hardened 12481 bytes, raw 12483 bytes
+- Same file!:
+	 CliEgAliases.mfl
+- Same file!:
+	 23BDE61F1F4FACE17E9B0C01F2A1FD9B.mof
+- Same file!:
+	 [RANDOM_STRING].7z
+- Same file!:
+	 Cli.mof
+- Same file!:
+	 7za.exe
+- Same file!:
+	 nsExec.dll
+- Same file!:
+	 CliEgAliases.mof
+- Same file!:
+	 C8463ECBE33BC240263A0B094E46D510.mof
+- Same file!:
+	 setupcl.exe
+ANOMALIES
+########
+
+HOSTS
+########
+- Difference!:
+	137.117.241.14
+- Difference!:
+	23.54.88.70
+- Difference!:
+	23.54.85.163
+- Difference!:
+	64.4.16.215
+- Difference!:
+	134.170.188.139
+- Difference!:
+	179.60.192.3
+- Difference!:
+	31.13.64.7
+- Difference!:
+	54.239.164.72
+- Difference!:
+	131.253.61.98
+- Difference!:
+	213.248.113.81
+- Difference!:
+	31.13.64.1
+- Difference!:
+	216.58.211.238
+- Difference!:
+	216.58.211.206
+- Difference!:
+	104.83.76.71
+- Difference!:
+	213.248.113.27

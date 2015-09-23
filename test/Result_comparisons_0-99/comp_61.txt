@@ -1,0 +1,45 @@
+NAME
+########
+MD5
+########
+Time-out
+########
+IMPORTS
+########
+DROPPED
+########
+- Difference!:
+	New 1fc0_appcompat.txt
+ANOMALIES
+########
+
+HOSTS
+########
+- Difference!:
+	134.170.188.140
+- Difference!:
+	93.184.220.29
+- Difference!:
+	23.65.29.34
+- Difference!:
+	23.50.101.163
+- Difference!:
+	31.13.83.12
+- Difference!:
+	216.58.211.195
+- Difference!:
+	2.22.136.70
+- Difference!:
+	131.253.61.98
+- Difference!:
+	216.58.210.142
+- Difference!:
+	173.252.120.5
+- Difference!:
+	2.22.133.163
+- Difference!:
+	8.8.8.8
+- Difference!:
+	2.18.213.200
+- Difference!:
+	23.0.163.43

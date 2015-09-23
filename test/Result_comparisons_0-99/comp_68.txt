@@ -1,0 +1,41 @@
+NAME
+########
+MD5
+########
+Time-out
+########
+IMPORTS
+########
+DROPPED
+########
+- Difference!:
+	New GLBF.tmp
+ANOMALIES
+########
+
+HOSTS
+########
+- Difference!:
+	131.253.61.98
+- Difference!:
+	23.54.136.70
+- Difference!:
+	2.18.213.139
+- Difference!:
+	64.4.16.215
+- Difference!:
+	93.184.220.29
+- Difference!:
+	23.54.133.163
+- Difference!:
+	31.13.83.12
+- Difference!:
+	134.170.185.126
+- Difference!:
+	216.58.211.206
+- Difference!:
+	31.13.83.4
+- Difference!:
+	95.101.34.33
+- Difference!:
+	31.13.83.1

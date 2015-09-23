@@ -1,0 +1,47 @@
+NAME
+########
+MD5
+########
+Time-out
+########
+IMPORTS
+########
+DROPPED
+########
+- Difference!:
+	New nsiF.tmp
+- Same file!:
+	 settings.json
+- Same file!:
+	 install.ico
+- Difference!:
+	Size of loons.lnk hardened 2206 bytes, raw 2213 bytes
+- Difference!:
+	 type of loons.lnk hardened MS Windows shortcut, Item id list present, Points to a file or directory, Has Relative path, Has Working directory, Icon number=0, Archive, ctime=Wed Aug 26 06:38:42 2015, mtime=Mon Sep 21 08:42:57 2015, atime=Wed Aug 26 06:38:42 2015, length=342528, window=hide, raw MS Windows shortcut, Item id list present, Points to a file or directory, Has Relative path, Has Working directory, Icon number=0, Archive, ctime=Wed Aug 26 06:38:42 2015, mtime=Mon Sep 21 17:15:39 2015, atime=Wed Aug 26 06:38:42 2015, length=342528, window=hide
+- Same file!:
+	 nsisdl.dll
+- Same file!:
+	 StdUtils.dll
+- Same file!:
+	 UserInfo.dll
+- Same file!:
+	 System.dll
+- Same file!:
+	 base64.dll
+ANOMALIES
+########
+
+HOSTS
+########
+- Difference!:
+	23.50.104.70
+- Difference!:
+	134.170.185.126
+- Difference!:
+	84.53.132.193
+- Difference!:
+	131.253.61.98
+- Difference!:
+	31.13.83.4
+- Difference!:
+	23.0.163.58

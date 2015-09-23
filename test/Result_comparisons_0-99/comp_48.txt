@@ -1,0 +1,45 @@
+NAME
+########
+MD5
+########
+Time-out
+########
+IMPORTS
+########
+DROPPED
+########
+- Same file!:
+	 ficldos.sys
+- Same file!:
+	 UnInstall.exe
+- Same file!:
+	 config.ini
+- Same file!:
+	 miaos.exe
+ANOMALIES
+########
+
+HOSTS
+########
+- Difference!:
+	123.59.57.245
+- Difference!:
+	80.239.148.169
+- Difference!:
+	179.60.192.3
+- Difference!:
+	80.239.148.160
+- Difference!:
+	216.58.211.206
+- Difference!:
+	74.125.133.95
+- Difference!:
+	216.58.211.198
+- Difference!:
+	74.125.133.154
+- Difference!:
+	114.114.114.114
+- Difference!:
+	216.58.211.195
+- Difference!:
+	8.8.8.8

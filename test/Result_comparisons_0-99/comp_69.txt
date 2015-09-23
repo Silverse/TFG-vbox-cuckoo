@@ -1,0 +1,71 @@
+NAME
+########
+MD5
+########
+Time-out
+########
+IMPORTS
+########
+DROPPED
+########
+- Same file!:
+	 KompexSQLiteWrapper.dll
+- Same file!:
+	 sqlite3.dll
+- Same file!:
+	 System.dll
+- Same file!:
+	 InstallOptions.dll
+- Same file!:
+	 plc4.dll
+- Same file!:
+	 nspr4.dll
+- Same file!:
+	 plds4.dll
+- Same file!:
+	 freebl3.dll
+- Same file!:
+	 UserInfo.dll
+- Same file!:
+	 ioSpecial.ini
+- Same file!:
+	 nssutil3.dll
+- Same file!:
+	 nss3.dll
+- Same file!:
+	 nsExec.dll
+- Same file!:
+	 zNrnm_n.dll
+- Same file!:
+	 modern-wizard.bmp
+- Same file!:
+	 uninstall.exe
+- Same file!:
+	 softokn3.dll
+- Same file!:
+	 Chromium.dll
+ANOMALIES
+########
+
+HOSTS
+########
+- Difference!:
+	23.54.136.70
+- Difference!:
+	2.18.213.139
+- Difference!:
+	64.4.16.215
+- Difference!:
+	216.58.210.174
+- Difference!:
+	23.54.133.163
+- Difference!:
+	134.170.185.126
+- Difference!:
+	131.253.61.98
+- Difference!:
+	31.13.83.4
+- Difference!:
+	95.101.34.50
+- Difference!:
+	8.8.8.8

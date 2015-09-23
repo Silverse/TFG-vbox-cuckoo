@@ -1,0 +1,61 @@
+NAME
+########
+MD5
+########
+Time-out
+########
+IMPORTS
+########
+DROPPED
+########
+- Difference!:
+	New tmp11.tmp
+- Same file!:
+	 dgcabfcebda.exe
+- Same file!:
+	 88744D2A29102FC88ECF505DD2E984FC.mof
+- Same file!:
+	 dgcabfcebda.zip
+- Same file!:
+	 Cli.mof
+- Same file!:
+	 gjhvd.dll
+- Same file!:
+	 ic10.dgcabfcebda
+- Same file!:
+	 CliEgAliases.mof
+- Difference!:
+	Size of mofcomp.log hardened 12163 bytes, raw 12477 bytes
+- Same file!:
+	 nsisunz.dll
+ANOMALIES
+########
+
+HOSTS
+########
+- Difference!:
+	216.58.210.131
+- Difference!:
+	104.96.8.181
+- Difference!:
+	95.101.34.19
+- Difference!:
+	216.58.210.174
+- Difference!:
+	23.205.168.27
+- Difference!:
+	23.205.168.43
+- Difference!:
+	23.37.40.70
+- Difference!:
+	131.253.61.98
+- Difference!:
+	95.101.34.34
+- Difference!:
+	216.58.210.142
+- Difference!:
+	95.101.34.33
+- Difference!:
+	23.61.69.163
+- Difference!:
+	216.58.211.195

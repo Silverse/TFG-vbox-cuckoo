@@ -1,0 +1,69 @@
+NAME
+########
+MD5
+########
+Time-out
+########
+IMPORTS
+########
+DROPPED
+########
+- Same file!:
+	 manlib.dll
+- Same file!:
+	 nsDialogs.dll
+- Same file!:
+	 Offer3.zip
+- Same file!:
+	 registry.dll
+- Same file!:
+	 Math.dll
+- Same file!:
+	 nsCBHTML5.dll
+- Same file!:
+	 Offer4.zip
+- Same file!:
+	 Offer1.zip
+- Difference!:
+	Size of FCL_Co_Unq_remote_v5[1].php hardened 9847 bytes, raw 9957 bytes
+- Same file!:
+	 GetVersion.dll
+- Same file!:
+	 OfferScreen_633.html
+- Same file!:
+	 UserInfo.dll
+- Same file!:
+	 nsisunz.dll
+- Same file!:
+	 header.bmp
+- Same file!:
+	 OfferScreen_543.html
+- Same file!:
+	 Offer2.zip
+- Same file!:
+	 blowfish.dll
+- Same file!:
+	 System.dll
+- Same file!:
+	 DSS_Unq_IMapplication_mon_remote[1].php
+- Same file!:
+	 serlib.dll
+- Same file!:
+	 OfferScreen_526.html
+- Same file!:
+	 OfferScreen_600.html
+- Same file!:
+	 inner.png
+ANOMALIES
+########
+
+HOSTS
+########
+- Difference!:
+	179.60.192.3
+- Difference!:
+	88.221.112.179
+- Difference!:
+	88.221.112.131
+- Difference!:
+	23.206.108.111

@@ -1,0 +1,55 @@
+NAME
+########
+MD5
+########
+Time-out
+########
+IMPORTS
+########
+DROPPED
+########
+- Same file!:
+	 s_92.tmp
+ANOMALIES
+########
+
+HOSTS
+########
+- Difference!:
+	137.117.241.14
+- Difference!:
+	213.248.113.73
+- Difference!:
+	23.54.85.163
+- Difference!:
+	213.248.113.66
+- Difference!:
+	179.60.192.3
+- Difference!:
+	31.13.64.7
+- Difference!:
+	213.248.113.27
+- Difference!:
+	213.248.113.83
+- Difference!:
+	213.248.113.81
+- Difference!:
+	213.248.113.17
+- Difference!:
+	134.170.188.139
+- Difference!:
+	131.253.61.98
+- Difference!:
+	65.54.187.24
+- Difference!:
+	84.53.132.115
+- Difference!:
+	104.83.76.71
+- Difference!:
+	195.10.11.115
+- Difference!:
+	23.54.88.70
+- Difference!:
+	31.13.64.1
+- Difference!:
+	216.58.211.195

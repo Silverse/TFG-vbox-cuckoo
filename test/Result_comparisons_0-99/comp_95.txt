@@ -1,0 +1,59 @@
+NAME
+########
+MD5
+########
+Time-out
+########
+IMPORTS
+########
+DROPPED
+########
+- Same file!:
+	 DefaultTabWrap64.dll
+- Same file!:
+	 DT.ico
+- Same file!:
+	 autoexec.bat
+- Same file!:
+	 DefaultTabStart.exe
+- Same file!:
+	 dt_ie.exe
+- Same file!:
+	 uninstalldt.exe
+- Same file!:
+	 DefaultTabBHO.cfg
+- Same file!:
+	 DefaultTabBHO.dll
+- Same file!:
+	 Registry.pol
+- Same file!:
+	 gpt.ini
+- Same file!:
+	 addon.ico
+- Same file!:
+	 DTUpdate.exe
+- Same file!:
+	 DefaultTabUninstaller.exe
+- Same file!:
+	 DefaultTabWrap.dll
+- Same file!:
+	 DefaultTabStart64.exe
+- Same file!:
+	 searchhere.ico
+ANOMALIES
+########
+
+HOSTS
+########
+- Difference!:
+	23.54.88.70
+- Difference!:
+	31.13.91.2
+- Difference!:
+	31.13.64.7
+- Difference!:
+	179.60.192.7
+- Difference!:
+	84.53.132.115
+- Difference!:
+	31.13.64.1

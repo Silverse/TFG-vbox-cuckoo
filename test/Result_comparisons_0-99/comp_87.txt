@@ -1,0 +1,835 @@
+NAME
+########
+MD5
+########
+Time-out
+########
+IMPORTS
+########
+DROPPED
+########
+- Difference!:
+	Size of BtnMenu.jpg hardened 9207 bytes, raw 9220 bytes
+- Difference!:
+	Size of BtnMenu.jpg hardened 9207 bytes, raw 9206 bytes
+- Same file!:
+	 Trophy1.bmp
+- Same file!:
+	 BtnOptions.bmp
+- Same file!:
+	 BtnOptions.bmp
+- Same file!:
+	 BtnOptions.bmp
+- Same file!:
+	 BtnFinances.bmp
+- Difference!:
+	Size of MolduraBaixo.bmp hardened 8838 bytes, raw 8840 bytes
+- Difference!:
+	Size of MolduraDir.jpg hardened 7495 bytes, raw 670 bytes
+- Difference!:
+	 type of MolduraDir.jpg hardened JPEG image data, JFIF standard 1.02, raw JPEG image data, JFIF standard 1.01
+- Same file!:
+	 ModeloCabelo5.bmp
+- Same file!:
+	 BtnSCaseOver.bmp
+- Same file!:
+	 campo3.jpg
+- Same file!:
+	 LineupBackground.jpg
+- Difference!:
+	Size of LineupBackground.jpg hardened 12414 bytes, raw 11394 bytes
+- Difference!:
+	Size of LineupBackground.jpg hardened 12414 bytes, raw 44815 bytes
+- Difference!:
+	 type of LineupBackground.jpg hardened JPEG image data, JFIF standard 1.01, raw JPEG image data, JFIF standard 1.02
+- Difference!:
+	Size of LineupBackground.jpg hardened 12414 bytes, raw 19456 bytes
+- Same file!:
+	 BtnBack.bmp
+- Same file!:
+	 BtnBack.bmp
+- Same file!:
+	 BtnBack.bmp
+- Difference!:
+	Size of LineupBackground.jpg hardened 11394 bytes, raw 12414 bytes
+- Difference!:
+	Size of LineupBackground.jpg hardened 11394 bytes, raw 44815 bytes
+- Difference!:
+	 type of LineupBackground.jpg hardened JPEG image data, JFIF standard 1.01, raw JPEG image data, JFIF standard 1.02
+- Difference!:
+	Size of LineupBackground.jpg hardened 11394 bytes, raw 19456 bytes
+- Same file!:
+	 BtnMail.bmp
+- Same file!:
+	 BtnMail.bmp
+- Same file!:
+	 c19.bmp
+- Same file!:
+	 Trophy7.bmp
+- Same file!:
+	 ModeloBarba6.bmp
+- Same file!:
+	 concreto2.tga
+- Same file!:
+	 predio10.jpg
+- Same file!:
+	 uniforme.bmp
+- Same file!:
+	 c25.bmp
+- Same file!:
+	 chao.jpg
+- Same file!:
+	 c12.bmp
+- Same file!:
+	 tijolo.tga
+- Same file!:
+	 MolduraDir.jpg
+- Difference!:
+	Size of MolduraDir.jpg hardened 670 bytes, raw 7495 bytes
+- Difference!:
+	 type of MolduraDir.jpg hardened JPEG image data, JFIF standard 1.01, raw JPEG image data, JFIF standard 1.02
+- Same file!:
+	 teste.bmp
+- Same file!:
+	 predio5.jpg
+- Same file!:
+	 12.jpg
+- Same file!:
+	 Trophy3.bmp
+- Same file!:
+	 BtnClub.bmp
+- Same file!:
+	 ModeloCabelo8.bmp
+- Same file!:
+	 ModeloBoca2.bmp
+- Same file!:
+	 banco1.tga
+- Same file!:
+	 6.jpg
+- Same file!:
+	 Trophy6Over.bmp
+- Difference!:
+	Size of TopBackground.jpg hardened 5108 bytes, raw 4333 bytes
+- Difference!:
+	Size of TopBackground.jpg hardened 5108 bytes, raw 11451 bytes
+- Difference!:
+	 type of TopBackground.jpg hardened JPEG image data, JFIF standard 1.01, raw JPEG image data, JFIF standard 1.02
+- Same file!:
+	 placa2.jpg
+- Difference!:
+	Size of StatsOff.jpg hardened 726 bytes, raw 845 bytes
+- Difference!:
+	Size of StatsOff.jpg hardened 726 bytes, raw 626 bytes
+- Same file!:
+	 BtnFinancesOver.bmp
+- Same file!:
+	 BtnMenu.jpg
+- Difference!:
+	Size of BtnMenu.jpg hardened 9220 bytes, raw 9207 bytes
+- Difference!:
+	Size of BtnMenu.jpg hardened 9220 bytes, raw 9206 bytes
+- Same file!:
+	 c16.bmp
+- Same file!:
+	 2.jpg
+- Same file!:
+	 ModeloSobrancelha4.bmp
+- Same file!:
+	 9.jpg
+- Same file!:
+	 ModeloCabelo7.bmp
+- Same file!:
+	 Trophy5.bmp
+- Difference!:
+	Size of Background.jpg hardened 20212 bytes, raw 24959 bytes
+- Difference!:
+	Size of Background.jpg hardened 20212 bytes, raw 14619 bytes
+- Difference!:
+	 type of Background.jpg hardened JPEG image data, JFIF standard 1.02, raw JPEG image data, JFIF standard 1.01
+- Difference!:
+	Size of Background.jpg hardened 20212 bytes, raw 51285 bytes
+- Difference!:
+	Size of Thumbs.db hardened 7680 bytes, raw 59392 bytes
+- Same file!:
+	 10.jpg
+- Same file!:
+	 Trophy9.bmp
+- Same file!:
+	 7.jpg
+- Same file!:
+	 banco4.tga
+- Same file!:
+	 c15.bmp
+- Same file!:
+	 predio4.jpg
+- Same file!:
+	 chao2.jpg
+- Same file!:
+	 ModeloSobrancelha3.bmp
+- Same file!:
+	 ModeloBarba5.bmp
+- Difference!:
+	Size of config.txt hardened 1160 bytes, raw 1156 bytes
+- Difference!:
+	Size of config.txt hardened 1160 bytes, raw 1162 bytes
+- Difference!:
+	Size of config.txt hardened 1160 bytes, raw 1161 bytes
+- Same file!:
+	 BtnBack.bmp
+- Same file!:
+	 BtnBack.bmp
+- Same file!:
+	 BtnBack.bmp
+- Difference!:
+	Size of MolduraEsq.jpg hardened 7372 bytes, raw 646 bytes
+- Difference!:
+	 type of MolduraEsq.jpg hardened JPEG image data, JFIF standard 1.02, raw JPEG image data, JFIF standard 1.01
+- Same file!:
+	 ModeloNariz6.bmp
+- Same file!:
+	 13.jpg
+- Same file!:
+	 BtnTraining.bmp
+- Same file!:
+	 StatsBackground.bmp
+- Same file!:
+	 StatsBackground.bmp
+- Same file!:
+	 StatsBackground.bmp
+- Same file!:
+	 info.txt
+- Same file!:
+	 rua1.jpg
+- Same file!:
+	 Trophy4.bmp
+- Same file!:
+	 c10.bmp
+- Same file!:
+	 ModeloOlho1.bmp
+- Same file!:
+	 ModeloSobrancelha1.bmp
+- Same file!:
+	 ModeloSobrancelha2.bmp
+- Same file!:
+	 Trophy2Over.bmp
+- Same file!:
+	 Trophy3Over.bmp
+- Same file!:
+	 ModeloCabelo3.bmp
+- Same file!:
+	 BNKGOTHM.TTF
+- Difference!:
+	Size of WarningBackground.bmp hardened 300054 bytes, raw 100308 bytes
+- Difference!:
+	 type of WarningBackground.bmp hardened PC bitmap, Windows 3.x format, 400 x 250 x 24, raw PC bitmap, Windows 3.x format, 400 x 250 x 8
+- Difference!:
+	Size of WarningBackground.bmp hardened 300054 bytes, raw 100968 bytes
+- Difference!:
+	 type of WarningBackground.bmp hardened PC bitmap, Windows 3.x format, 400 x 250 x 24, raw PC bitmap, Windows 3.x format, 400 x 250 x 8
+- Same file!:
+	 ModeloBoca5.bmp
+- Same file!:
+	 MolduraBaixo.bmp
+- Difference!:
+	Size of MolduraBaixo.bmp hardened 8840 bytes, raw 8838 bytes
+- Same file!:
+	 ModeloBoca6.bmp
+- Difference!:
+	Size of Thumbs.db hardened 7680 bytes, raw 59392 bytes
+- Same file!:
+	 BtnTransfersOver.bmp
+- Same file!:
+	 Trophy7Over.bmp
+- Same file!:
+	 3.jpg
+- Same file!:
+	 rua2.jpg
+- Same file!:
+	 Trophy11Over.bmp
+- Same file!:
+	 BtnMailOver.bmp
+- Same file!:
+	 BtnMailOver.bmp
+- Same file!:
+	 BtnSearch.bmp
+- Same file!:
+	 14.jpg
+- Same file!:
+	 BtnOptionsOver.bmp
+- Same file!:
+	 BtnOptionsOver.bmp
+- Same file!:
+	 BtnOptionsOver.bmp
+- Same file!:
+	 ModeloCorpo1.bmp
+- Same file!:
+	 ModeloCabelo13.bmp
+- Same file!:
+	 caminho.tga
+- Same file!:
+	 Trophy4Over.bmp
+- Same file!:
+	 BtnYouthOver.bmp
+- Same file!:
+	 c18.bmp
+- Difference!:
+	Size of config.txt hardened 1162 bytes, raw 1156 bytes
+- Difference!:
+	Size of config.txt hardened 1162 bytes, raw 1160 bytes
+- Difference!:
+	Size of config.txt hardened 1162 bytes, raw 1161 bytes
+- Difference!:
+	Size of BottomBackground.jpg hardened 1931 bytes, raw 9770 bytes
+- Difference!:
+	 type of BottomBackground.jpg hardened JPEG image data, JFIF standard 1.01, raw JPEG image data, JFIF standard 1.02
+- Difference!:
+	Size of BottomBackground.jpg hardened 1931 bytes, raw 3859 bytes
+- Difference!:
+	Size of BottomBackground.jpg hardened 1931 bytes, raw 9771 bytes
+- Difference!:
+	 type of BottomBackground.jpg hardened JPEG image data, JFIF standard 1.01, raw JPEG image data, JFIF standard 1.02
+- Same file!:
+	 TopBackground.jpg
+- Difference!:
+	Size of TopBackground.jpg hardened 4333 bytes, raw 11451 bytes
+- Difference!:
+	 type of TopBackground.jpg hardened JPEG image data, JFIF standard 1.01, raw JPEG image data, JFIF standard 1.02
+- Difference!:
+	Size of TopBackground.jpg hardened 4333 bytes, raw 5108 bytes
+- Same file!:
+	 LogoTopOver.bmp
+- Same file!:
+	 BtnClubOver.bmp
+- Same file!:
+	 MolduraTopo.bmp
+- Same file!:
+	 MolduraTopo.bmp
+- Same file!:
+	 MolduraTopo.bmp
+- Same file!:
+	 MolduraTopo.bmp
+- Difference!:
+	Size of StatsOn.jpg hardened 901 bytes, raw 693 bytes
+- Difference!:
+	Size of StatsOn.jpg hardened 901 bytes, raw 717 bytes
+- Same file!:
+	 ModeloCabelo9.bmp
+- Same file!:
+	 ModeloOlho2.bmp
+- Same file!:
+	 c3.bmp
+- Same file!:
+	 ModeloNariz1.bmp
+- Same file!:
+	 ModeloBoca4.bmp
+- Same file!:
+	 BtnOptions.bmp
+- Same file!:
+	 BtnOptions.bmp
+- Same file!:
+	 BtnOptions.bmp
+- Same file!:
+	 WarningBackground.bmp
+- Difference!:
+	Size of WarningBackground.bmp hardened 100308 bytes, raw 100968 bytes
+- Difference!:
+	Size of WarningBackground.bmp hardened 100308 bytes, raw 300054 bytes
+- Difference!:
+	 type of WarningBackground.bmp hardened PC bitmap, Windows 3.x format, 400 x 250 x 8, raw PC bitmap, Windows 3.x format, 400 x 250 x 24
+- Same file!:
+	 banco3.tga
+- Same file!:
+	 ModeloBoca1.bmp
+- Same file!:
+	 SetaAcima.bmp
+- Same file!:
+	 Trophy2.bmp
+- Same file!:
+	 BtnBackOver.bmp
+- Same file!:
+	 BtnBackOver.bmp
+- Same file!:
+	 BtnBackOver.bmp
+- Difference!:
+	Size of StatsOff.jpg hardened 626 bytes, raw 845 bytes
+- Difference!:
+	Size of StatsOff.jpg hardened 626 bytes, raw 726 bytes
+- Same file!:
+	 ModeloCabelo4.bmp
+- Same file!:
+	 predio8.jpg
+- Same file!:
+	 BtnMailOver.bmp
+- Same file!:
+	 BtnMailOver.bmp
+- Same file!:
+	 predio1.jpg
+- Same file!:
+	 config.sp
+- Same file!:
+	 Trophy11.bmp
+- Same file!:
+	 StatsOff.jpg
+- Difference!:
+	Size of StatsOff.jpg hardened 845 bytes, raw 626 bytes
+- Difference!:
+	Size of StatsOff.jpg hardened 845 bytes, raw 726 bytes
+- Same file!:
+	 ModeloBarba4.bmp
+- Same file!:
+	 StatsBackground.bmp
+- Same file!:
+	 StatsBackground.bmp
+- Same file!:
+	 StatsBackground.bmp
+- Difference!:
+	Size of BottomBackground.jpg hardened 3859 bytes, raw 9770 bytes
+- Difference!:
+	 type of BottomBackground.jpg hardened JPEG image data, JFIF standard 1.01, raw JPEG image data, JFIF standard 1.02
+- Difference!:
+	Size of BottomBackground.jpg hardened 3859 bytes, raw 1931 bytes
+- Difference!:
+	Size of BottomBackground.jpg hardened 3859 bytes, raw 9771 bytes
+- Difference!:
+	 type of BottomBackground.jpg hardened JPEG image data, JFIF standard 1.01, raw JPEG image data, JFIF standard 1.02
+- Same file!:
+	 concreto.tga
+- Same file!:
+	 LogoTop.bmp
+- Same file!:
+	 ModeloNariz3.bmp
+- Same file!:
+	 grade.tga
+- Same file!:
+	 c13.bmp
+- Same file!:
+	 LineupBgHorizontal.bmp
+- Same file!:
+	 Login.bmp
+- Difference!:
+	Size of Login.bmp hardened 160924 bytes, raw 151620 bytes
+- Difference!:
+	 type of Login.bmp hardened PC bitmap, Windows 3.x format, 400 x 400 x 8, raw PC bitmap, Windows 3.x format, 388 x 388 x 8
+- Difference!:
+	Size of Login.bmp hardened 160924 bytes, raw 161078 bytes
+- Same file!:
+	 ModeloCabelo12.bmp
+- Same file!:
+	 Trophy8.bmp
+- Same file!:
+	 5.jpg
+- Same file!:
+	 Trophy6.bmp
+- Same file!:
+	 ModeloNariz4.bmp
+- Same file!:
+	 CenterBackground.jpg
+- Same file!:
+	 predio2.jpg
+- Same file!:
+	 c24.bmp
+- Same file!:
+	 BtnTrainingOver.bmp
+- Same file!:
+	 BtnYouth.bmp
+- Same file!:
+	 4.jpg
+- Same file!:
+	 c20.bmp
+- Same file!:
+	 predio3.jpg
+- Difference!:
+	Size of Login.bmp hardened 151620 bytes, raw 160924 bytes
+- Difference!:
+	 type of Login.bmp hardened PC bitmap, Windows 3.x format, 388 x 388 x 8, raw PC bitmap, Windows 3.x format, 400 x 400 x 8
+- Difference!:
+	Size of Login.bmp hardened 151620 bytes, raw 161078 bytes
+- Difference!:
+	 type of Login.bmp hardened PC bitmap, Windows 3.x format, 388 x 388 x 8, raw PC bitmap, Windows 3.x format, 400 x 400 x 8
+- Same file!:
+	 StatsBackground.bmp
+- Same file!:
+	 StatsBackground.bmp
+- Same file!:
+	 StatsBackground.bmp
+- Same file!:
+	 c9.bmp
+- Same file!:
+	 ModeloCabelo1.bmp
+- Same file!:
+	 MolduraTopo.bmp
+- Same file!:
+	 MolduraTopo.bmp
+- Same file!:
+	 MolduraTopo.bmp
+- Same file!:
+	 MolduraTopo.bmp
+- Same file!:
+	 BtnSearchOver.bmp
+- Same file!:
+	 c2.bmp
+- Difference!:
+	Size of Thumbs.db hardened 7680 bytes, raw 59392 bytes
+- Same file!:
+	 c5.bmp
+- Same file!:
+	 BtnSCase.bmp
+- Same file!:
+	 c23.bmp
+- Same file!:
+	 c1.bmp
+- Difference!:
+	Size of config.txt hardened 1161 bytes, raw 1156 bytes
+- Difference!:
+	Size of config.txt hardened 1161 bytes, raw 1160 bytes
+- Difference!:
+	Size of config.txt hardened 1161 bytes, raw 1162 bytes
+- Same file!:
+	 ModeloCabelo2.bmp
+- Same file!:
+	 BtnOptions.bmp
+- Same file!:
+	 BtnOptions.bmp
+- Same file!:
+	 BtnOptions.bmp
+- Same file!:
+	 ModeloCabelo6.bmp
+- Same file!:
+	 PlayerBackground.bmp
+- Same file!:
+	 PlayerBackground.bmp
+- Same file!:
+	 PlayerBackground.bmp
+- Same file!:
+	 campo2.jpg
+- Same file!:
+	 11.jpg
+- Same file!:
+	 Trophy10Over.bmp
+- Same file!:
+	 c22.bmp
+- Same file!:
+	 BtnBackOver.bmp
+- Same file!:
+	 BtnBackOver.bmp
+- Same file!:
+	 BtnBackOver.bmp
+- Same file!:
+	 c11.bmp
+- Same file!:
+	 Background.jpg
+- Difference!:
+	Size of Background.jpg hardened 24959 bytes, raw 20212 bytes
+- Difference!:
+	Size of Background.jpg hardened 24959 bytes, raw 14619 bytes
+- Difference!:
+	 type of Background.jpg hardened JPEG image data, JFIF standard 1.02, raw JPEG image data, JFIF standard 1.01
+- Difference!:
+	Size of Background.jpg hardened 24959 bytes, raw 51285 bytes
+- Same file!:
+	 ModeloBarba3.bmp
+- Same file!:
+	 config.txt
+- Difference!:
+	Size of config.txt hardened 1156 bytes, raw 1160 bytes
+- Difference!:
+	Size of config.txt hardened 1156 bytes, raw 1162 bytes
+- Difference!:
+	Size of config.txt hardened 1156 bytes, raw 1161 bytes
+- Same file!:
+	 c4.bmp
+- Same file!:
+	 c6.bmp
+- Same file!:
+	 BtnOptionsOver.bmp
+- Same file!:
+	 BtnOptionsOver.bmp
+- Same file!:
+	 BtnOptionsOver.bmp
+- Same file!:
+	 ModeloCabelo11.bmp
+- Same file!:
+	 predio9.jpg
+- Same file!:
+	 ModeloNariz5.bmp
+- Same file!:
+	 BtnTransfers.bmp
+- Same file!:
+	 PlayerBackground.bmp
+- Same file!:
+	 PlayerBackground.bmp
+- Same file!:
+	 PlayerBackground.bmp
+- Same file!:
+	 cobertura.tga
+- Difference!:
+	 type of Star Evolution 2014.lnk hardened MS Windows shortcut, Item id list present, Points to a file or directory, Has Description string, Has Relative path, Has Working directory, Archive, ctime=Mon Sep 21 11:29:22 2015, mtime=Mon Sep 21 11:29:22 2015, atime=Thu Apr  2 14:48:39 2015, length=3585024, window=hide, raw MS Windows shortcut, Item id list present, Points to a file or directory, Has Description string, Has Relative path, Has Working directory, Archive, ctime=Mon Sep 21 19:26:09 2015, mtime=Mon Sep 21 19:26:09 2015, atime=Thu Apr  2 14:48:39 2015, length=3585024, window=hide
+- Difference!:
+	Size of BtnMenu.jpg hardened 9206 bytes, raw 9220 bytes
+- Difference!:
+	Size of BtnMenu.jpg hardened 9206 bytes, raw 9207 bytes
+- Same file!:
+	 campo1.jpg
+- Same file!:
+	 tutorial.sp
+- Same file!:
+	 TopBackground antiga.jpg
+- Same file!:
+	 arvore1.tga
+- Same file!:
+	 BtnMatches.bmp
+- Same file!:
+	 c14.bmp
+- Same file!:
+	 Trophy8Over.bmp
+- Same file!:
+	 8.jpg
+- Same file!:
+	 placa3.jpg
+- Same file!:
+	 ModeloCorpo2.bmp
+- Same file!:
+	 ModeloBarba2.bmp
+- Same file!:
+	 ModeloOlho3.bmp
+- Same file!:
+	 BtnBackOver.bmp
+- Same file!:
+	 BtnBackOver.bmp
+- Same file!:
+	 BtnBackOver.bmp
+- Same file!:
+	 MolduraTopo.bmp
+- Same file!:
+	 MolduraTopo.bmp
+- Same file!:
+	 MolduraTopo.bmp
+- Same file!:
+	 MolduraTopo.bmp
+- Same file!:
+	 arvore3.tga
+- Same file!:
+	 MolduraEsq.jpg
+- Difference!:
+	Size of MolduraEsq.jpg hardened 646 bytes, raw 7372 bytes
+- Difference!:
+	 type of MolduraEsq.jpg hardened JPEG image data, JFIF standard 1.01, raw JPEG image data, JFIF standard 1.02
+- Same file!:
+	 ModeloCorpo3.bmp
+- Difference!:
+	Size of Background.jpg hardened 14619 bytes, raw 24959 bytes
+- Difference!:
+	 type of Background.jpg hardened JPEG image data, JFIF standard 1.01, raw JPEG image data, JFIF standard 1.02
+- Difference!:
+	Size of Background.jpg hardened 14619 bytes, raw 20212 bytes
+- Difference!:
+	 type of Background.jpg hardened JPEG image data, JFIF standard 1.01, raw JPEG image data, JFIF standard 1.02
+- Difference!:
+	Size of Background.jpg hardened 14619 bytes, raw 51285 bytes
+- Difference!:
+	 type of Background.jpg hardened JPEG image data, JFIF standard 1.01, raw JPEG image data, JFIF standard 1.02
+- Same file!:
+	 1.jpg
+- Same file!:
+	 boneco.bmp
+- Same file!:
+	 BtnOptionsOver.bmp
+- Same file!:
+	 BtnOptionsOver.bmp
+- Same file!:
+	 BtnOptionsOver.bmp
+- Same file!:
+	 banco2.tga
+- Same file!:
+	 StatsOn.jpg
+- Difference!:
+	Size of StatsOn.jpg hardened 693 bytes, raw 717 bytes
+- Difference!:
+	Size of StatsOn.jpg hardened 693 bytes, raw 901 bytes
+- Same file!:
+	 Thumbs.db
+- Difference!:
+	Size of Thumbs.db hardened 59392 bytes, raw 7680 bytes
+- Difference!:
+	Size of Thumbs.db hardened 59392 bytes, raw 7680 bytes
+- Difference!:
+	Size of Thumbs.db hardened 59392 bytes, raw 7680 bytes
+- Same file!:
+	 MolduraTopo.bmp
+- Same file!:
+	 MolduraTopo.bmp
+- Same file!:
+	 MolduraTopo.bmp
+- Same file!:
+	 MolduraTopo.bmp
+- Same file!:
+	 Trophy5Over.bmp
+- Same file!:
+	 rede.tga
+- Same file!:
+	 LineupBgHorizontal.jpg
+- Same file!:
+	 ModeloCabelo10.bmp
+- Difference!:
+	Size of LineupBackground.jpg hardened 19456 bytes, raw 12414 bytes
+- Difference!:
+	Size of LineupBackground.jpg hardened 19456 bytes, raw 11394 bytes
+- Difference!:
+	Size of LineupBackground.jpg hardened 19456 bytes, raw 44815 bytes
+- Difference!:
+	 type of LineupBackground.jpg hardened JPEG image data, JFIF standard 1.01, raw JPEG image data, JFIF standard 1.02
+- Same file!:
+	 c21.bmp
+- Same file!:
+	 ModeloNariz2.bmp
+- Difference!:
+	Size of BottomBackground.jpg hardened 9771 bytes, raw 9770 bytes
+- Difference!:
+	Size of BottomBackground.jpg hardened 9771 bytes, raw 3859 bytes
+- Difference!:
+	 type of BottomBackground.jpg hardened JPEG image data, JFIF standard 1.02, raw JPEG image data, JFIF standard 1.01
+- Difference!:
+	Size of BottomBackground.jpg hardened 9771 bytes, raw 1931 bytes
+- Difference!:
+	 type of BottomBackground.jpg hardened JPEG image data, JFIF standard 1.02, raw JPEG image data, JFIF standard 1.01
+- Same file!:
+	 PlayerBackground.bmp
+- Same file!:
+	 PlayerBackground.bmp
+- Same file!:
+	 PlayerBackground.bmp
+- Same file!:
+	 predio6.jpg
+- Same file!:
+	 BtnBack.bmp
+- Same file!:
+	 BtnBack.bmp
+- Same file!:
+	 BtnBack.bmp
+- Same file!:
+	 BMap.bmp
+- Same file!:
+	 SetaAbaixo.bmp
+- Same file!:
+	 c17.bmp
+- Same file!:
+	 predio7.jpg
+- Difference!:
+	Size of TopBackground.jpg hardened 11451 bytes, raw 4333 bytes
+- Difference!:
+	 type of TopBackground.jpg hardened JPEG image data, JFIF standard 1.02, raw JPEG image data, JFIF standard 1.01
+- Difference!:
+	Size of TopBackground.jpg hardened 11451 bytes, raw 5108 bytes
+- Difference!:
+	 type of TopBackground.jpg hardened JPEG image data, JFIF standard 1.02, raw JPEG image data, JFIF standard 1.01
+- Same file!:
+	 Trophy10.bmp
+- Same file!:
+	 cerca.tga
+- Same file!:
+	 config old.txt
+- Same file!:
+	 BtnMatchesOver.bmp
+- Difference!:
+	Size of Background.jpg hardened 51285 bytes, raw 24959 bytes
+- Difference!:
+	Size of Background.jpg hardened 51285 bytes, raw 20212 bytes
+- Difference!:
+	Size of Background.jpg hardened 51285 bytes, raw 14619 bytes
+- Difference!:
+	 type of Background.jpg hardened JPEG image data, JFIF standard 1.02, raw JPEG image data, JFIF standard 1.01
+- Difference!:
+	Size of Login.bmp hardened 161078 bytes, raw 160924 bytes
+- Difference!:
+	Size of Login.bmp hardened 161078 bytes, raw 151620 bytes
+- Difference!:
+	 type of Login.bmp hardened PC bitmap, Windows 3.x format, 400 x 400 x 8, raw PC bitmap, Windows 3.x format, 388 x 388 x 8
+- Difference!:
+	Size of StatsOn.jpg hardened 717 bytes, raw 693 bytes
+- Difference!:
+	Size of StatsOn.jpg hardened 717 bytes, raw 901 bytes
+- Same file!:
+	 BottomBackground.jpg
+- Difference!:
+	Size of BottomBackground.jpg hardened 9770 bytes, raw 3859 bytes
+- Difference!:
+	 type of BottomBackground.jpg hardened JPEG image data, JFIF standard 1.02, raw JPEG image data, JFIF standard 1.01
+- Difference!:
+	Size of BottomBackground.jpg hardened 9770 bytes, raw 1931 bytes
+- Difference!:
+	 type of BottomBackground.jpg hardened JPEG image data, JFIF standard 1.02, raw JPEG image data, JFIF standard 1.01
+- Difference!:
+	Size of BottomBackground.jpg hardened 9770 bytes, raw 9771 bytes
+- Same file!:
+	 c7.bmp
+- Same file!:
+	 Trophy9Over.bmp
+- Same file!:
+	 c8.bmp
+- Same file!:
+	 BtnMail.bmp
+- Same file!:
+	 BtnMail.bmp
+- Same file!:
+	 placa1.jpg
+- Same file!:
+	 arvore2.tga
+- Same file!:
+	 ModeloBarba7.bmp
+- Difference!:
+	Size of LineupBackground.jpg hardened 44815 bytes, raw 12414 bytes
+- Difference!:
+	 type of LineupBackground.jpg hardened JPEG image data, JFIF standard 1.02, raw JPEG image data, JFIF standard 1.01
+- Difference!:
+	Size of LineupBackground.jpg hardened 44815 bytes, raw 11394 bytes
+- Difference!:
+	 type of LineupBackground.jpg hardened JPEG image data, JFIF standard 1.02, raw JPEG image data, JFIF standard 1.01
+- Difference!:
+	Size of LineupBackground.jpg hardened 44815 bytes, raw 19456 bytes
+- Difference!:
+	 type of LineupBackground.jpg hardened JPEG image data, JFIF standard 1.02, raw JPEG image data, JFIF standard 1.01
+- Same file!:
+	 ModeloBoca3.bmp
+- Same file!:
+	 Trophy1Over.bmp
+- Same file!:
+	 Star Evolution.exe
+- Difference!:
+	Size of WarningBackground.bmp hardened 100968 bytes, raw 100308 bytes
+- Difference!:
+	Size of WarningBackground.bmp hardened 100968 bytes, raw 300054 bytes
+- Difference!:
+	 type of WarningBackground.bmp hardened PC bitmap, Windows 3.x format, 400 x 250 x 8, raw PC bitmap, Windows 3.x format, 400 x 250 x 24
+ANOMALIES
+########
+
+HOSTS
+########
+- Difference!:
+	23.54.88.70
+- Difference!:
+	23.54.85.163
+- Difference!:
+	195.10.11.90
+- Difference!:
+	213.248.113.25
+- Difference!:
+	84.53.132.178
+- Difference!:
+	134.170.188.139
+- Difference!:
+	31.13.64.1
+- Difference!:
+	179.60.192.3
+- Difference!:
+	131.253.61.98
+- Difference!:
+	195.10.11.115
+- Difference!:
+	65.54.187.24
+- Difference!:
+	104.83.76.71
+- Difference!:
+	216.58.211.195
+- Difference!:
+	8.8.8.8

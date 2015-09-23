@@ -1,0 +1,39 @@
+NAME
+########
+MD5
+########
+Time-out
+########
+IMPORTS
+########
+DROPPED
+########
+- Same file!:
+	 av.txt
+- Difference!:
+	Size of ex.bat hardened 785 bytes, raw 786 bytes
+- Same file!:
+	 _shfoldr.dll
+- Same file!:
+	 s_12.tmp
+- Same file!:
+	 itdownload.dll
+- Same file!:
+	 shfolder.dll
+ANOMALIES
+########
+
+HOSTS
+########
+- Difference!:
+	185.43.182.64
+- Difference!:
+	179.60.192.3
+- Difference!:
+	31.13.92.10
+- Difference!:
+	80.239.137.91
+- Difference!:
+	37.187.157.4
+- Difference!:
+	37.187.148.135

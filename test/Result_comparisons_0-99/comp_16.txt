@@ -1,0 +1,47 @@
+NAME
+########
+MD5
+########
+Time-out
+########
+IMPORTS
+########
+DROPPED
+########
+- Same file!:
+	 license.txt
+- Same file!:
+	 nsDialogs.dll
+- Same file!:
+	 modern-header.bmp
+- Same file!:
+	 UAC.dll
+- Same file!:
+	 registry.dll
+- Difference!:
+	Size of log.log hardened 7413 bytes, raw 4173 bytes
+- Difference!:
+	 type of log.log hardened ISO-8859 text, with very long lines, with CRLF line terminators, raw ISO-8859 text, with CRLF line terminators
+- Same file!:
+	 UserInfo.dll
+- Same file!:
+	 init_offer[1].htm
+- Same file!:
+	 Uninstall.exe
+- Same file!:
+	 apphelp.dll
+- Same file!:
+	 System.dll
+- Same file!:
+	 init_container[1]
+- Same file!:
+	 soffer.dll
+ANOMALIES
+########
+
+HOSTS
+########
+- Difference!:
+	23.21.214.217
+- Difference!:
+	185.43.182.51

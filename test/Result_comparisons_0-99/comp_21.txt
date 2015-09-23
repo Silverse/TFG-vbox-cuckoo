@@ -1,0 +1,25 @@
+NAME
+########
+MD5
+########
+Time-out
+########
+IMPORTS
+########
+DROPPED
+########
+- Same file!:
+	 s_21.tmp
+- Same file!:
+	 _shfoldr.dll
+ANOMALIES
+########
+
+HOSTS
+########
+- Difference!:
+	80.239.137.115
+- Difference!:
+	31.13.64.1
+- Difference!:
+	80.239.137.107

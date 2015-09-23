@@ -1,0 +1,53 @@
+NAME
+########
+MD5
+########
+Time-out
+########
+IMPORTS
+########
+DROPPED
+########
+- Same file!:
+	 UAC.dll
+- Same file!:
+	 registry.dll
+- Same file!:
+	 Uninstall.exe
+- Same file!:
+	 modern-header.bmp
+- Same file!:
+	 nsDialogs.dll
+- Same file!:
+	 soffer.dll
+- Same file!:
+	 apphelp.dll
+- Same file!:
+	 System.dll
+- Same file!:
+	 UserInfo.dll
+- Same file!:
+	 init_container[1]
+- Same file!:
+	 license.txt
+- Same file!:
+	 init_offer[1].htm
+- Difference!:
+	Size of log.log hardened 3262 bytes, raw 4095 bytes
+ANOMALIES
+########
+
+HOSTS
+########
+- Difference!:
+	173.252.120.6
+- Difference!:
+	104.244.43.140
+- Difference!:
+	23.21.214.217
+- Difference!:
+	94.31.0.27
+- Difference!:
+	95.101.34.33
+- Difference!:
+	94.31.0.52

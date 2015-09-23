@@ -1,0 +1,109 @@
+NAME
+########
+MD5
+########
+Time-out
+########
+IMPORTS
+########
+DROPPED
+########
+- Difference!:
+	New nsqF.tmp
+- Same file!:
+	 OpenSoftwareUpdater.exe
+- Same file!:
+	 registry.dll
+- Same file!:
+	 HelveticaLT65Medium.ttf
+- Same file!:
+	 helper.dll
+- Same file!:
+	 TopLogoCI.bmp
+- Same file!:
+	 helper.exe
+- Same file!:
+	 TopLogo1.bmp
+- Same file!:
+	 nsisos.dll
+- Same file!:
+	 nsExec.dll
+- Same file!:
+	 Banner.dll
+- Same file!:
+	 md5dll.dll
+- Same file!:
+	 osu.exe
+- Same file!:
+	 Utilites.dll
+- Same file!:
+	 inetc.dll
+- Same file!:
+	 Uninstall.lnk
+- Same file!:
+	 11.txt
+- Same file!:
+	 Uninstaller.ico
+- Same file!:
+	 Dialogs.dll
+- Same file!:
+	 System.dll
+- Same file!:
+	 nsDialogs.dll
+- Same file!:
+	 FontName.dll
+- Same file!:
+	 1.txt
+- Same file!:
+	 uninstall.exe
+- Difference!:
+	 type of OpenSoftwareUpdater.lnk hardened MS Windows shortcut, Item id list present, Points to a file or directory, Has Relative path, Has Working directory, Archive, ctime=Thu Sep 10 17:29:44 2015, mtime=Mon Sep 21 12:21:50 2015, atime=Thu Sep 10 17:29:44 2015, length=3733504, window=hide, raw MS Windows shortcut, Item id list present, Points to a file or directory, Has Relative path, Has Working directory, Archive, ctime=Thu Sep 10 17:29:44 2015, mtime=Mon Sep 21 09:44:18 2015, atime=Thu Sep 10 17:29:44 2015, length=3733504, window=hide
+- Difference!:
+	Size of OpenSoftwareUpdater.lnk hardened 875 bytes, raw 863 bytes
+- Difference!:
+	 type of OpenSoftwareUpdater.lnk hardened MS Windows shortcut, Item id list present, Points to a file or directory, Has Relative path, Has Working directory, Archive, ctime=Thu Sep 10 17:29:44 2015, mtime=Mon Sep 21 12:21:50 2015, atime=Thu Sep 10 17:29:44 2015, length=3733504, window=hide, raw MS Windows shortcut, Item id list present, Points to a file or directory, Has Relative path, Has Working directory, Archive, ctime=Thu Sep 10 17:29:44 2015, mtime=Mon Sep 21 09:44:18 2015, atime=Thu Sep 10 17:29:44 2015, length=3733504, window=hide
+- Same file!:
+	 ipbhelper.dll
+- Difference!:
+	Size of OpenSoftwareUpdater.lnk hardened 863 bytes, raw 875 bytes
+- Difference!:
+	 type of OpenSoftwareUpdater.lnk hardened MS Windows shortcut, Item id list present, Points to a file or directory, Has Relative path, Has Working directory, Archive, ctime=Thu Sep 10 17:29:44 2015, mtime=Mon Sep 21 12:21:50 2015, atime=Thu Sep 10 17:29:44 2015, length=3733504, window=hide, raw MS Windows shortcut, Item id list present, Points to a file or directory, Has Relative path, Has Working directory, Archive, ctime=Thu Sep 10 17:29:44 2015, mtime=Mon Sep 21 09:44:18 2015, atime=Thu Sep 10 17:29:44 2015, length=3733504, window=hide
+- Difference!:
+	 type of OpenSoftwareUpdater.lnk hardened MS Windows shortcut, Item id list present, Points to a file or directory, Has Relative path, Has Working directory, Archive, ctime=Thu Sep 10 17:29:44 2015, mtime=Mon Sep 21 12:21:50 2015, atime=Thu Sep 10 17:29:44 2015, length=3733504, window=hide, raw MS Windows shortcut, Item id list present, Points to a file or directory, Has Relative path, Has Working directory, Archive, ctime=Thu Sep 10 17:29:44 2015, mtime=Mon Sep 21 09:44:18 2015, atime=Thu Sep 10 17:29:44 2015, length=3733504, window=hide
+ANOMALIES
+########
+
+HOSTS
+########
+- Difference!:
+	137.117.241.14
+- Difference!:
+	23.54.88.70
+- Difference!:
+	23.54.85.163
+- Difference!:
+	64.4.16.215
+- Difference!:
+	84.53.132.83
+- Difference!:
+	131.253.61.98
+- Difference!:
+	31.13.64.1
+- Difference!:
+	134.170.185.126
+- Difference!:
+	31.13.92.10
+- Difference!:
+	216.58.211.206
+- Difference!:
+	216.58.211.238
+- Difference!:
+	195.10.51.187
+- Difference!:
+	104.83.76.71
+- Difference!:
+	80.239.137.104
+- Difference!:
+	216.58.211.195
+- Difference!:
+	80.239.137.99
